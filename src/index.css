@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+  body {
+    @apply relative h-full font-nunito antialiased;
+  }
+  main#root {
+    @apply relative flex flex-col min-h-screen;
+  }
+}
