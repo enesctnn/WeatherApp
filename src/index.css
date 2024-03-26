@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffffff;
+  box-shadow: inset 0 0 20px 20px rgba(143, 178, 245, 0.3);
+}
+
 @layer base {
   html {
     @apply h-full;
@@ -11,5 +20,10 @@
   }
   main#root {
     @apply relative flex flex-col min-h-screen;
+  }
+}
+@layer components {
+  .location-heading {
+    @apply text-heading-xs sm:text-heading-sm md:text-heading-md select-none w-max mx-auto transition-[font-size];
   }
 }

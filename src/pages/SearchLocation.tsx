@@ -1,39 +1,72 @@
-import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import SearchSection from '../components/Search/SearchSection';
-import { fetchWeatherByCoords } from '../util/http';
+import {
+  ActionFunctionArgs,
+  ParamParseKey,
+  Params,
+  redirect,
+} from 'react-router-dom';
+import { Header } from '../components/Header';
+import { SearchSection } from '../components/search/SearchSection';
+import Routes from '../routes';
 
-const SearchLocationPage = () => {
-  const [coords, setCoords] = useState<{
-    lat: number | undefined;
-    lon: number | undefined;
-  }>();
+const SearchLocationPage = () => (
+  <>
+    <Header />
+    <SearchSection />
+  </>
+);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) =>
-      setCoords({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude,
-      })
-    );
-  }, []);
-
-  const { data } = useQuery({
-    queryKey: ['userLocation'],
-    queryFn: ({ signal }) =>
-      fetchWeatherByCoords(coords?.lat, coords?.lon, signal),
-    staleTime: 10000 * 60,
-    // 10 minutes auto invalidate query time
-  });
-
-  data && console.log({ data });
-
-  return (
-    <>
-      <Header />
-      <SearchSection key={data} />
-    </>
-  );
-};
 export default SearchLocationPage;
+
+interface SearchBarActionArgs extends ActionFunctionArgs {
+  params: Params<ParamParseKey<typeof Routes.searchLocation>>;
+}
+
+// eslint-disable-next-line react-refresh/only-export-components
+export async function action({ request }: SearchBarActionArgs) {
+  const formData = await request.formData();
+  const cityName = formData.get('location') as string | null;
+
+  if (!!cityName && cityName.trim().length > 0) {
+    let correctShapedCity = '';
+    for (const letter of cityName) {
+      correctShapedCity += letter
+        .split('ı')
+        .join('i')
+        .split('İ')
+        .join('I')
+        .toLowerCase()
+        .replace('ğ', 'g')
+        .replace('ç', 'c')
+        .replace('ü', 'u')
+        .replace('ö', 'o')
+        .replace('ş', 's');
+    }
+    return redirect(`/weather/${correctShapedCity}`);
+  }
+
+  return null;
+}
+
+// eslint-disable-next-line react-refresh/only-export-components
+export function loader() {
+  if (navigator.geolocation) {
+    const coords: {
+      lat: number | undefined;
+      lon: number | undefined;
+      permission: boolean;
+    } = {
+      lat: undefined,
+      lon: undefined,
+      permission: false,
+    };
+    navigator.geolocation.getCurrentPosition((position) => {
+      if (position) {
+        coords.lat = position.coords.latitude;
+        coords.lon = position.coords.longitude;
+        coords.permission = true;
+      }
+    });
+    return coords;
+  }
+  return { message: 'Geolocation is not supported by this browser. ' };
+}

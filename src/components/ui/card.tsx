@@ -1,15 +1,24 @@
-import * as React from 'react';
+import { motion } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
-export const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ children, className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn('rounded-xl shadow bg-gray-800', className)}
-    {...props} 
-  >
-    {children}
-  </div>
-));
+type CardProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export const Card = ({ children, className }: CardProps) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ type: 'tween' }}
+      className={cn(
+        'rounded-xl shadow-lg bg-gray-800 flex flex-col p-3 mx-auto',
+        className
+      )}
+    >
+      {children}
+    </motion.div>
+  );
+};

@@ -5,16 +5,31 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+import ErrorPage from './pages/Error';
 import MainRoot from './pages/MainRoot';
-import SearchLocation from './pages/SearchLocation';
+import SearchLocationPage, {
+  action as searchLocationAction,
+  loader as searchLocationLoader,
+} from './pages/SearchLocation';
+import WeatherDetailsPage, {
+  loader as weatherDetailsLoader,
+} from './pages/WeatherDetails';
 import { queryClient } from './util/http';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<MainRoot />}>
-      <Route index element={<SearchLocation />} />
-
-      <Route path="weather/:cityName" element />
+    <Route path="/" element={<MainRoot />} errorElement={<ErrorPage />}>
+      <Route
+        index
+        element={<SearchLocationPage />}
+        loader={searchLocationLoader}
+        action={searchLocationAction}
+      />
+      <Route
+        path="weather/:cityName"
+        element={<WeatherDetailsPage />}
+        loader={weatherDetailsLoader}
+      />
     </Route>
   )
 );
