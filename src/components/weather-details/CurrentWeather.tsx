@@ -1,44 +1,52 @@
 import { useLoaderData } from 'react-router-dom';
+import { useCurrentWeatherData } from '../../hooks/useCurrentWeatherData';
+import { WeatherDataTypes } from '../../weather-data';
 import { Card } from '../ui/card';
-import { WeatherData } from '../../CurrentResponse';
-import { useWeatherData } from '../../hooks/useWeatherData';
 
 export function CurrentWeather() {
-  const loaderData = useLoaderData() as WeatherData;
-  const { bg, city, date, icon, temp, weather } =
-    useWeatherData(loaderData);
-
+  const loaderData = useLoaderData() as WeatherDataTypes.CurrentWeatherData;
+  const {
+    bg,
+    city,
+    date,
+    icon,
+    temp: { max, index, min },
+    weather,
+  } = useCurrentWeatherData(loaderData);
+  
   return (
-    <Card className="relative flex flex-col items-start justify-between !mt-2 text-gray-50 h-[304px] w-[335px] !bg-transparent overflow-hidden ">
-      <header className="w-full z-50">
-        <section>
-          <h1 className="text-heading-lg">
-            {city.name}, {city.country}
-          </h1>
-        </section>
-        <section className="z-50">
-          <h2>
-            {date.dayString}, {date.month} {date.day}, {date.year}
-          </h2>
-        </section>
+    <Card className="overflow-hidden text-gray-50 h-[328px] !mt-5 flex flex-col relative !p-7 justify-between weather-card">
+      <header className="z-50">
+        <h1 className="weather-heading">
+          {city.name}, {city.country}
+        </h1>
+        <p className="text-xs sm:text-sm md:text-md transition-[font-size]">
+          {date.dayString}, {date.month} {date.day}, {date.year}
+        </p>
       </header>
-      <article className="z-50">
-        <section>
-          <h2 className="text-heading-xl">{temp.index}&deg;c</h2>
+      <article className="z-50 flex items-end place-content-between">
+        <section className="flex-1 space-y-2">
+          <h2 className="weather-article-heading">{index}&deg;c</h2>
+          <div>
+            <h3 className="text-heading-sm md:text-heading-md transition-[font-size]">
+              {min}&deg;c / {max}&deg;c
+            </h3>
+            <p className="capitalize text-sm sm:text-md md:text-lg transition-[font-size]">
+              {weather}
+            </p>
+          </div>
         </section>
-        <section className="z-50">
-          <h2>
-            {temp.min}&deg;c / {temp.max}&deg;c
-          </h2>
-          <p className="capitalize">{weather}</p>
-        </section>
+        <div className="flex-[1.2] -mb-5 -mr-5 overflow-hidden">
+          <img
+            className="max-w-40 max-h-44 ml-auto"
+            src={icon.src}
+            alt={icon.alt}
+          />
+        </div>
       </article>
-      <div className="absolute -bottom-4 -right-4 z-50">
-        <img className="w-40 h-40" src={icon.src} alt={icon.alt} />
-      </div>
       <div
-        className="absolute inset-0 "
         style={{ backgroundImage: `url(${bg.src})` }}
+        className="absolute inset-3 rounded-xl overflow-hidden bg-cover bg-center bg-no-repeat"
       />
     </Card>
   );

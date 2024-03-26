@@ -1,7 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
 import axios from './axios';
-import { WeatherData } from '../CurrentResponse';
 import { AxiosError } from 'axios';
+import { WeatherDataTypes } from '../weather-data';
 
 export const API_KEY = '175cc3fc29872d7cb42afe08ab37cc80';
 
@@ -37,15 +37,15 @@ export async function fetchCityNameByCoords(
  * @param lon
  * @param signal
  *
- * Helper function to fetch weather data for location
+ * 5 day forecast is available at any location on the globe. It includes weather forecast data with 3-hour step.
  *
- * @returns weather data for incoming lat, lon coords
+ * @returns forecast weather data for incoming lat, lon coords
  */
-export async function fetchWeatherByCoords(
+export async function fetchForecastByCoords(
   lat: number | undefined,
   lon: number | undefined,
   signal?: AbortSignal
-): Promise<WeatherData> {
+): Promise<WeatherDataTypes.ForecastWeatherData> {
   try {
     const res = await axios.get(
       `data/2.5/forecast/?units=metric&lat=${lat}&lon=${lon}&appid=${API_KEY}`,
@@ -64,17 +64,45 @@ export async function fetchWeatherByCoords(
  * @param cityName
  * @param signal
  *
- * Helper function to fetch weather data for location
+ * 5 day forecast is available at any location on the globe. It includes weather forecast data with 3-hour step.
  *
- * @returns weather data for incoming city name
+ * @returns forecast weather data for incoming city name
  */
-export async function fetchWeatherByCityName(
+export async function fetchForecastByCityName(
   cityName: string,
   signal?: AbortSignal
-): Promise<WeatherData> {
+): Promise<WeatherDataTypes.ForecastWeatherData> {
   try {
     const res = await axios.get(
       `data/2.5/forecast/?units=metric&q=${cityName}&appid=${API_KEY}`,
+      { signal }
+    );
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      throw new Error(error.message);
+    }
+    throw new Error(
+      'Something went wrong while fetching weather by city name !'
+    );
+  }
+}
+
+/**
+ * @param cityName
+ * @param signal
+ *
+ * Helper function to fetch forecast data
+ *
+ * @returns current weather data for incoming city name
+ */
+export async function fetchCurrentWeatherByCityName(
+  cityName: string,
+  signal?: AbortSignal
+): Promise<WeatherDataTypes.ForecastWeatherData> {
+  try {
+    const res = await axios.get(
+      `data/2.5/weather/?units=metric&q=${cityName}&appid=${API_KEY}`,
       { signal }
     );
     return res.data;

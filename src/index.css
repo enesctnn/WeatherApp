@@ -26,4 +26,13 @@ input:-webkit-autofill:active {
   .location-heading {
     @apply text-heading-xs sm:text-heading-sm md:text-heading-md select-none w-max mx-auto transition-[font-size];
   }
+  .weather-heading {
+    @apply text-heading-xs sm:text-heading-sm md:text-heading-md select-none transition-[font-size];
+  }
+  .weather-article-heading {
+    @apply text-heading-xl sm:text-6xl md:text-7xl transition-[font-size];
+  }
+  .weather-card {
+    @apply w-[359px] max-w-full sm:w-2/3;
+  }
 }

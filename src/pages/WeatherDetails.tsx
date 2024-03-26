@@ -6,11 +6,15 @@ import {
 } from 'react-router-dom';
 import { CurrentWeather } from '../components/weather-details/CurrentWeather';
 import Routes from '../routes';
-import { fetchWeatherByCityName, queryClient } from '../util/http';
+import { fetchCurrentWeatherByCityName, queryClient } from '../util/http';
+import CurrentWeatherDetails from '../components/weather-details/CurrentWeatherDetails';
 
-function WeatherDetailsPage() {
-  return <CurrentWeather />;
-}
+const WeatherDetailsPage = () => (
+  <div className="space-y-2">
+    <CurrentWeather />
+    <CurrentWeatherDetails />
+  </div>
+);
 
 interface WeatherDetailsLoaderArgs extends LoaderFunctionArgs {
   params: Params<ParamParseKey<typeof Routes.weatherDetails>>;
@@ -24,13 +28,12 @@ export function loader({ params }: WeatherDetailsLoaderArgs) {
     const cityName = params.cityName.replace('%20', '');
     return queryClient.fetchQuery({
       queryKey: [cityName],
-      queryFn: ({ signal }) => fetchWeatherByCityName(cityName, signal),
+      queryFn: ({ signal }) => fetchCurrentWeatherByCityName(cityName, signal),
       // auto invalidate time set to 10 minutes
       staleTime: 100000 * 60,
       // delete unused queries from memory after 5 minutes
       gcTime: 50000 * 60,
     });
-  } else {
-    throw json({ message: 'URL Missing Params.' }, { status: 422 });
   }
+  throw json({ message: 'URL Missing Params.' }, { status: 422 });
 }
