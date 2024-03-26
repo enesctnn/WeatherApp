@@ -1,7 +1,7 @@
 import { useLoaderData } from 'react-router-dom';
-import { useCurrentWeatherData } from '../../hooks/useCurrentWeatherData';
-import { WeatherDataTypes } from '../../weather-data';
-import { Card } from '../ui/card';
+import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
+import { WeatherDataTypes } from '../../../weather-data';
+import { Card } from '../../ui/card';
 
 export function CurrentWeather() {
   const loaderData = useLoaderData() as WeatherDataTypes.CurrentWeatherData;

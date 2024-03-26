@@ -4,15 +4,19 @@ import {
   ParamParseKey,
   Params,
 } from 'react-router-dom';
-import { CurrentWeather } from '../components/weather-details/CurrentWeather';
 import Routes from '../routes';
+
+import { CurrentWeather } from '../components/weather-details/current/CurrentWeather';
+import { CurrentWeatherDetails } from '../components/weather-details/current/CurrentWeatherDetails';
+import { ForecastWeather } from '../components/weather-details/forecast/ForecastWeather';
+
 import { fetchCurrentWeatherByCityName, queryClient } from '../util/http';
-import CurrentWeatherDetails from '../components/weather-details/CurrentWeatherDetails';
 
 const WeatherDetailsPage = () => (
   <div className="space-y-2">
     <CurrentWeather />
     <CurrentWeatherDetails />
+    <ForecastWeather />
   </div>
 );
 

@@ -6,48 +6,52 @@ import {
   Wind,
 } from '@phosphor-icons/react';
 import { useLoaderData } from 'react-router-dom';
-import { useCurrentWeatherData } from '../../hooks/useCurrentWeatherData';
-import { WeatherDataTypes } from '../../weather-data';
-import { Card } from '../ui/card';
+import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
+import { WeatherDataTypes } from '../../../weather-data';
+import { Card } from '../../ui/card';
 import { WeatherDetailsArticle } from './WeatherDetailsArticle';
 
-function CurrentWeatherDetails() {
+export function CurrentWeatherDetails() {
   const loaderData = useLoaderData() as WeatherDataTypes.CurrentWeatherData;
   const {
     temp: { sensation },
     windSpeed,
     humidity,
+    rainProbability,
   } = useCurrentWeatherData(loaderData);
 
   return (
     <Card className="divide-y divide-gray-600 space-y-2 !py-1 !px-4 weather-card">
       <WeatherDetailsArticle
+        key={sensation}
         header="Thermal sensation"
-        description={<>{sensation}&deg;c</>}
+        value={sensation}
+        symbol={<>&deg;c</>}
         icon={Thermometer}
       />
       <WeatherDetailsArticle
+        key={rainProbability}
         header="Probability of rain"
-        description={`5%`}
+        value={rainProbability}
+        symbol="%"
         icon={CloudRain}
       />
       <WeatherDetailsArticle
+        key={windSpeed}
         header="Wind speed"
-        description={`${windSpeed} km/h`}
+        value={windSpeed}
+        symbol=" km/h"
         icon={Wind}
       />
       <WeatherDetailsArticle
+        key={humidity}
         header="Air humidity"
-        description={`${humidity}%`}
+        value={humidity}
+        symbol="%"
         icon={Drop}
       />
-      <WeatherDetailsArticle
-        header="UV Index"
-        description={'5'}
-        icon={SunDim}
-      />
+      <WeatherDetailsArticle header="UV Index" value={5} icon={SunDim} />
     </Card>
   );
 }
 
-export default CurrentWeatherDetails;

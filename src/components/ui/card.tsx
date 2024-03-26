@@ -14,7 +14,7 @@ export const Card = ({ children, className }: CardProps) => {
       exit={{ opacity: 0, y: -20 }}
       transition={{ type: 'tween' }}
       className={cn(
-        'rounded-xl shadow-md bg-gray- 00 flex flex-col p-3 mx-auto',
+        'rounded-xl shadow-md bg-gray-800 flex flex-col p-3 mx-auto',
         className
       )}
     >

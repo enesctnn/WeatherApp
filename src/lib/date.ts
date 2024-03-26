@@ -4,7 +4,7 @@
  * @returns the day of the week as a string format
  */
 export function getDayString(date: string | number | Date): string {
-  const weekday = [
+  const weekdays = [
     'Sunday',
     'Monday',
     'Tuesday',
@@ -14,7 +14,7 @@ export function getDayString(date: string | number | Date): string {
     'Saturday',
   ];
   const d = new Date(date);
-  const day = weekday[d.getDay()];
+  const day = weekdays[d.getDay()];
   return day;
 }
 

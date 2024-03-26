@@ -1,15 +1,18 @@
 import { Icon } from '@phosphor-icons/react';
+import Counter from '../../ui/counter';
 
 type WeatherDetailsArticleProps = {
   icon: Icon;
   header: string;
-  description: JSX.Element | string;
+  value: number;
+  symbol?: JSX.Element | string;
 };
 
 export function WeatherDetailsArticle({
   icon,
-  description,
+  value,
   header,
+  symbol,
 }: WeatherDetailsArticleProps) {
   const Icon = icon;
   return (
@@ -18,7 +21,11 @@ export function WeatherDetailsArticle({
         <Icon width={24} height={24} />
         {header}
       </h2>
-      <p className="ml-auto text-heading-sm text-gray-100">{description}</p>
+      <p className="ml-auto text-heading-sm text-gray-100">
+        {value !== 0 && <Counter value={value} direction="up" />}
+        {value === 0 && value}
+        {symbol}
+      </p>
     </article>
   );
 }
