@@ -33,6 +33,6 @@ input:-webkit-autofill:active {
     @apply text-heading-xl sm:text-6xl md:text-7xl transition-[font-size];
   }
   .weather-card {
-    @apply w-[359px] max-w-full sm:w-2/3;
+    @apply w-[359px] max-w-full sm:w-2/3 transition-[width];
   }
 }

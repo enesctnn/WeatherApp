@@ -11,9 +11,11 @@ import { CurrentWeatherDetails } from '../components/weather-details/current/Cur
 import { ForecastWeather } from '../components/weather-details/forecast/ForecastWeather';
 
 import { fetchCurrentWeatherByCityName, queryClient } from '../util/http';
+import { HomeButton } from '../components/weather-details/HomeButton';
 
 const WeatherDetailsPage = () => (
   <div className="space-y-3 my-4">
+    <HomeButton />
     <CurrentWeather />
     <CurrentWeatherDetails />
     <ForecastWeather />
