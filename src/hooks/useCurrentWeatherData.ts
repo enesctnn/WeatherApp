@@ -55,7 +55,7 @@ export function useCurrentWeatherData(
   const windSpeed = +((data.wind.speed / 1000) * (60 * 60)).toFixed();
   const humidity = +data.main.humidity.toFixed();
 
-  const weatherObj: FormattedWeatherData = {
+  const formattedWeatherData: FormattedWeatherData = {
     city: { name: data.name, country: data.sys.country },
     weather: dataWeather.description,
     icon,
@@ -67,5 +67,5 @@ export function useCurrentWeatherData(
     rainProbability,
   };
 
-  return weatherObj;
+  return formattedWeatherData;
 }

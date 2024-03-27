@@ -1,6 +1,7 @@
 ![TypeWeather Logo](public/logo.png)
 
 ````markdown
+
 # TypeWeather
 
 TypeWeather is a weather application built using Vite, React, and TypeScript.
@@ -22,14 +23,15 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 - Routing with React Router
 - Styling with Tailwind CSS
 
+````
 ## Installation
 
 1. Clone the repository:
 
 ```bash
-git clone <https://github.com/enesctnn/WeatherApp>
+git clone https://github.com/enesctnn/WeatherApp
+
 ```
-````
 
 2. Navigate to the project directory:
 
@@ -66,11 +68,9 @@ npm run build
 - [country-state-city](https://www.npmjs.com/package/country-state-city)
 - [framer-motion](https://www.npmjs.com/package/framer-motion)
 - [localforage](https://www.npmjs.com/package/localforage)
-- [match-sorter](https://www.npmjs.com/package/match-sorter)
 - [react](https://www.npmjs.com/package/react)
 - [react-dom](https://www.npmjs.com/package/react-dom)
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
-- [sort-by](https://www.npmjs.com/package/sort-by)
 - [tailwind-merge](https://www.npmjs.com/package/tailwind-merge)
 
 ## Dev Dependencies

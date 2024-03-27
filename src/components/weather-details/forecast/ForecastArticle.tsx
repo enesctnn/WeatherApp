@@ -1,5 +1,3 @@
-import { ForecastObjT } from '../../../hooks/useForecastData';
-
 import { motion } from 'framer-motion';
 
 const listAnimationVariants = {
@@ -12,10 +10,14 @@ const listAnimationVariants = {
 };
 
 export const ForecastArticle = ({
-  data,
+  icon,
   index,
+  temp,
+  dayString,
 }: {
-  data: ForecastObjT;
+  icon: { src: string; alt: string };
+  dayString: string;
+  temp: { max: number; min: number };
   index: number;
 }) => (
   <motion.li
@@ -27,15 +29,11 @@ export const ForecastArticle = ({
     custom={index}
     className="flex-1 flex flex-col w-max items-center justify-center"
   >
-    <h3 className="text-heading-xs text-gray-200">{data.day}</h3>
-    <img
-      className="w-[56px] h-[56px]"
-      src={data.icon.src}
-      alt={data.icon.alt}
-    />
+    <h3 className="text-heading-xs text-gray-200">{dayString}</h3>
+    <img className="w-[56px] h-[56px]" src={icon.src} alt={icon.alt} />
     <div className="space-y-2">
-      <h4 className="text-gray-100 text-heading-xs">{data .temp.max}&deg;</h4>
-      <h4 className="text-gray-400 text-heading-xs">{data.temp.max}&deg;</h4>
+      <h4 className="text-gray-100 text-heading-xs">{temp.max}&deg;</h4>
+      <h4 className="text-gray-400 text-heading-xs">{temp.min}&deg;</h4>
     </div>
   </motion.li>
 );

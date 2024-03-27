@@ -19,8 +19,9 @@ export const SearchCurrentLocation = () => {
     queryKey: ['user-location'],
     queryFn: ({ signal }) =>
       fetchCityNameByCoords(loaderData.lat, loaderData.lon, signal),
-    // refreshing user location after 10 minutes
-    staleTime: 100000 * 60,
+    // refreshing user location after 5 minutes
+    staleTime: 1000 * 60 * 5,
+    enabled: loaderData.lat !== undefined && loaderData.lon !== undefined,
   });
 
   useEffect(() => {

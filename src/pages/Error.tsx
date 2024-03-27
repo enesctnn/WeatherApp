@@ -2,7 +2,7 @@ import { KeyReturn } from '@phosphor-icons/react';
 
 import { Link, useRouteError } from 'react-router-dom';
 
-import { Header } from '../components/Header';
+import { Header } from '../components/search/Header';
 import { Card } from '../components/ui/card';
 
 function ErrorPage() {

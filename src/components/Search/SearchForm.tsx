@@ -7,14 +7,12 @@ export const SearchForm = React.forwardRef<
   React.HTMLAttributes<HTMLFormElement>
 >(({ className, ...props }, ref) => {
   const submit = useSubmit();
-
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const location = formData.get('location') as string;
     if (location.trim().length > 0) submit(formData, { method: 'POST' });
   };
-
   return (
     <form
       ref={ref}

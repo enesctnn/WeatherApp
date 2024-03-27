@@ -4,22 +4,23 @@ import { fetchForecastByCityName } from '../util/http';
 
 import { icons } from './../lib/images';
 
-export type ForecastObjT = {
-  icon: {
-    src: string;
-    alt: string;
+export type ForecastDataFormat = {
+  [key: string]: {
+    icon: {
+      src: string;
+      alt: string;
+    };
+    temp: {
+      max: number;
+      min: number;
+    };
   };
-  temp: {
-    max: number;
-    min: number;
-  };
-  day: string;
 };
 
 /**
  * Custom React hook for fetching and processing forecast data for a given city.
  * @param {string} cityName - The name of the city for which to fetch the forecast data.
- * @returns {ForecastObjT[] | null} An array of forecast objects containing temperature, icon, and day information,
+ * @returns {ForecastDataFormat | null} An array of forecast objects containing temperature, icon, and day information,
  * or null if data is not available yet.
  */
 export function useForecastData(cityName: string) {
@@ -29,30 +30,52 @@ export function useForecastData(cityName: string) {
     // 3 minutes auto data refresh
     staleTime: 1000 * 60 * 3,
   });
-  const dayFrequencyCounter: { [key: string]: number } = {};
   if (data) {
-    const forecastObjArr = [];
+    const forecastData: ForecastDataFormat = {};
+
     for (const list of data.list) {
       const dayString = getDayString(list.dt_txt).slice(0, 3);
-      dayFrequencyCounter[dayString] = ++dayFrequencyCounter[dayString] || 1;
-      if (dayFrequencyCounter[dayString] <= 1) {
-        const forecastObj: ForecastObjT = {
-          temp: { max: 0, min: 0 },
-          icon: { src: icons['01d'].src, alt: icons['01d'].alt },
-          day: '',
+      if (forecastData[dayString]) {
+        forecastData[dayString].temp = {
+          max: Math.max(
+            forecastData[dayString].temp.max,
+            +list.main.temp_max.toFixed()
+          ),
+          min: Math.min(
+            forecastData[dayString].temp.min,
+            +list.main.temp_min.toFixed()
+          ),
         };
-        forecastObj.day = dayString;
-        const iconCode = list.weather[0].icon as keyof typeof icons;
-        forecastObj.icon = {
-          src: icons[iconCode].src,
-          alt: icons[iconCode].alt,
+      } else {
+        const iconCode = list.weather[0].icon;
+        forecastData[dayString] = {
+          icon: { src: icons[iconCode].src, alt: icons[iconCode].alt },
+          temp: {
+            max: +list.main.temp_max.toFixed(),
+            min: +list.main.temp_min.toFixed(),
+          },
         };
-        forecastObj.temp.max = +list.main.temp_max.toFixed();
-        forecastObj.temp.min = +list.main.temp_min.toFixed();
-        forecastObjArr.push(forecastObj);
       }
+
+      // if (!dayFrequencyCounter[dayString]) {
+      //   const forecastData: ForecastDataFormat = {
+      //     temp: { max: 0, min: 0 },
+      //     icon: { src: icons['01d'].src, alt: icons['01d'].alt },
+      //     day: '',
+      //   };
+      //   forecastData.day = dayString;
+      //   const iconCode = list.weather[0].icon;
+      //   forecastData.icon = {
+      //     src: icons[iconCode].src,
+      //     alt: icons[iconCode].alt,
+      //   };
+      //   forecastData.temp.max = +list.main.temp_max.toFixed();
+      //   forecastData.temp.min = +list.main.temp_min.toFixed();
+      //   forecastDataArr.push(forecastData);
+      //   dayFrequencyCounter[dayString] = ++dayFrequencyCounter[dayString] || 1;
+      // }
     }
-    return forecastObjArr;
+    return forecastData;
   }
   return null;
 }

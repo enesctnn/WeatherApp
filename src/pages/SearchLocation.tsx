@@ -4,7 +4,7 @@ import {
   Params,
   redirect,
 } from 'react-router-dom';
-import { Header } from '../components/Header';
+import { Header } from '../components/search/Header';
 import { SearchSection } from '../components/search/SearchSection';
 import Routes from '../routes';
 
