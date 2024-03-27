@@ -1,7 +1,5 @@
 ![TypeWeather Logo](public/logo.png)
 
-````markdown
-
 # TypeWeather
 
 TypeWeather is a weather application built using Vite, React, and TypeScript.
@@ -23,7 +21,6 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 - Routing with React Router
 - Styling with Tailwind CSS
 
-````
 ## Installation
 
 1. Clone the repository:

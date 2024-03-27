@@ -25,28 +25,24 @@ export const CurrentWeatherDetails = () => {
   return (
     <Card className="divide-y divide-gray-600  !py-1 !px-4 weather-card">
       <WeatherDetailsArticle
-        key={sensation}
         header="Thermal sensation"
         value={sensation}
         symbol={<>&deg;c</>}
         icon={Thermometer}
       />
       <WeatherDetailsArticle
-        key={rainProbability}
         header="Probability of rain"
         value={rainProbability}
         symbol="%"
         icon={CloudRain}
       />
       <WeatherDetailsArticle
-        key={windSpeed}
         header="Wind speed"
         value={windSpeed}
         symbol=" km/h"
         icon={Wind}
       />
       <WeatherDetailsArticle
-        key={humidity}
         header="Air humidity"
         value={humidity}
         symbol="%"
