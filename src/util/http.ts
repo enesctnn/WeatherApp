@@ -1,6 +1,8 @@
-import { QueryClient } from '@tanstack/react-query';
-import axios from './axios';
 import { AxiosError } from 'axios';
+import axios from './axios';
+
+import { QueryClient } from '@tanstack/react-query';
+
 import { WeatherDataTypes } from '../weather-data';
 
 export const API_KEY = '175cc3fc29872d7cb42afe08ab37cc80';
@@ -92,7 +94,7 @@ export async function fetchForecastByCityName(
  * @param cityName
  * @param signal
  *
- * Helper function to fetch forecast data
+ * Access current weather data for any location on Earth with given city name
  *
  * @returns current weather data for incoming city name
  */

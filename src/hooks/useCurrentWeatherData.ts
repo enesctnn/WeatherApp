@@ -1,17 +1,33 @@
-import { bgs, icons } from '../lib/images';
-
 import { getDayString, getMonthString } from '../lib/date';
+import { bgs, icons } from '../lib/images';
 import { WeatherDataTypes } from '../weather-data';
 import { useCurrentWeatherPop } from './useCurrentWeatherPop';
 
+type FormattedWeatherData = {
+  city: { name: string; country: string };
+  weather: string;
+  icon: { src: string; alt: string };
+  bg: { src: string; alt: string };
+  temp: { index: number; max: number; min: number; sensation: number };
+  date: { dayString: string; month: string; day: number; year: number };
+  windSpeed: number;
+  humidity: number;
+  rainProbability: number;
+};
+
+/**
+ * Custom React hook for processing and formatting current weather data.
+ * @param {WeatherDataTypes.CurrentWeatherData} data - The current weather data to process.
+ * @returns {FormattedWeatherData} The processed current weather data.
+ */
 export function useCurrentWeatherData(
   data: WeatherDataTypes.CurrentWeatherData
-) {
+): FormattedWeatherData {
   const rainProbability = useCurrentWeatherPop(data.name);
 
   const dataWeather = data.weather[0];
 
-  const iconCode = dataWeather.icon as keyof typeof icons;
+  const iconCode = dataWeather.icon;
   const icon = {
     src: icons[iconCode].src,
     alt: icons[iconCode].alt,
@@ -39,7 +55,7 @@ export function useCurrentWeatherData(
   const windSpeed = +((data.wind.speed / 1000) * (60 * 60)).toFixed();
   const humidity = +data.main.humidity.toFixed();
 
-  const weatherObj = {
+  const weatherObj: FormattedWeatherData = {
     city: { name: data.name, country: data.sys.country },
     weather: dataWeather.description,
     icon,

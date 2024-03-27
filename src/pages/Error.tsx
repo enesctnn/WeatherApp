@@ -1,7 +1,9 @@
-import { Link, useRouteError } from 'react-router-dom';
-import { Card } from '../components/ui/card';
-import { Header } from '../components/Header';
 import { KeyReturn } from '@phosphor-icons/react';
+
+import { Link, useRouteError } from 'react-router-dom';
+
+import { Header } from '../components/Header';
+import { Card } from '../components/ui/card';
 
 function ErrorPage() {
   const error = useRouteError();

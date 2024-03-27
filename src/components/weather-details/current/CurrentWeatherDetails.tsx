@@ -1,3 +1,9 @@
+import { useLoaderData } from 'react-router-dom';
+import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
+import { WeatherDataTypes } from '../../../weather-data';
+
+import { Card } from '../../ui/card';
+
 import {
   CloudRain,
   Drop,
@@ -5,13 +11,9 @@ import {
   Thermometer,
   Wind,
 } from '@phosphor-icons/react';
-import { useLoaderData } from 'react-router-dom';
-import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
-import { WeatherDataTypes } from '../../../weather-data';
-import { Card } from '../../ui/card';
 import { WeatherDetailsArticle } from './WeatherDetailsArticle';
 
-export function CurrentWeatherDetails() {
+export const CurrentWeatherDetails = () => {
   const loaderData = useLoaderData() as WeatherDataTypes.CurrentWeatherData;
   const {
     temp: { sensation },
@@ -53,5 +55,4 @@ export function CurrentWeatherDetails() {
       <WeatherDetailsArticle header="UV Index" value={5} icon={SunDim} />
     </Card>
   );
-}
-
+};

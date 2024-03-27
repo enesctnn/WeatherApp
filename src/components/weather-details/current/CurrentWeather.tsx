@@ -1,9 +1,11 @@
 import { useLoaderData } from 'react-router-dom';
 import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
+
 import { WeatherDataTypes } from '../../../weather-data';
+
 import { Card } from '../../ui/card';
 
-export function CurrentWeather() {
+export const CurrentWeather = () => {
   const loaderData = useLoaderData() as WeatherDataTypes.CurrentWeatherData;
   const {
     bg,
@@ -13,9 +15,9 @@ export function CurrentWeather() {
     temp: { max, index, min },
     weather,
   } = useCurrentWeatherData(loaderData);
-  
+
   return (
-    <Card className="overflow-hidden text-gray-50 h-[328px] !mt-5 flex flex-col relative !p-7 justify-between weather-card">
+    <Card className="overflow-hidden text-gray-50 h-[328px] flex flex-col relative !p-7 justify-between weather-card">
       <header className="z-50">
         <h1 className="weather-heading">
           {city.name}, {city.country}
@@ -50,4 +52,4 @@ export function CurrentWeather() {
       />
     </Card>
   );
-}
+};

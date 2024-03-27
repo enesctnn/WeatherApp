@@ -8,13 +8,13 @@ import { useInView, useMotionValue, useSpring } from 'framer-motion';
  *
  * increasing number value counter animation element
  */
-export default function Counter({
+export const Counter = ({
   value,
   direction = 'up',
 }: {
   value: number;
   direction?: 'up' | 'down';
-}) {
+}) => {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(direction === 'down' ? value : 0);
   const springValue = useSpring(motionValue, {
@@ -42,4 +42,4 @@ export default function Counter({
   );
 
   return <span ref={ref} />;
-}
+};

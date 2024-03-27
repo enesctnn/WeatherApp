@@ -13,7 +13,7 @@ import { ForecastWeather } from '../components/weather-details/forecast/Forecast
 import { fetchCurrentWeatherByCityName, queryClient } from '../util/http';
 
 const WeatherDetailsPage = () => (
-  <div className="space-y-2">
+  <div className="space-y-3 my-4">
     <CurrentWeather />
     <CurrentWeatherDetails />
     <ForecastWeather />
@@ -33,10 +33,10 @@ export function loader({ params }: WeatherDetailsLoaderArgs) {
     return queryClient.fetchQuery({
       queryKey: [cityName],
       queryFn: ({ signal }) => fetchCurrentWeatherByCityName(cityName, signal),
-      // auto invalidate time set to 10 minutes
-      staleTime: 100000 * 60,
-      // delete unused queries from memory after 5 minutes
-      gcTime: 50000 * 60,
+      // auto invalidate time set to 3 minutes
+      staleTime: 1000 * 60 * 3,
+      // delete unused queries from memory after 2 minutes
+      gcTime: 1000 * 60 * 2,
     });
   }
   throw json({ message: 'URL Missing Params.' }, { status: 422 });

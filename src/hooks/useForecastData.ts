@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { getDayString } from '../lib/date';
 import { fetchForecastByCityName } from '../util/http';
+
 import { icons } from './../lib/images';
 
-type ForecastObjT = {
+export type ForecastObjT = {
   icon: {
     src: string;
     alt: string;
@@ -15,10 +16,18 @@ type ForecastObjT = {
   day: string;
 };
 
+/**
+ * Custom React hook for fetching and processing forecast data for a given city.
+ * @param {string} cityName - The name of the city for which to fetch the forecast data.
+ * @returns {ForecastObjT[] | null} An array of forecast objects containing temperature, icon, and day information,
+ * or null if data is not available yet.
+ */
 export function useForecastData(cityName: string) {
   const { data } = useQuery({
     queryKey: ['forecast', cityName],
     queryFn: ({ signal }) => fetchForecastByCityName(cityName, signal),
+    // 3 minutes auto data refresh
+    staleTime: 1000 * 60 * 3,
   });
   const dayFrequencyCounter: { [key: string]: number } = {};
   if (data) {
@@ -26,7 +35,6 @@ export function useForecastData(cityName: string) {
     for (const list of data.list) {
       const dayString = getDayString(list.dt_txt).slice(0, 3);
       dayFrequencyCounter[dayString] = ++dayFrequencyCounter[dayString] || 1;
-
       if (dayFrequencyCounter[dayString] <= 1) {
         const forecastObj: ForecastObjT = {
           temp: { max: 0, min: 0 },

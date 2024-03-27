@@ -1,10 +1,13 @@
 import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './util/http';
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from 'react-router-dom';
+
 import ErrorPage from './pages/Error';
 import MainRoot from './pages/MainRoot';
 import SearchLocationPage, {
@@ -14,7 +17,6 @@ import SearchLocationPage, {
 import WeatherDetailsPage, {
   loader as weatherDetailsLoader,
 } from './pages/WeatherDetails';
-import { queryClient } from './util/http';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,3 +1,4 @@
+import { icons } from './lib/images';
 // Define a namespace or module to encapsulate the types
 export declare namespace WeatherDataTypes {
   // Define the type for the first JSON data structure
@@ -22,7 +23,7 @@ export declare namespace WeatherDataTypes {
         id: number;
         main: string;
         description: string;
-        icon: string;
+        icon: keyof typeof icons;
       }[];
       clouds: {
         all: number;
@@ -64,7 +65,7 @@ export declare namespace WeatherDataTypes {
       id: number;
       main: string;
       description: string;
-      icon: string;
+      icon: keyof typeof icons;
     }[];
     base: string;
     main: {

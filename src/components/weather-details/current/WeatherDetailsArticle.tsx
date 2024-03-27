@@ -1,5 +1,5 @@
 import { Icon } from '@phosphor-icons/react';
-import Counter from '../../ui/counter';
+import { Counter } from '../../ui/counter';
 
 type WeatherDetailsArticleProps = {
   icon: Icon;
@@ -8,12 +8,12 @@ type WeatherDetailsArticleProps = {
   symbol?: JSX.Element | string;
 };
 
-export function WeatherDetailsArticle({
+export const WeatherDetailsArticle = ({
   icon,
   value,
   header,
   symbol,
-}: WeatherDetailsArticleProps) {
+}: WeatherDetailsArticleProps) => {
   const Icon = icon;
   return (
     <article className="flex items-center justify-between w-full py-4">
@@ -28,4 +28,4 @@ export function WeatherDetailsArticle({
       </p>
     </article>
   );
-}
+};

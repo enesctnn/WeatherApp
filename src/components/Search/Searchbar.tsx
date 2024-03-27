@@ -1,11 +1,16 @@
-import { SpinnerGap } from '@phosphor-icons/react';
-import { IState } from 'country-state-city';
-import { getAllStates } from 'country-state-city/lib/state';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigation } from 'react-router-dom';
+
 import { Input } from '../ui/input';
-import { SearchMatchingResults } from './SearchMatchingResults';
+
 import { SearchForm } from './SearchForm';
+
+import { IState } from 'country-state-city';
+import { getAllStates } from 'country-state-city/lib/state';
+
+import { SearchMatchingResults } from './SearchMatchingResults';
+
+import { SpinnerGap } from '@phosphor-icons/react';
 import { AnimatePresence } from 'framer-motion';
 
 export const SearchBar = () => {
