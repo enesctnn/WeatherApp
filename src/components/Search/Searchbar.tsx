@@ -20,17 +20,19 @@ export const SearchBar = () => {
   const [currentCities, setCurrentCities] = useState<IState[] | undefined>();
 
   useEffect(() => {
-    if (searchTerm.trim().length !== 0) {
+    if (searchTerm.trim().length >= 1) {
       const cities = getAllStates()
         .filter((c) =>
           c.name.toLowerCase().startsWith(searchTerm.trim().toLowerCase())
         )
         .slice(0, 5);
-
-      setCurrentCities(() => {
-        if (cities.length > 0) return cities.map((city) => city);
-        return undefined;
-      });
+      if (cities.length > 0) {
+        const timer = setTimeout(
+          () => setCurrentCities(() => structuredClone(cities)),
+          150
+        );
+        return () => clearTimeout(timer);
+      }
     } else setCurrentCities(undefined);
   }, [searchTerm]);
 

@@ -19,27 +19,22 @@ export const SearchCurrentLocation = () => {
     queryKey: ['user-location'],
     queryFn: ({ signal }) =>
       fetchCityNameByCoords(loaderData.lat, loaderData.lon, signal),
-    // refreshing user location after 5 minutes
-    staleTime: 1000 * 60 * 5,
-    enabled: loaderData.lat !== undefined && loaderData.lon !== undefined,
+    enabled: !!loaderData.lat && !!loaderData.lon,
   });
 
+  const setFeedback = (message: string) => {
+    setError(message);
+    const timer = setTimeout(() => setError(undefined), 5000);
+    return () => clearTimeout(timer);
+  };
+
   useEffect(() => {
-    if (loaderData.message) {
-      setError(loaderData.message);
-      const timer = setTimeout(() => {
-        setError(undefined);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-    if (isError) {
-      setError('Something went wrong while fetching user location !');
-      const timer = setTimeout(() => {
-        setError(undefined);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [loaderData, isError]);
+    if (!loaderData.permission && !data)
+      setFeedback('Location permission denied !');
+    if (loaderData.message) setFeedback(loaderData.message);
+    if (isError)
+      setFeedback("Something went wrong while fetching user's location !");
+  }, [loaderData, isError, data]);
 
   const initialAnimation = { opacity: 0, x: -20 };
   const animate = { opacity: 1, x: 0 };
@@ -74,7 +69,7 @@ export const SearchCurrentLocation = () => {
           </Link>
         </motion.h2>
       )}
-      {!error && isPending && (
+      {!!loaderData.lat && !!loaderData.lon && !error && isPending && (
         <h2 className="flex text-gray-100 location-heading animate-pulse items-center gap-x-3">
           Fetching User Location...{' '}
           <SpinnerGap className="animate-spin" size={32} />

@@ -53,7 +53,7 @@ export function loader() {
     const coords: {
       lat: number | undefined;
       lon: number | undefined;
-      permission: boolean;
+      permission: boolean | null;
     } = {
       lat: undefined,
       lon: undefined,

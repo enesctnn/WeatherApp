@@ -17,6 +17,7 @@ export const ForecastWeather = () => {
             const data = forecastData[key];
             return (
               <ForecastArticle
+                key={key}
                 dayString={key}
                 index={index}
                 icon={data.icon}
