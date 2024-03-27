@@ -34,7 +34,7 @@ export const ForecastArticle = ({
       alt={data.icon.alt}
     />
     <div className="space-y-2">
-      <h4 className="text-gray-100 text-heading-xs">{data.temp.max}&deg;</h4>
+      <h4 className="text-gray-100 text-heading-xs">{data .temp.max}&deg;</h4>
       <h4 className="text-gray-400 text-heading-xs">{data.temp.max}&deg;</h4>
     </div>
   </motion.li>

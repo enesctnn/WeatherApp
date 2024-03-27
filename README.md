@@ -17,6 +17,7 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 - Automatic location detection
 - Dynamic background and icons based on weather conditions
 - Responsive design
+- Caching mechanism to reduce API calls and improve speed
 - State management using React Query
 - Routing with React Router
 - Styling with Tailwind CSS

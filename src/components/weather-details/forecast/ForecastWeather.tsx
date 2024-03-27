@@ -12,7 +12,7 @@ export const ForecastWeather = () => {
   return (
     <Card className="!p-3 weather-card !flex !flex-row min-h-44">
       {forecastData && (
-        <ul className="flex justify-between w-full">
+        <ul className="flex justify-between w-full md:divide-x divide-gray-600 overflow-hidden">
           {forecastData.map((data, index) => (
             <ForecastArticle key={data.day} data={data} index={index} />
           ))}

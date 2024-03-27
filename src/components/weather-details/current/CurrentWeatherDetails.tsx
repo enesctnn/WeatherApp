@@ -23,7 +23,7 @@ export const CurrentWeatherDetails = () => {
   } = useCurrentWeatherData(loaderData);
 
   return (
-    <Card className="divide-y divide-gray-600 space-y-2 !py-1 !px-4 weather-card">
+    <Card className="divide-y divide-gray-600  !py-1 !px-4 weather-card">
       <WeatherDetailsArticle
         key={sensation}
         header="Thermal sensation"
@@ -52,6 +52,7 @@ export const CurrentWeatherDetails = () => {
         symbol="%"
         icon={Drop}
       />
+      {/* TODO: Find an Api to get UVI by cityname or coords */}
       <WeatherDetailsArticle header="UV Index" value={5} icon={SunDim} />
     </Card>
   );
