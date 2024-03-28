@@ -20,7 +20,7 @@ export type ForecastDataFormat = {
 /**
  * Custom React hook for fetching and processing forecast data for a given city.
  * @param {string} cityName - The name of the city for which to fetch the forecast data.
- * @returns {ForecastDataFormat | null} An array of forecast objects containing temperature, icon, and day information,
+ * @returns {ForecastDataFormat} An array of forecast objects containing temperature, icon, and day information,
  * or null if data is not available yet.
  */
 export function useForecastData(cityName: string) {
@@ -56,24 +56,6 @@ export function useForecastData(cityName: string) {
           },
         };
       }
-
-      // if (!dayFrequencyCounter[dayString]) {
-      //   const forecastData: ForecastDataFormat = {
-      //     temp: { max: 0, min: 0 },
-      //     icon: { src: icons['01d'].src, alt: icons['01d'].alt },
-      //     day: '',
-      //   };
-      //   forecastData.day = dayString;
-      //   const iconCode = list.weather[0].icon;
-      //   forecastData.icon = {
-      //     src: icons[iconCode].src,
-      //     alt: icons[iconCode].alt,
-      //   };
-      //   forecastData.temp.max = +list.main.temp_max.toFixed();
-      //   forecastData.temp.min = +list.main.temp_min.toFixed();
-      //   forecastDataArr.push(forecastData);
-      //   dayFrequencyCounter[dayString] = ++dayFrequencyCounter[dayString] || 1;
-      // }
     }
     return forecastData;
   }

@@ -14,6 +14,7 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 - Search for weather by city name
 - City suggestions dropdown for easier location input
 - Automatic location detection
+- Displays temperature graphs for incoming days, providing users with a comprehensive overview of weather forecasts.
 - Dynamic background and icons based on weather conditions
 - Responsive design
 - Caching mechanism to reduce API calls and improve speed
@@ -69,6 +70,7 @@ npm run build
 - [react-dom](https://www.npmjs.com/package/react-dom)
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 - [tailwind-merge](https://www.npmjs.com/package/tailwind-merge)
+- [recharts](https://www.npmjs.com/package/recharts)
 
 ## Dev Dependencies
 

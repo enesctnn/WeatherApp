@@ -28,3 +28,9 @@ export function getMonthString(date: string | number | Date): string {
   const month = d.toLocaleString('en-GB', { month: 'long' }); //set first parameter to default for language detection
   return month;
 }
+
+export function getTimeFromDate(date: string | number | Date) {
+  const d = new Date(date);
+  const time = d.toLocaleTimeString('en-GB').slice(0, 5);
+  return time;
+}
