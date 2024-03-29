@@ -4,6 +4,7 @@ import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
 import { WeatherDataTypes } from '../../../weather-data';
 
 import { Card } from '../../ui/card';
+import { ToggleFavoriteButton } from '../../favorites/ToggleFavoriteButton';
 
 export const CurrentWeather = () => {
   const loaderData = useLoaderData() as WeatherDataTypes.CurrentWeatherData;
@@ -18,13 +19,16 @@ export const CurrentWeather = () => {
 
   return (
     <Card className="overflow-hidden text-gray-50 h-[328px] flex flex-col relative !p-7 justify-between weather-card">
-      <header className="z-50">
-        <h1 className="weather-heading">
-          {city.name}, {city.country}
-        </h1>
-        <p className="text-xs sm:text-sm md:text-md transition-[font-size]">
-          {date.dayString}, {date.month} {date.day}, {date.year}
-        </p>
+      <header className="z-50 flex justify-between">
+        <div>
+          <h1 className="weather-heading">
+            {city.name}, {city.country}
+          </h1>
+          <p className="text-xs sm:text-sm md:text-md transition-[font-size]">
+            {date.dayString}, {date.month} {date.day}, {date.year}
+          </p>
+        </div>
+        <ToggleFavoriteButton cityName={city.name} />
       </header>
       <article className="z-50 flex items-end place-content-between">
         <section className="flex-1 space-y-2">

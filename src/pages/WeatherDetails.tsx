@@ -10,9 +10,9 @@ import { CurrentWeather } from '../components/weather-details/current/CurrentWea
 import { CurrentWeatherDetails } from '../components/weather-details/current/CurrentWeatherDetails';
 import { ForecastWeather } from '../components/weather-details/forecast/ForecastWeather';
 
+import { WeeklyChart } from '../components/weather-details/forecast/charts/WeeklyChart';
 import { HomeButton } from '../components/weather-details/HomeButton';
 import { fetchCurrentWeatherByCityName, queryClient } from '../util/http';
-import {WeeklyChart} from '../components/weather-details/forecast/charts/WeeklyChart';
 
 const WeatherDetailsPage = () => (
   <div className="space-y-3 my-4">
@@ -32,7 +32,7 @@ export default WeatherDetailsPage;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export function loader({ params }: WeatherDetailsLoaderArgs) {
-  if (params.cityName && params.cityName.trim().length > 0) {
+  if (params.cityName&& params.cityName.trim().length > 0) {
     const cityName = params.cityName.replace('%20', '');
     return queryClient.fetchQuery({
       queryKey: [cityName],

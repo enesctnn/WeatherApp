@@ -71,7 +71,7 @@ export const SearchCurrentLocation = () => {
       )}
       {!!loaderData.lat && !!loaderData.lon && !error && isPending && (
         <h2 className="flex text-gray-100 location-heading animate-pulse items-center gap-x-3">
-          Fetching User Location...{' '}
+          Fetching User Location...
           <SpinnerGap className="animate-spin" size={32} />
         </h2>
       )}

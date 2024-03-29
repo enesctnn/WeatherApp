@@ -1,4 +1,4 @@
-import { motion, useDragControls } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { DayTabs } from './DayTabs';
 
 type AvailableDayListProps = {
@@ -12,19 +12,10 @@ export function AvailableDayList({
   activeDay,
   onClick,
 }: AvailableDayListProps) {
-  const dragControls = useDragControls();
-
   return (
     <motion.ul
       drag="x"
-      dragConstraints={{ left: -150, right: 150 }}
-      dragControls={dragControls}
-      dragListener={false}
-      onPointerDown={(e) => {
-        if (!(e.target instanceof HTMLButtonElement)) {
-          dragControls.start(e);
-        }
-      }}
+      dragConstraints={{ left: -300, right: 150 }}
       className="flex items-center w-max border rounded-md gap-x-4 mx-auto px-2 py-3 cursor-grab active:cursor-grabbing"
     >
       {days.map((day) => (

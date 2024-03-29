@@ -10,17 +10,29 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 
 ## Features
 
-- Current weather & 5 days of Forecast weather display
-- Search for weather by city name
-- City suggestions dropdown for easier location input
-- Automatic location detection
-- Displays temperature graphs for incoming days, providing users with a comprehensive overview of weather forecasts.
-- Dynamic background and icons based on weather conditions
-- Responsive design
-- Caching mechanism to reduce API calls and improve speed
-- State management using React Query
-- Routing with React Router
-- Styling with Tailwind CSS
+- Current Weather & 5-Day Forecast Display: View current weather conditions and a 5-day forecast for any selected location.
+
+- Search by City Name: Easily search for weather information by entering the name of a city.
+
+- City Suggestions Dropdown: Get suggestions for cities as you type, making location input easier and more convenient.
+
+- Automatic Location Detection: Automatically detect the user's location for quick access to local weather information.
+
+- Temperature Graphs: Interactive temperature graphs provide users with a visual representation of temperature trends for the upcoming days.
+
+- Dynamic Backgrounds and Icons: Enjoy a visually engaging experience with backgrounds and icons that change based on weather conditions.
+
+- Responsive Design: The application is optimized for various screen sizes, ensuring a seamless experience across devices.
+
+- Caching Mechanism: Reduce API calls and improve speed with a caching mechanism that stores previously fetched weather data.
+
+- State Management with React Query: Utilize React Query for efficient state management and data fetching.
+
+- Routing with React Router: Implement routing for navigation between different pages of the application.
+
+- Styling with Tailwind CSS: Benefit from the utility-first approach of Tailwind CSS for fast and easy styling.
+
+- Favorite Section: Toggle the display of the favorite section to manage and access saved locations easily.
 
 ## Installation
 
@@ -71,6 +83,7 @@ npm run build
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 - [tailwind-merge](https://www.npmjs.com/package/tailwind-merge)
 - [recharts](https://www.npmjs.com/package/recharts)
+- [react-icons](https://www.npmjs.com/package/react-icons)
 
 ## Dev Dependencies
 

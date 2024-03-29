@@ -35,4 +35,5 @@ input:-webkit-autofill:active {
   .weather-card {
     @apply w-[359px] max-w-full sm:w-2/3 transition-[width];
   }
+
 }
