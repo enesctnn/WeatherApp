@@ -16,7 +16,7 @@ export function LanguageSelect() {
   useOnClickOutside(languageSelectRef, () => setIsOpen(false));
 
   return (
-    <div className="absolute top-2 inset-x-0" ref={languageSelectRef}>
+    <div className="mt-2 z-[100]" ref={languageSelectRef}>
       <div className="w-max relative ml-auto mr-2">
         <button
           onClick={() => setIsOpen((prevState) => !prevState)}
@@ -43,7 +43,7 @@ export function LanguageSelect() {
         {isOpen && (
           <div
             ref={languageSelectRef}
-            className="absolute mt-2 w-full rounded-md shadow-lg bg-gray-100 flex flex-col items-stretch"
+            className="absolute mt-2 w-full rounded-md shadow-lg bg-gray-100 flex flex-col items-stretch z-[100]"
             role="menu"
             aria-orientation="vertical"
           >

@@ -34,6 +34,12 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 
 - Favorite Section: Toggle the display of the favorite section to manage and access saved locations easily.
 
+- Multiple languages: Including English and Turkish. Users can specify their preferred language in App requests to receive weather forecasts and information in the language of their choice.
+
+### Supported Languages:
+- English
+- Turkish
+
 ## Installation
 
 1. Clone the repository:

@@ -11,7 +11,7 @@
     "header": "<0><1>TypeWeather</1>'a Hoş Geldiniz</0>",
     "description": "Hava tahminlerini görmek için bir konum seçin",
     "location": {
-      "current": "Güncel Konum Hava durumu / ",
+      "current": "Güncel Konum Hava Durumu / ",
       "feedback": {
         "fetch": "Konum Aranıyor...",
         "error": "Kullanıcı Konumu Aranırken Bir Şeyler Ters Gitti !",
