@@ -32,7 +32,7 @@ export default WeatherDetailsPage;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export function loader({ params }: WeatherDetailsLoaderArgs) {
-  if (params.cityName&& params.cityName.trim().length > 0) {
+  if (params.cityName && params.cityName.trim().length > 0) {
     const cityName = params.cityName.replace('%20', '');
     return queryClient.fetchQuery({
       queryKey: [cityName],

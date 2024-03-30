@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.user-drag-none {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -35,5 +43,4 @@ input:-webkit-autofill:active {
   .weather-card {
     @apply w-[359px] max-w-full sm:w-2/3 transition-[width];
   }
-
 }

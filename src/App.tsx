@@ -12,7 +12,6 @@ import ErrorPage from './pages/Error';
 import MainRoot from './pages/MainRoot';
 import SearchLocationPage, {
   action as searchLocationAction,
-  loader as searchLocationLoader,
 } from './pages/SearchLocation';
 import WeatherDetailsPage, {
   loader as weatherDetailsLoader,
@@ -24,7 +23,6 @@ const router = createBrowserRouter(
       <Route
         index
         element={<SearchLocationPage />}
-        loader={searchLocationLoader}
         action={searchLocationAction}
       />
       <Route

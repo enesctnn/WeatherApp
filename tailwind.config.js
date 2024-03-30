@@ -96,6 +96,18 @@ export default {
       fontFamily: {
         nunito: ['"Nunito"', 'sans-serif'],
       },
+      keyframes: {
+        bump: {
+          '0%': { transform: 'scale(1)' },
+          '10%': { transform: 'scale(0.8)' },
+          '30%': { transform: 'scale(1.1)' },
+          '50%': { transform: 'scale(1.3)' },
+          '100%': { transform: 'scale(1)' },
+        },
+      },
+      animation: {
+        bump: 'bump 0.2s',
+      },
     },
   },
   plugins: [],

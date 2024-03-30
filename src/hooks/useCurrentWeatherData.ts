@@ -13,6 +13,9 @@ type FormattedWeatherData = {
   windSpeed: number;
   humidity: number;
   rainProbability: number;
+  athmosphericPressure: number;
+  rainVolume?: { '1h'?: number; '3h'?: number };
+  snowVolume?: { '1h'?: number; '3h'?: number };
 };
 
 /**
@@ -24,7 +27,6 @@ export function useCurrentWeatherData(
   data: WeatherDataTypes.CurrentWeatherData
 ): FormattedWeatherData {
   const rainProbability = useCurrentWeatherPop(data.name);
-
   const dataWeather = data.weather[0];
 
   const iconCode = dataWeather.icon;
@@ -50,10 +52,15 @@ export function useCurrentWeatherData(
     min: +data.main.temp_min.toFixed(),
     sensation: +data.main.feels_like.toFixed(),
   };
-
   // incoming windSpeed value is meter/sec next line of code is to convert it to km/h
   const windSpeed = +((data.wind.speed / 1000) * (60 * 60)).toFixed();
   const humidity = +data.main.humidity.toFixed();
+  const rainVolume: { [key: string]: number } = {};
+  if (data.rain && data.rain['1h']) rainVolume['1h'] = data.rain['1h'];
+  if (data.rain && data.rain['3h']) rainVolume['3h'] = data.rain['3h'];
+  const snowVolume: { [key: string]: number } = {};
+  if (data.snow && data.snow['1h']) snowVolume['1h'] = data.snow['1h'];
+  if (data.snow && data.snow['3h']) snowVolume['3h'] = data.snow['3h'];
 
   const formattedWeatherData: FormattedWeatherData = {
     city: { name: data.name, country: data.sys.country },
@@ -65,7 +72,9 @@ export function useCurrentWeatherData(
     windSpeed,
     humidity,
     rainProbability,
+    athmosphericPressure: data.main.pressure,
+    rainVolume,
+    snowVolume,
   };
-
   return formattedWeatherData;
 }

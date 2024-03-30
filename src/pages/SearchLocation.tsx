@@ -4,13 +4,13 @@ import {
   Params,
   redirect,
 } from 'react-router-dom';
-import { Header } from '../components/search/Header';
+import { Logo } from '../components/search/Logo';
 import { SearchSection } from '../components/search/SearchSection';
 import Routes from '../routes';
 
 const SearchLocationPage = () => (
   <>
-    <Header />
+    <Logo />
     <SearchSection />
   </>
 );
@@ -47,26 +47,3 @@ export async function action({ request }: SearchBarActionArgs) {
   return null;
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
-export function loader() {
-  if (navigator.geolocation) {
-    const coords: {
-      lat: number | undefined;
-      lon: number | undefined;
-      permission: boolean | null;
-    } = {
-      lat: undefined,
-      lon: undefined,
-      permission: false,
-    };
-    navigator.geolocation.getCurrentPosition((position) => {
-      if (position) {
-        coords.lat = position.coords.latitude;
-        coords.lon = position.coords.longitude;
-        coords.permission = true;
-      }
-    });
-    return coords;
-  }
-  return { message: 'Geolocation is not supported by this browser. ' };
-}

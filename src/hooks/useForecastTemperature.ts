@@ -17,7 +17,7 @@ export function useForecastTemperature(cityName: string) {
   });
   if (data) {
     const forecastTempData: {
-      [key: string]: { time: string; temperature: number }[];
+      [key: string]: { time: string; temperature: number; pop: number }[];
     } = {};
     const forecastTempArray: {
       day: string;
@@ -27,10 +27,11 @@ export function useForecastTemperature(cityName: string) {
       const dayString = getDayString(list.dt_txt);
       const time = getTimeFromDate(list.dt_txt);
       const temperature = +list.main.temp.toFixed();
+      const pop = +list.pop * 100;
       if (forecastTempData[dayString]) {
-        forecastTempData[dayString].push({ time, temperature });
+        forecastTempData[dayString].push({ time, temperature, pop });
       } else {
-        forecastTempData[dayString] = [{ time, temperature }];
+        forecastTempData[dayString] = [{ time, temperature, pop }];
       }
     }
     Object.keys(forecastTempData).map((key) => {

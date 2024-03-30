@@ -18,7 +18,7 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 
 - Automatic Location Detection: Automatically detect the user's location for quick access to local weather information.
 
-- Temperature Graphs: Interactive temperature graphs provide users with a visual representation of temperature trends for the upcoming days.
+- Temperature & Probability of Rain Graphs: Interactive temperature & Probability of Rain graphs provide users with a visual representation of forecast trends for the upcoming days.
 
 - Dynamic Backgrounds and Icons: Enjoy a visually engaging experience with backgrounds and icons that change based on weather conditions.
 

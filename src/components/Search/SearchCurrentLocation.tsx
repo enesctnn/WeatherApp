@@ -2,24 +2,20 @@ import { MapPinLine, SpinnerGap } from '@phosphor-icons/react';
 import { useQuery } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useGeolocation } from '../../hooks/useGeolocation';
 import { fetchCityNameByCoords } from '../../util/http';
 
 export const SearchCurrentLocation = () => {
   const [error, setError] = useState<string | undefined>();
 
-  const loaderData = useLoaderData() as {
-    lat?: number | undefined;
-    lon?: number | undefined;
-    permission?: boolean;
-    message?: string;
-  };
+  const coords = useGeolocation();
 
   const { data, isPending, isError } = useQuery({
     queryKey: ['user-location'],
     queryFn: ({ signal }) =>
-      fetchCityNameByCoords(loaderData.lat, loaderData.lon, signal),
-    enabled: !!loaderData.lat && !!loaderData.lon,
+      fetchCityNameByCoords(coords.lat, coords.lon, signal),
+    enabled: !!coords.lat && !!coords.lon,
   });
 
   const setFeedback = (message: string) => {
@@ -29,12 +25,11 @@ export const SearchCurrentLocation = () => {
   };
 
   useEffect(() => {
-    if (!loaderData.permission && !data)
+    if (coords.permission === false && !data)
       setFeedback('Location permission denied !');
-    if (loaderData.message) setFeedback(loaderData.message);
     if (isError)
       setFeedback("Something went wrong while fetching user's location !");
-  }, [loaderData, isError, data]);
+  }, [coords, isError, data]);
 
   const initialAnimation = { opacity: 0, x: -20 };
   const animate = { opacity: 1, x: 0 };
@@ -69,7 +64,7 @@ export const SearchCurrentLocation = () => {
           </Link>
         </motion.h2>
       )}
-      {!!loaderData.lat && !!loaderData.lon && !error && isPending && (
+      {!!coords && !!coords.lat && !!coords.lon && !error && isPending && (
         <h2 className="flex text-gray-100 location-heading animate-pulse items-center gap-x-3">
           Fetching User Location...
           <SpinnerGap className="animate-spin" size={32} />

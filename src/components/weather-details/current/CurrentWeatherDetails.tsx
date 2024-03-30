@@ -5,9 +5,10 @@ import { WeatherDataTypes } from '../../../weather-data';
 import { Card } from '../../ui/card';
 
 import {
+  CloudArrowDown,
   CloudRain,
   Drop,
-  SunDim,
+  Snowflake,
   Thermometer,
   Wind,
 } from '@phosphor-icons/react';
@@ -20,36 +21,80 @@ export const CurrentWeatherDetails = () => {
     windSpeed,
     humidity,
     rainProbability,
+    athmosphericPressure,
+    rainVolume,
+    snowVolume,
   } = useCurrentWeatherData(loaderData);
 
   return (
-    <Card className="divide-y divide-gray-600  !py-1 !px-4 weather-card">
+    <Card className="divide-y divide-gray-600 !py-1 !px-4 weather-card">
       <WeatherDetailsArticle
         header="Thermal sensation"
         value={sensation}
         symbol={<>&deg;c</>}
         icon={Thermometer}
+        useCounter
       />
       <WeatherDetailsArticle
         header="Probability of rain"
         value={rainProbability}
         symbol="%"
         icon={CloudRain}
+        useCounter
       />
       <WeatherDetailsArticle
         header="Wind speed"
         value={windSpeed}
         symbol=" km/h"
         icon={Wind}
+        useCounter
       />
       <WeatherDetailsArticle
         header="Air humidity"
         value={humidity}
         symbol="%"
         icon={Drop}
+        useCounter
       />
-      {/* TODO: Find an Api to get UVI by cityname or coords */}
-      <WeatherDetailsArticle header="UV Index" value={5} icon={SunDim} />
+      <WeatherDetailsArticle
+        header="Atmospheric Pressure"
+        value={athmosphericPressure}
+        symbol=" hPa"
+        icon={CloudArrowDown}
+        useCounter
+      />
+      {snowVolume?.['1h'] && (
+        <WeatherDetailsArticle
+          header="Snow Volume (1h)"
+          value={snowVolume?.['1h']}
+          icon={Snowflake}
+          symbol={<> mm&#xb3;</>}
+        />
+      )}
+      {snowVolume?.['3h'] && (
+        <WeatherDetailsArticle
+          header="Snow Volume (3h)"
+          value={snowVolume?.['3h']}
+          icon={Snowflake}
+          symbol={<> mm&#xb3;</>}
+        />
+      )}
+      {rainVolume?.['1h'] && (
+        <WeatherDetailsArticle
+          header="Rain Volume (1h)"
+          value={rainVolume?.['1h']}
+          icon={CloudRain}
+          symbol={<> mm&#xb3;</>}
+        />
+      )}
+      {rainVolume?.['3h'] && (
+        <WeatherDetailsArticle
+          header="Rain Volume (3h)"
+          value={rainVolume?.['3h']}
+          icon={CloudRain}
+          symbol={<> mm&#xb3;</>}
+        />
+      )}
     </Card>
   );
 };

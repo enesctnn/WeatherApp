@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
-  CartesianGrid,
+  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -28,7 +28,7 @@ export function WeeklyChart() {
   const handleSetActiveDay = (day: string) => setActiveDay(day);
 
   return (
-    <Card className="weather-card space-y-4 h-96 overflow-hidden">
+    <Card className="weather-card space-y-4 h-96 overflow-hidden !pl-0 pr-10">
       {data && (
         <AvailableDayList
           days={data.map((list) => list.day)}
@@ -42,16 +42,29 @@ export function WeeklyChart() {
           .map((filteredData) => (
             <ResponsiveContainer
               key={filteredData.day}
-              className="-ml-5"
+              className=""
               width="100%"
               height="100%"
             >
               <LineChart height={200} data={filteredData.temperature}>
                 <XAxis dataKey="time" />
-                <Line type="monotone" dataKey="temperature" stroke="#8FB2F5" />
-                <CartesianGrid stroke="#BFBFD4" strokeDasharray={'5 5'} />
                 <YAxis />
                 <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="temperature"
+                  stroke="#c70039"
+                  strokeWidth={3}
+                  name="c°"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="pop"
+                  stroke="#8FB2F5"
+                  strokeWidth={3}
+                  name="Precipitation %"
+                />
               </LineChart>
             </ResponsiveContainer>
           ))}

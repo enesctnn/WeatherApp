@@ -88,6 +88,10 @@ export declare namespace WeatherDataTypes {
       '1h'?: number;
       '3h'?: number;
     };
+    snow: {
+      '1h'?: number;
+      '3h'?: number;
+    };
     clouds: {
       all: number;
     };
