@@ -1,5 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { getDayString } from '../lib/date';
+import { useTranslation } from 'react-i18next';
+
+import { getShortDayString } from '../lib/date';
+
 import { fetchForecastByCityName } from '../util/http';
 
 import { icons } from './../lib/images';
@@ -20,21 +23,26 @@ export type ForecastDataFormat = {
 /**
  * Custom React hook for fetching and processing forecast data for a given city.
  * @param {string} cityName - The name of the city for which to fetch the forecast data.
- * @returns {ForecastDataFormat} An array of forecast objects containing temperature, icon, and day information,
+ * @returns {ForecastDataFormat | null} An array of forecast objects containing temperature, icon, and day information,
  * or null if data is not available yet.
  */
-export function useForecastData(cityName: string) {
+export function useForecastData(cityName: string): ForecastDataFormat | null {
+  const {
+    i18n: { language },
+  } = useTranslation();
+
   const { data } = useQuery({
     queryKey: ['forecast', cityName],
     queryFn: ({ signal }) => fetchForecastByCityName(cityName, signal),
     // 3 minutes auto data refresh
     staleTime: 1000 * 60 * 3,
   });
+
   if (data) {
     const forecastData: ForecastDataFormat = {};
 
     for (const list of data.list) {
-      const dayString = getDayString(list.dt_txt).slice(0, 3);
+      const dayString = getShortDayString(list.dt_txt, language);
       if (forecastData[dayString]) {
         forecastData[dayString].temp = {
           max: Math.max(

@@ -7,6 +7,10 @@ import { WeatherDataTypes } from '../weather-data';
 
 export const API_KEY = '175cc3fc29872d7cb42afe08ab37cc80';
 
+type ParamsT = {
+  [key: string]: string;
+};
+
 /**
  * Tanstack query client for caching the data all over the app.
  * @type {QueryClient}
@@ -23,11 +27,12 @@ export const queryClient = new QueryClient();
 export async function fetchCityNameByCoords(
   lat: number | undefined,
   lon: number | undefined,
-  signal?: AbortSignal
+  signal: AbortSignal,
+  params?: ParamsT
 ) {
   const res = await axios.get(
     `geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
-    { signal }
+    { signal, params }
   );
   return res.data[0];
 }
@@ -42,12 +47,13 @@ export async function fetchCityNameByCoords(
 export async function fetchForecastByCoords(
   lat: number | undefined,
   lon: number | undefined,
-  signal?: AbortSignal
+  signal: AbortSignal,
+  params?: ParamsT
 ): Promise<WeatherDataTypes.ForecastWeatherData> {
   try {
     const res = await axios.get(
       `data/2.5/forecast/?units=metric&lat=${lat}&lon=${lon}&appid=${API_KEY}`,
-      { signal }
+      { signal, params: { ...params } }
     );
     return res.data;
   } catch (error) {
@@ -66,12 +72,13 @@ export async function fetchForecastByCoords(
  */
 export async function fetchForecastByCityName(
   cityName: string,
-  signal?: AbortSignal
+  signal: AbortSignal,
+  params?: ParamsT
 ): Promise<WeatherDataTypes.ForecastWeatherData> {
   try {
     const res = await axios.get(
       `data/2.5/forecast/?units=metric&q=${cityName}&appid=${API_KEY}`,
-      { signal }
+      { signal, params: { ...params } }
     );
     return res.data;
   } catch (error) {
@@ -92,12 +99,13 @@ export async function fetchForecastByCityName(
  */
 export async function fetchCurrentWeatherByCityName(
   cityName: string,
-  signal?: AbortSignal
-): Promise<WeatherDataTypes.ForecastWeatherData> {
+  signal: AbortSignal,
+  params?: ParamsT
+): Promise<WeatherDataTypes.CurrentWeatherData> {
   try {
     const res = await axios.get(
       `data/2.5/weather/?units=metric&q=${cityName}&appid=${API_KEY}`,
-      { signal }
+      { signal, params: { ...params } }
     );
     return res.data;
   } catch (error) {

@@ -3,7 +3,10 @@
  * Helper function to get days of the week as a string
  * @returns the day of the week as a string format
  */
-export function getDayString(date: string | number | Date): string {
+export function getDayString(
+  date: string | number | Date,
+  lng: string
+): string {
   const weekdays = [
     'Sunday',
     'Monday',
@@ -13,9 +16,49 @@ export function getDayString(date: string | number | Date): string {
     'Friday',
     'Saturday',
   ];
+  const trweekdays = [
+    'Pazar',
+    'Pazartesi',
+    'Salı',
+    'Çarşamba',
+    'Perşembe',
+    'Cuma',
+    'Cumartesi',
+  ];
   const d = new Date(date);
-  const day = weekdays[d.getDay()];
-  return day;
+  if (lng === 'tr') {
+    const day = trweekdays[d.getDay()];
+    return day;
+  } else if (lng === 'en') {
+    const day = weekdays[d.getDay()];
+    return day;
+  } else {
+    const day = weekdays[d.getDay()];
+    return day;
+  }
+}
+/**
+ * @param date
+ * Helper function to get days of the week as a short string
+ * @returns the day of the week as a short string format
+ */
+export function getShortDayString(
+  date: string | number | Date,
+  lng: string
+): string {
+  const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const trweekdays = ['Paz', 'Pts', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
+  const d = new Date(date);
+  if (lng === 'tr') {
+    const day = trweekdays[d.getDay()];
+    return day;
+  } else if (lng === 'en') {
+    const day = weekdays[d.getDay()];
+    return day;
+  } else {
+    const day = weekdays[d.getDay()];
+    return day;
+  }
 }
 
 /**
@@ -23,9 +66,12 @@ export function getDayString(date: string | number | Date): string {
  * Helper function to get months of the year as a string
  * @returns the month of the year as a string format
  */
-export function getMonthString(date: string | number | Date): string {
+export function getMonthString(
+  date: string | number | Date,
+  lng: string
+): string {
   const d = new Date(date); // yyyy-mm-dd
-  const month = d.toLocaleString('en-GB', { month: 'long' }); //set first parameter to default for language detection
+  const month = d.toLocaleString(lng, { month: 'long' }); //set first parameter to default for language detection
   return month;
 }
 

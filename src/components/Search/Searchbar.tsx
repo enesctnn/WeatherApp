@@ -12,6 +12,7 @@ import { SearchMatchingResults } from './SearchMatchingResults';
 
 import { SpinnerGap } from '@phosphor-icons/react';
 import { AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export const SearchBar = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -39,6 +40,8 @@ export const SearchBar = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearchTerm(e.target.value);
 
+  const { t } = useTranslation(undefined, { keyPrefix: 'home.input' });
+
   return (
     <SearchForm ref={formRef}>
       <div className="w-full relative">
@@ -49,7 +52,7 @@ export const SearchBar = () => {
           id="location"
           name="location"
           type="search"
-          placeholder="Search location"
+          placeholder={t('placeholder')}
           value={searchTerm}
           onChange={onChange}
           disabled={state === 'loading'}

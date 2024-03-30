@@ -1,0 +1,33 @@
+{
+  "error": {},
+  "nav": {
+    "favorites": {
+      "label": "Favoriler",
+      "toolTip": { "full": "Favoriler Dolu" }
+    },
+    "search": "Ara"
+  },
+  "home": {
+    "header": "<0><1>TypeWeather</1>'a Hoş Geldiniz</0>",
+    "description": "Hava tahminlerini görmek için bir konum seçin",
+    "location": {
+      "current": "Güncel Konum Hava durumu / ",
+      "feedback": {
+        "fetch": "Konum Aranıyor...",
+        "error": "Kullanıcı Konumu Aranırken Bir Şeyler Ters Gitti !",
+        "permission": "Konum izni reddedildi !"
+      }
+    },
+    "input": { "placeholder": "Konum Ara" }
+  },
+  "weatherdetails": {
+    "sensation": "Hissedilen Sıcaklık",
+    "poprain": "Yağış ihtimali",
+    "wind": "Rüzgar hızı",
+    "humidity": "Havada nemi",
+    "atmosphericpressure": "Atmosferik basınç",
+    "rainvalue": "Yağmur Hacmi",
+    "snowvalue": "Kar Hacmi"
+  },
+  "chart": { "legend": { "precipitation": "Yağış %" } }
+}

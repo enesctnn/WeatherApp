@@ -16,6 +16,7 @@ export function FavoritesList({ favorites }: { favorites: string[] }) {
       }}
       exit={{
         x: 200,
+        transition: { delay: index * 0.05 },
         opacity: 0,
       }}
       whileHover={{ x: -10, opacity: 1 }}

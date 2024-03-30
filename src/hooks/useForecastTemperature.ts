@@ -1,5 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
 import { getDayString, getTimeFromDate } from '../lib/date';
+
 import { fetchForecastByCityName } from '../util/http';
 import { ForecastDataFormat } from './useForecastData';
 
@@ -9,12 +12,17 @@ import { ForecastDataFormat } from './useForecastData';
  * @returns {Array<{ day: string, temperature: Array<{ time: string, temperature: number }> }>|null} - An array of objects containing forecast temperature data for each day, or null if data is not yet available.
  */
 export function useForecastTemperature(cityName: string) {
+  const {
+    i18n: { language },
+  } = useTranslation();
+
   const { data } = useQuery({
     queryKey: ['forecast', cityName],
     queryFn: ({ signal }) => fetchForecastByCityName(cityName, signal),
     // 3 minutes auto data refresh
     staleTime: 1000 * 60 * 3,
   });
+
   if (data) {
     const forecastTempData: {
       [key: string]: { time: string; temperature: number; pop: number }[];
@@ -24,7 +32,7 @@ export function useForecastTemperature(cityName: string) {
       temperature: (typeof forecastTempData)[keyof ForecastDataFormat];
     }[] = [];
     for (const list of data.list) {
-      const dayString = getDayString(list.dt_txt);
+      const dayString = getDayString(list.dt_txt, language);
       const time = getTimeFromDate(list.dt_txt);
       const temperature = +list.main.temp.toFixed();
       const pop = +list.pop * 100;

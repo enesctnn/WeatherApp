@@ -5,11 +5,14 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGeolocation } from '../../hooks/useGeolocation';
 import { fetchCityNameByCoords } from '../../util/http';
+import { useTranslation } from 'react-i18next';
 
 export const SearchCurrentLocation = () => {
   const [error, setError] = useState<string | undefined>();
 
   const coords = useGeolocation();
+
+  const { t } = useTranslation(undefined, { keyPrefix: 'home.location' });
 
   const { data, isPending, isError } = useQuery({
     queryKey: ['user-location'],
@@ -26,10 +29,9 @@ export const SearchCurrentLocation = () => {
 
   useEffect(() => {
     if (coords.permission === false && !data)
-      setFeedback('Location permission denied !');
-    if (isError)
-      setFeedback("Something went wrong while fetching user's location !");
-  }, [coords, isError, data]);
+      setFeedback(t('feedback.permission'));
+    if (isError) setFeedback(t('feedback.error'));
+  }, [coords, isError, data, t]);
 
   const initialAnimation = { opacity: 0, x: -20 };
   const animate = { opacity: 1, x: 0 };
@@ -60,13 +62,13 @@ export const SearchCurrentLocation = () => {
             className="flex items-center gap-x-3"
           >
             <MapPinLine className="animate-bounce group-hover:animate-none" />
-            Check Weather for {data.name + ' - ' + data.country}
+            {t('current')} {data.name + ' - ' + data.country}
           </Link>
         </motion.h2>
       )}
       {!!coords && !!coords.lat && !!coords.lon && !error && isPending && (
         <h2 className="flex text-gray-100 location-heading animate-pulse items-center gap-x-3">
-          Fetching User Location...
+          {t('feedback.fetch')}
           <SpinnerGap className="animate-spin" size={32} />
         </h2>
       )}

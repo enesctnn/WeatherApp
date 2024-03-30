@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -15,11 +15,11 @@ import { Card } from '../../../ui/card';
 
 import { useForecastTemperature } from '../../../../hooks/useForecastTemperature';
 
+import { useTranslation } from 'react-i18next';
 import { AvailableDayList } from './AvailableDayList';
 
 export function WeeklyChart() {
   const [activeDay, setActiveDay] = useState<string | null>(null);
-
   const { cityName } = useParams();
   if (!cityName) throw new Error('URL missing params');
 
@@ -27,21 +27,31 @@ export function WeeklyChart() {
 
   const handleSetActiveDay = (day: string) => setActiveDay(day);
 
+  const { t } = useTranslation(undefined, { keyPrefix: 'chart' });
+
+  useEffect(() => {
+    if (data) {
+      const matchingDay = data.filter((list) => list.day === activeDay)[0];
+      if (!matchingDay) setActiveDay(data[0].day);
+    }
+    if (data && !activeDay) setActiveDay(data[0].day);
+  }, [data, activeDay]);
+
   return (
     <Card className="weather-card space-y-4 h-96 overflow-hidden !pl-0 pr-10">
       {data && (
         <AvailableDayList
           days={data.map((list) => list.day)}
-          activeDay={activeDay || data[0].day}
+          activeDay={activeDay!}
           onClick={handleSetActiveDay}
         />
       )}
       {data &&
         data
-          .filter((list) => list.day === (activeDay || data[0].day))
+          .filter((list) => list.day === activeDay)
           .map((filteredData) => (
             <ResponsiveContainer
-              key={filteredData.day}
+              key={activeDay}
               className=""
               width="100%"
               height="100%"
@@ -63,7 +73,7 @@ export function WeeklyChart() {
                   dataKey="pop"
                   stroke="#8FB2F5"
                   strokeWidth={3}
-                  name="Precipitation %"
+                  name={t('legend.precipitation')}
                 />
               </LineChart>
             </ResponsiveContainer>

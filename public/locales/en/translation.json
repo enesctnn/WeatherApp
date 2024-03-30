@@ -1,0 +1,33 @@
+{
+  "error": {},
+  "nav": {
+    "favorites": {
+      "label": "Favorites",
+      "toolTip": { "full": "Favorites are Full" }
+    },
+    "search": "Search"
+  },
+  "home": {
+    "header": "<0>Welcome to <1>TypeWeather</1></0>",
+    "description": "Choose a location to see the weather forecast",
+    "location": {
+      "current": "Check Weather for / ",
+      "feedback": {
+        "fetch": "Fetching User Location...",
+        "error": "Something went wrong while fetching user's location !",
+        "permission": "Location permission denied !"
+      }
+    },
+    "input": { "placeholder": "Search Location" }
+  },
+  "weatherdetails": {
+    "sensation": "Thermal sensation",
+    "poprain": "Probability of rain",
+    "wind": "Wind speed",
+    "humidity": "Air humidity",
+    "atmosphericpressure": "Atmospheric Pressure",
+    "rainvalue": "Rain Volume",
+    "snowvalue": "Snow Volume"
+  },
+  "chart": { "legend": { "precipitation": "Precipitation %" } }
+}

@@ -1,7 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
 import { getDayString, getMonthString } from '../lib/date';
 import { bgs, icons } from '../lib/images';
-import { WeatherDataTypes } from '../weather-data';
+import { fetchCurrentWeatherByCityName } from '../util/http';
 import { useCurrentWeatherPop } from './useCurrentWeatherPop';
+import { useTranslation } from 'react-i18next';
 
 type FormattedWeatherData = {
   city: { name: string; country: string };
@@ -13,7 +15,7 @@ type FormattedWeatherData = {
   windSpeed: number;
   humidity: number;
   rainProbability: number;
-  athmosphericPressure: number;
+  atmosphericPressure: number;
   rainVolume?: { '1h'?: number; '3h'?: number };
   snowVolume?: { '1h'?: number; '3h'?: number };
 };
@@ -21,60 +23,77 @@ type FormattedWeatherData = {
 /**
  * Custom React hook for processing and formatting current weather data.
  * @param {WeatherDataTypes.CurrentWeatherData} data - The current weather data to process.
- * @returns {FormattedWeatherData} The processed current weather data.
+ * @returns {FormattedWeatherData | null} The processed current weather data.
  */
 export function useCurrentWeatherData(
-  data: WeatherDataTypes.CurrentWeatherData
-): FormattedWeatherData {
-  const rainProbability = useCurrentWeatherPop(data.name);
-  const dataWeather = data.weather[0];
+  cityName: string,
 
-  const iconCode = dataWeather.icon;
-  const icon = {
-    src: icons[iconCode].src,
-    alt: icons[iconCode].alt,
-  };
-  const bg = {
-    src: bgs[iconCode].src,
-    alt: bgs[iconCode].alt,
-  };
+): FormattedWeatherData | null {
+  const rainProbability = useCurrentWeatherPop(cityName);
+  const {
+    i18n: { language: lang },
+  } = useTranslation();
+  const { data } = useQuery({
+    queryKey: [cityName, lang],
+    queryFn: ({ signal }) =>
+      fetchCurrentWeatherByCityName(cityName, signal, { lang }),
+    // auto invalidate time set to 3 minutes
+    staleTime: 1000 * 60 * 3,
+    // delete unused queries from memory after 2 minutes
+    gcTime: 1000 * 60 * 2,
+  });
 
-  const timeElapsed = Date.now();
-  const today = new Date(timeElapsed);
-  const month = getMonthString(today);
-  const dayString = getDayString(today);
-  const day = today.getDate();
-  const year = today.getFullYear();
+  if (data) {
+    const dataWeather = data.weather[0];
 
-  const temp = {
-    index: +data.main.temp.toFixed(),
-    max: +data.main.temp_max.toFixed(),
-    min: +data.main.temp_min.toFixed(),
-    sensation: +data.main.feels_like.toFixed(),
-  };
-  // incoming windSpeed value is meter/sec next line of code is to convert it to km/h
-  const windSpeed = +((data.wind.speed / 1000) * (60 * 60)).toFixed();
-  const humidity = +data.main.humidity.toFixed();
-  const rainVolume: { [key: string]: number } = {};
-  if (data.rain && data.rain['1h']) rainVolume['1h'] = data.rain['1h'];
-  if (data.rain && data.rain['3h']) rainVolume['3h'] = data.rain['3h'];
-  const snowVolume: { [key: string]: number } = {};
-  if (data.snow && data.snow['1h']) snowVolume['1h'] = data.snow['1h'];
-  if (data.snow && data.snow['3h']) snowVolume['3h'] = data.snow['3h'];
+    const iconCode = dataWeather.icon;
+    const icon = {
+      src: icons[iconCode].src,
+      alt: icons[iconCode].alt,
+    };
+    const bg = {
+      src: bgs[iconCode].src,
+      alt: bgs[iconCode].alt,
+    };
 
-  const formattedWeatherData: FormattedWeatherData = {
-    city: { name: data.name, country: data.sys.country },
-    weather: dataWeather.description,
-    icon,
-    bg,
-    temp,
-    date: { dayString, month, day, year },
-    windSpeed,
-    humidity,
-    rainProbability,
-    athmosphericPressure: data.main.pressure,
-    rainVolume,
-    snowVolume,
-  };
-  return formattedWeatherData;
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    const month = getMonthString(today, lang);
+    const dayString = getDayString(today, lang);
+    const day = today.getDate();
+    const year = today.getFullYear();
+
+    const temp = {
+      index: +data.main.temp.toFixed(),
+      max: +data.main.temp_max.toFixed(),
+      min: +data.main.temp_min.toFixed(),
+      sensation: +data.main.feels_like.toFixed(),
+    };
+    // incoming windSpeed value is meter/sec next line of code is to convert it to km/h
+    const windSpeed = +((data.wind.speed / 1000) * (60 * 60)).toFixed();
+    const humidity = +data.main.humidity.toFixed();
+    const rainVolume: { [key: string]: number } = {};
+    if (data.rain && data.rain['1h']) rainVolume['1h'] = data.rain['1h'];
+    if (data.rain && data.rain['3h']) rainVolume['3h'] = data.rain['3h'];
+    const snowVolume: { [key: string]: number } = {};
+    if (data.snow && data.snow['1h']) snowVolume['1h'] = data.snow['1h'];
+    if (data.snow && data.snow['3h']) snowVolume['3h'] = data.snow['3h'];
+
+    const formattedWeatherData: FormattedWeatherData = {
+      city: { name: data.name, country: data.sys.country },
+      weather: dataWeather.description,
+      icon,
+      bg,
+      temp,
+      date: { dayString, month, day, year },
+      windSpeed,
+      humidity,
+      rainProbability,
+      atmosphericPressure: data.main.pressure,
+      rainVolume,
+      snowVolume,
+    };
+    return formattedWeatherData;
+  }
+  return null;
 }

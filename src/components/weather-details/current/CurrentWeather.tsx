@@ -1,59 +1,59 @@
-import { useLoaderData } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
 
-import { WeatherDataTypes } from '../../../weather-data';
-
-import { Card } from '../../ui/card';
 import { ToggleFavoriteButton } from '../../favorites/ToggleFavoriteButton';
+import { Card } from '../../ui/card';
 
 export const CurrentWeather = () => {
-  const loaderData = useLoaderData() as WeatherDataTypes.CurrentWeatherData;
-  const {
-    bg,
-    city,
-    date,
-    icon,
-    temp: { max, index, min },
-    weather,
-  } = useCurrentWeatherData(loaderData);
+  const { cityName } = useParams();
+  if (!cityName) throw new Error('URL missing params !');
+
+  const data = useCurrentWeatherData(cityName);
 
   return (
     <Card className="overflow-hidden text-gray-50 h-[328px] flex flex-col relative !p-7 justify-between weather-card">
-      <header className="z-50 flex justify-between">
-        <div>
-          <h1 className="weather-heading">
-            {city.name}, {city.country}
-          </h1>
-          <p className="text-xs sm:text-sm md:text-md transition-[font-size]">
-            {date.dayString}, {date.month} {date.day}, {date.year}
-          </p>
-        </div>
-        <ToggleFavoriteButton cityName={city.name} />
-      </header>
-      <article className="z-50 flex items-end place-content-between">
-        <section className="flex-1 space-y-2">
-          <h2 className="weather-article-heading">{index}&deg;c</h2>
-          <div>
-            <h3 className="text-heading-sm md:text-heading-md transition-[font-size]">
-              {min}&deg;c / {max}&deg;c
-            </h3>
-            <p className="capitalize text-sm sm:text-md md:text-lg transition-[font-size]">
-              {weather}
-            </p>
-          </div>
-        </section>
-        <div className="flex-[1.2] -mb-5 -mr-5 overflow-hidden">
-          <img
-            className="max-w-40 max-h-44 ml-auto"
-            src={icon.src}
-            alt={icon.alt}
+      {data && (
+        <>
+          <header className="z-50 flex justify-between">
+            <div>
+              <h1 className="weather-heading">
+                {data.city.name}, {data.city.country}
+              </h1>
+              <p className="text-xs sm:text-sm md:text-md transition-[font-size]">
+                {data.date.dayString}, {data.date.month} {data.date.day},{' '}
+                {data.date.year}
+              </p>
+            </div>
+            <ToggleFavoriteButton cityName={data.city.name} />
+          </header>
+          <article className="z-50 flex items-end place-content-between">
+            <section className="flex-1 space-y-2">
+              <h2 className="weather-article-heading">
+                {data.temp.index}&deg;c
+              </h2>
+              <div>
+                <h3 className="text-heading-sm md:text-heading-md transition-[font-size]">
+                  {data.temp.min}&deg;c / {data.temp.max}&deg;c
+                </h3>
+                <p className="capitalize text-sm sm:text-md md:text-lg transition-[font-size]">
+                  {data.weather}
+                </p>
+              </div>
+            </section>
+            <div className="flex-[1.2] -mb-5 -mr-5 overflow-hidden">
+              <img
+                className="max-w-40 max-h-44 ml-auto"
+                src={data.icon.src}
+                alt={data.icon.alt}
+              />
+            </div>
+          </article>
+          <div
+            style={{ backgroundImage: `url(${data.bg.src})` }}
+            className="absolute inset-3 rounded-xl overflow-hidden bg-cover bg-center bg-no-repeat"
           />
-        </div>
-      </article>
-      <div
-        style={{ backgroundImage: `url(${bg.src})` }}
-        className="absolute inset-3 rounded-xl overflow-hidden bg-cover bg-center bg-no-repeat"
-      />
+        </>
+      )}
     </Card>
   );
 };
