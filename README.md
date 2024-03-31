@@ -151,5 +151,7 @@ Thank you for your attention to this matter.
 Best regards,
 
 Muhammet Enes Çetin
+
 Project Owner & Sole Developer
+
 TypeWeather Project
