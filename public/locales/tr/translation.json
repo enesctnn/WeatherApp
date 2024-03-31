@@ -1,5 +1,5 @@
 {
-  "error": {"errorpage":"Something went wrong !"},
+  "error": {"errorpage":"Bir şeyler ters gitti !"},
   "nav": {
     "favorites": {
       "label": "Favoriler",
