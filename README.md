@@ -144,7 +144,7 @@ Thank you for choosing Typeweather for your weather application needs. We've not
 
 By following these steps, you'll ensure that your Typeweather app continues to provide accurate and up-to-date weather information to your users.
 
-If you encounter any issues or need further assistance, feel free to reach out to our support team at enespcetin@gmail.com.
+If you encounter any issues or need further assistance, feel free to reach out to our support team at suppteam.typeweather@gmail.com.
 
 Thank you for your attention to this matter.
 
