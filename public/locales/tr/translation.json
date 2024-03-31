@@ -1,5 +1,5 @@
 {
-  "error": {},
+  "error": {"errorpage":"Something went wrong !"},
   "nav": {
     "favorites": {
       "label": "Favoriler",
@@ -22,10 +22,10 @@
   },
   "weatherdetails": {
     "sensation": "Hissedilen Sıcaklık",
-    "poprain": "Yağış ihtimali",
-    "wind": "Rüzgar hızı",
-    "humidity": "Havada nemi",
-    "atmosphericpressure": "Atmosferik basınç",
+    "poprain": "Yağış İhtimali",
+    "wind": "Rüzgar Hızı",
+    "humidity": "Hava Nemi",
+    "atmosphericpressure": "Atmosferik Basınç",
     "rainvalue": "Yağmur Hacmi",
     "snowvalue": "Kar Hacmi"
   },

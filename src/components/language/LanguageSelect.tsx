@@ -7,7 +7,7 @@ const languages = ['en', 'tr'];
 
 export function LanguageSelect() {
   const { i18n } = useTranslation();
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleLanguageChange = async (language: (typeof languages)[number]) => {
     await i18n.changeLanguage(language);
     setIsOpen(false);

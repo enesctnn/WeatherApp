@@ -16,12 +16,14 @@ export function useForecastTemperature(cityName: string) {
     i18n: { language },
   } = useTranslation();
 
-  const { data } = useQuery({
+  const { data, isError } = useQuery({
     queryKey: ['forecast', cityName],
     queryFn: ({ signal }) => fetchForecastByCityName(cityName, signal),
     // 3 minutes auto data refresh
     staleTime: 1000 * 60 * 3,
   });
+  
+  if (isError) throw new Error('Could not fetch current weather');
 
   if (data) {
     const forecastTempData: {

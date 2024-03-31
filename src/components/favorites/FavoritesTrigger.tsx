@@ -10,7 +10,7 @@ export function FavoritesTrigger({ onClick }: { onClick: () => void }) {
 
   return (
     <PinnedButton
-      className="top-10"
+      className="top-10 !right-0"
       toolTip={isExceededLimit ? t('toolTip.full') : `10/${favorites.length}`}
     >
       <div

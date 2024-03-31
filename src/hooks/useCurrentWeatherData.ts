@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { getDayString, getMonthString } from '../lib/date';
 import { bgs, icons } from '../lib/images';
 import { fetchCurrentWeatherByCityName } from '../util/http';
 import { useCurrentWeatherPop } from './useCurrentWeatherPop';
-import { useTranslation } from 'react-i18next';
 
 type FormattedWeatherData = {
   city: { name: string; country: string };
@@ -26,14 +26,13 @@ type FormattedWeatherData = {
  * @returns {FormattedWeatherData | null} The processed current weather data.
  */
 export function useCurrentWeatherData(
-  cityName: string,
-
+  cityName: string
 ): FormattedWeatherData | null {
   const rainProbability = useCurrentWeatherPop(cityName);
   const {
     i18n: { language: lang },
   } = useTranslation();
-  const { data } = useQuery({
+  const { data, isError } = useQuery({
     queryKey: [cityName, lang],
     queryFn: ({ signal }) =>
       fetchCurrentWeatherByCityName(cityName, signal, { lang }),
@@ -42,6 +41,8 @@ export function useCurrentWeatherData(
     // delete unused queries from memory after 2 minutes
     gcTime: 1000 * 60 * 2,
   });
+
+  if (isError) throw new Error('Could not fetch current weather');
 
   if (data) {
     const dataWeather = data.weather[0];

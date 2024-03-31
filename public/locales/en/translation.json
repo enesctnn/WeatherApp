@@ -1,5 +1,5 @@
 {
-  "error": {},
+  "error": {"errorpage":"Bir şeyler ters gitti !"},
   "nav": {
     "favorites": {
       "label": "Favorites",
@@ -21,10 +21,10 @@
     "input": { "placeholder": "Search Location" }
   },
   "weatherdetails": {
-    "sensation": "Thermal sensation",
-    "poprain": "Probability of rain",
-    "wind": "Wind speed",
-    "humidity": "Air humidity",
+    "sensation": "Thermal Sensation",
+    "poprain": "Probability of Rain",
+    "wind": "Wind Speed",
+    "humidity": "Air Humidity",
     "atmosphericpressure": "Atmospheric Pressure",
     "rainvalue": "Rain Volume",
     "snowvalue": "Snow Volume"

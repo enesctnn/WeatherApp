@@ -6,7 +6,7 @@ TypeWeather is a weather application built using Vite, React, and TypeScript.
 
 ## Description
 
-TypeWeather fetches weather data from the OpenWeather API and provides current weather & weatherforecast information to users for different locations. TypeWeather powered by geolocation for automatic location detection and allows users to search for weather forecasts by city name.
+TypeWeather fetches weather data from the OpenWeather API and provides current weather & weather forecast information to users for different locations. TypeWeather is powered by geolocation for automatic location detection and allows users to search for weather forecasts by city name.
 
 ## Features
 
@@ -37,6 +37,7 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 - Multiple languages: Including English and Turkish. Users can specify their preferred language in App requests to receive weather forecasts and information in the language of their choice.
 
 ### Supported Languages:
+
 - English
 - Turkish
 
@@ -90,6 +91,11 @@ npm run build
 - [tailwind-merge](https://www.npmjs.com/package/tailwind-merge)
 - [recharts](https://www.npmjs.com/package/recharts)
 - [react-icons](https://www.npmjs.com/package/react-icons)
+- [i18next](https://www.npmjs.com/package/i18next)
+- [i18next-browser-languagedetector](https://www.npmjs.com/package/i18next-browser-languagedetector)
+- [i18next-http-backend](https://www.npmjs.com/package/i18next-http-backend)
+- [react-country-flag](https://www.npmjs.com/package/react-country-flag)
+- [react-i18next](https://www.npmjs.com/package/react-i18next)
 
 ## Dev Dependencies
 
@@ -110,3 +116,40 @@ npm run build
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+---
+
+### Guidance for Updating API Key in Typeweather App
+
+Dear User,
+
+Thank you for choosing Typeweather for your weather application needs. We've noticed that your API key for OpenWeather is approaching its expiration date. To ensure uninterrupted service, please follow the steps below to update your API key:
+
+1. **Obtaining Your API Key**:
+
+   - Go to the OpenWeather website at [OpenWeather Website](https://openweathermap.org).
+   - Log in to your account or sign up if you haven't already.
+   - Once logged in, navigate to the API keys section.
+   - Generate a new API key if you don't have one already.
+
+2. **Updating Your API Key in Typeweather**:
+
+   - Open the settings or configuration panel in your Typeweather app.
+   - Locate the field where the API key is entered.
+   - Replace the existing API key with the new one you obtained from OpenWeather.
+
+3. **Verification**:
+   - After updating the API key, verify that the weather data is being fetched correctly in your app.
+   - Test various locations and weather conditions to ensure the integration is functioning as expected.
+
+By following these steps, you'll ensure that your Typeweather app continues to provide accurate and up-to-date weather information to your users.
+
+If you encounter any issues or need further assistance, feel free to reach out to our support team at enespcetin@gmail.com.
+
+Thank you for your attention to this matter.
+
+Best regards,
+
+Muhammet Enes Çetin
+Project Owner & Sole Developer
+TypeWeather Project

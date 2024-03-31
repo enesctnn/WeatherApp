@@ -2,12 +2,14 @@ import { KeyReturn } from '@phosphor-icons/react';
 
 import { Link, useRouteError } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
 import { Logo } from '../components/search/Logo';
 import { Card } from '../components/ui/card';
 
 function ErrorPage() {
   const error = useRouteError();
-  let message: string = 'Something went wrong!';
+  const { t } = useTranslation(undefined, { keyPrefix: 'error' });
+  let message: string = t('errorpage');
   if (error instanceof Error) message = error.message;
 
   return (
