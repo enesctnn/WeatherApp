@@ -42,28 +42,25 @@ export function LanguageSelect() {
         </button>
         {isOpen && (
           <div
-            ref={languageSelectRef}
             className="absolute mt-2 w-full rounded-md shadow-lg bg-gray-100 flex flex-col items-stretch z-[100]"
             role="menu"
             aria-orientation="vertical"
           >
-            {languages.map((language) => {
-              return (
-                <button
-                  key={language}
-                  onClick={() => handleLanguageChange(language)}
-                  className={`${
-                    i18n.language.includes(language)
-                      ? 'bg-gray-600 text-white'
-                      : 'text-gray-700'
-                  } px-4 py-2 text-sm text-start items-center inline-flex hover:bg-gray-200 hover:text-white rounded-sm`}
-                  role="menuitem"
-                >
-                  <CountryFlag language={language} />
-                  <span className="truncate uppercase">{language}</span>
-                </button>
-              );
-            })}
+            {languages.map((language) => (
+              <button
+                key={language}
+                onClick={() => handleLanguageChange(language)}
+                className={`${
+                  i18n.language.includes(language)
+                    ? 'bg-gray-600 text-white'
+                    : 'text-gray-700'
+                } px-4 py-2 text-sm text-start items-center inline-flex hover:bg-gray-200 hover:text-white rounded-sm`}
+                role="menuitem"
+              >
+                <CountryFlag language={language} />
+                <span className="truncate uppercase">{language}</span>
+              </button>
+            ))}
           </div>
         )}
       </div>

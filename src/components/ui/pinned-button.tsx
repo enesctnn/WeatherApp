@@ -22,7 +22,7 @@ export const PinnedButton = ({
       }}
       whileHover={{ x: 80, opacity: 1 }}
       drag="x"
-      dragConstraints={{ left: -20, right: 80 }}
+      dragConstraints={{ left: 0, right: 80 }}
       className={cn(
         'fixed -left-20 text-gray-200 shadow-md shadow-black bg-blue-light rounded-r-full text-heading-sm z-[100] flex w-32 h-max cursor-grab active:cursor-grabbing group',
         className
