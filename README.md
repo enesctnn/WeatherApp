@@ -140,15 +140,12 @@ Thank you for choosing Typeweather for your weather application needs. We've not
 
 2. **Updating Your API Key in Typeweather**:
 
-   - Open the settings or configuration panel in your Typeweather app.
-   - Locate the field where the API key is entered.
+   - Go to root/src/util/http.ts Locate the field where the API key is entered.
    - Replace the existing API key with the new one you obtained from OpenWeather.
 
 3. **Verification**:
    - After updating the API key, verify that the weather data is being fetched correctly in your app.
    - Test various locations and weather conditions to ensure the integration is functioning as expected.
-
-By following these steps, you'll ensure that your Typeweather app continues to provide accurate and up-to-date weather information to your users.
 
 If you encounter any issues or need further assistance, feel free to reach out to our support team at suppteam.typeweather@gmail.com.
 
