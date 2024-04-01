@@ -121,7 +121,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Deployment
 
-This project is deployed and hosted on Vercel. You can access the live version by following this link: [TypeWeather Live Demo](https://typeweather-7q4mruklt-enesctnns-projects.vercel.app)
+This project is deployed and hosted on Vercel. You can access the live version by following this link: [TypeWeather Live Demo](https://typeweather-git-main-enesctnns-projects.vercel.app/)
 
 ---
 

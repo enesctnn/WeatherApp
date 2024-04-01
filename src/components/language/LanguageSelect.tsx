@@ -16,7 +16,7 @@ export function LanguageSelect() {
   useOnClickOutside(languageSelectRef, () => setIsOpen(false));
 
   return (
-    <div className="mt-2 z-[100]" ref={languageSelectRef}>
+    <div className="mt-2 z-[100]">
       <div className="w-max relative ml-auto mr-2">
         <button
           onClick={() => setIsOpen((prevState) => !prevState)}
@@ -31,7 +31,7 @@ export function LanguageSelect() {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            aria-hidden="true"
+            aria-hidden
           >
             <path
               fillRule="evenodd"
@@ -42,7 +42,8 @@ export function LanguageSelect() {
         </button>
         {isOpen && (
           <div
-            className="absolute mt-2 w-full rounded-md shadow-lg bg-gray-100 flex flex-col items-stretch z-[100]"
+            ref={languageSelectRef}
+            className="absolute mt-2 w-full rounded-md shadow-lg bg-gray-100 flex flex-col items-stretch z-[100] gap-y-1 p-1"
             role="menu"
             aria-orientation="vertical"
           >
