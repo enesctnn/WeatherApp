@@ -36,10 +36,14 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 
 - Multiple languages: Including English and Turkish. Users can specify their preferred language in App requests to receive weather forecasts and information in the language of their choice.
 
+---
+
 ### Supported Languages:
 
 - English
 - Turkish
+
+---
 
 ## Installation
 
@@ -76,42 +80,44 @@ To build the project for production:
 npm run build
 ```
 
+---
+
 ## Dependencies
 
-- [@phosphor-icons/react](https://www.npmjs.com/package/@phosphor-icons/react)
-- [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query)
-- [axios](https://www.npmjs.com/package/axios)
-- [clsx](https://www.npmjs.com/package/clsx)
-- [country-state-city](https://www.npmjs.com/package/country-state-city)
-- [framer-motion](https://www.npmjs.com/package/framer-motion)
-- [localforage](https://www.npmjs.com/package/localforage)
-- [react](https://www.npmjs.com/package/react)
-- [react-dom](https://www.npmjs.com/package/react-dom)
-- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
-- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge)
-- [recharts](https://www.npmjs.com/package/recharts)
-- [react-icons](https://www.npmjs.com/package/react-icons)
-- [i18next](https://www.npmjs.com/package/i18next)
-- [i18next-browser-languagedetector](https://www.npmjs.com/package/i18next-browser-languagedetector)
-- [i18next-http-backend](https://www.npmjs.com/package/i18next-http-backend)
-- [react-country-flag](https://www.npmjs.com/package/react-country-flag)
-- [react-i18next](https://www.npmjs.com/package/react-i18next)
+- **[@phosphor-icons/react](https://www.npmjs.com/package/@phosphor-icons/react)**
+- **[@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query)**
+- **[axios](https://www.npmjs.com/package/axios)**
+- **[clsx](https://www.npmjs.com/package/clsx)**
+- **[country-state-city](https://www.npmjs.com/package/country-state-city)**
+- **[framer-motion](https://www.npmjs.com/package/framer-motion)**
+- **[localforage](https://www.npmjs.com/package/localforage)**
+- **[react](https://www.npmjs.com/package/react)**
+- **[react-dom](https://www.npmjs.com/package/react-dom)**
+- **[react-router-dom](https://www.npmjs.com/package/react-router-dom)**
+- **[tailwind-merge](https://www.npmjs.com/package/tailwind-merge)**
+- **[recharts](https://www.npmjs.com/package/recharts)**
+- **[react-icons](https://www.npmjs.com/package/react-icons)**
+- **[i18next](https://www.npmjs.com/package/i18next)**
+- **[i18next-browser-languagedetector](https://www.npmjs.com/package/i18next-browser-languagedetector)**
+- **[i18next-http-backend](https://www.npmjs.com/package/i18next-http-backend)**
+- **[react-country-flag](https://www.npmjs.com/package/react-country-flag)**
+- **[react-i18next](https://www.npmjs.com/package/react-i18next)**
 
 ## Dev Dependencies
 
-- [@types/react](https://www.npmjs.com/package/@types/react)
-- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom)
-- [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
-- [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser)
-- [@vitejs/plugin-react](https://www.npmjs.com/package/@vitejs/plugin-react)
-- [autoprefixer](https://www.npmjs.com/package/autoprefixer)
-- [eslint](https://www.npmjs.com/package/eslint)
-- [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
-- [eslint-plugin-react-refresh](https://www.npmjs.com/package/eslint-plugin-react-refresh)
-- [postcss](https://www.npmjs.com/package/postcss)
-- [tailwindcss](https://www.npmjs.com/package/tailwindcss)
-- [typescript](https://www.npmjs.com/package/typescript)
-- [vite](https://www.npmjs.com/package/vite)
+- **[@types/react](https://www.npmjs.com/package/@types/react)**
+- **[@types/react-dom](https://www.npmjs.com/package/@types/react-dom)**
+- **[@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)**
+- **[@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser)**
+- **[@vitejs/plugin-react](https://www.npmjs.com/package/@vitejs/plugin-react)**
+- **[autoprefixer](https://www.npmjs.com/package/autoprefixer)**
+- **[eslint](https://www.npmjs.com/package/eslint)**
+- **[eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)**
+- **[eslint-plugin-react-refresh](https://www.npmjs.com/package/eslint-plugin-react-refresh)**
+- **[postcss](https://www.npmjs.com/package/postcss)**
+- **[tailwindcss](https://www.npmjs.com/package/tailwindcss)**
+- **[typescript](https://www.npmjs.com/package/typescript)**
+- **[vite](https://www.npmjs.com/package/vite)**
 
 ## License
 
