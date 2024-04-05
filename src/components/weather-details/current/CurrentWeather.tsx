@@ -1,14 +1,19 @@
 import { useParams } from 'react-router-dom';
 import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
+import { useWeatherUnitsContext } from '../../../hooks/useWeatherUnitsContext';
 
 import { ToggleFavoriteButton } from '../../favorites/ToggleFavoriteButton';
 import { Card } from '../../ui/card';
 
 export const CurrentWeather = () => {
   const { cityName } = useParams();
+  console.log(cityName);
   if (!cityName) throw new Error('URL missing params !');
 
   const data = useCurrentWeatherData(cityName);
+  const {
+    symbol: { degree },
+  } = useWeatherUnitsContext();
 
   return (
     <Card className="overflow-hidden text-gray-50 h-[328px] flex flex-col relative !p-7 justify-between weather-card">
@@ -29,11 +34,11 @@ export const CurrentWeather = () => {
           <article className="z-50 flex items-end place-content-between">
             <section className="flex-1 space-y-2">
               <h2 className="weather-article-heading">
-                {data.temp.index}&deg;c
+                {data.temp.index}&deg;{degree}
               </h2>
               <div>
                 <h3 className="text-heading-sm md:text-heading-md transition-[font-size]">
-                  {data.temp.min}&deg;c / {data.temp.max}&deg;c
+                  {data.temp.min}&deg;{degree} / {data.temp.max}&deg;{degree}
                 </h3>
                 <p className="capitalize text-sm sm:text-md md:text-lg transition-[font-size]">
                   {data.weather}

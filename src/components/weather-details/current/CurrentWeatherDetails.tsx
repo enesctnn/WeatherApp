@@ -11,8 +11,9 @@ import {
   Thermometer,
   Wind,
 } from '@phosphor-icons/react';
-import { WeatherDetailsArticle } from './WeatherDetailsArticle';
 import { useTranslation } from 'react-i18next';
+import { useWeatherUnitsContext } from '../../../hooks/useWeatherUnitsContext';
+import { WeatherDetailsArticle } from './WeatherDetailsArticle';
 
 export const CurrentWeatherDetails = () => {
   const { cityName } = useParams();
@@ -23,6 +24,10 @@ export const CurrentWeatherDetails = () => {
 
   const { t } = useTranslation(undefined, { keyPrefix: 'weatherdetails' });
 
+  const {
+    symbol: { degree, speed },
+  } = useWeatherUnitsContext();
+
   return (
     <Card className="divide-y divide-gray-600 !py-1 !px-4 weather-card">
       {data && (
@@ -30,7 +35,7 @@ export const CurrentWeatherDetails = () => {
           <WeatherDetailsArticle
             header={t('sensation')}
             value={data.temp.sensation}
-            symbol={<>&deg;c</>}
+            symbol={<>&deg;{degree}</>}
             icon={Thermometer}
             useCounter
           />
@@ -44,7 +49,7 @@ export const CurrentWeatherDetails = () => {
           <WeatherDetailsArticle
             header={t('wind')}
             value={data.windSpeed}
-            symbol=" km/h"
+            symbol={' ' + speed}
             icon={Wind}
             useCounter
           />

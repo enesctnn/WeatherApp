@@ -37,11 +37,11 @@ export function FavoriteSearchsContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [values, setValues] = useLocalStorage(
+  const [favorites, setFavorites] = useLocalStorage(
     'favoriteSearches',
     [] as string[]
   );
-  const [favorites, setFavorites] = useState<string[]>([...values]);
+
   const [isExceededLimit, setIsExceededLimit] = useState<boolean>(false);
 
   function toggleFavoriteSearch(searchTerm: string) {
@@ -50,10 +50,8 @@ export function FavoriteSearchsContextProvider({
         const existingFavIndex = prevFavorites.indexOf(searchTerm);
         if (existingFavIndex !== -1) {
           const updatedFavs = prevFavorites.filter((fav) => fav !== searchTerm);
-          setValues(updatedFavs);
           return updatedFavs;
         }
-        setValues([...prevFavorites, searchTerm]);
         return [...prevFavorites, searchTerm];
       });
     }
@@ -63,16 +61,13 @@ export function FavoriteSearchsContextProvider({
       const updatedFavorites = prevFavorites.filter(
         (fav) => fav !== searchTerm
       );
-      setValues(updatedFavorites);
       return updatedFavorites;
     });
   }
-
   useEffect(() => {
     if (favorites.length >= 10) setIsExceededLimit(true);
     else setIsExceededLimit(false);
   }, [favorites]);
-
   return (
     <FavoriteSearchsContext.Provider
       value={{

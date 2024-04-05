@@ -31,7 +31,7 @@ export const ForecastArticle = ({
   >
     <h3 className="text-heading-xs text-gray-200">{dayString}</h3>
     <img className="w-[56px] h-[56px]" src={icon.src} alt={icon.alt} />
-    <div className="space-y-2">
+    <div className="space-y-2 text-center">
       <h4 className="text-gray-100 text-heading-xs">{temp.max}&deg;</h4>
       <h4 className="text-gray-400 text-heading-xs">{temp.min}&deg;</h4>
     </div>

@@ -52,7 +52,7 @@ export async function fetchForecastByCoords(
 ): Promise<WeatherDataTypes.ForecastWeatherData> {
   try {
     const res = await axios.get(
-      `data/2.5/forecast/?units=metric&lat=${lat}&lon=${lon}&appid=${API_KEY}`,
+      `data/2.5/forecast/?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
       { signal, params: { ...params } }
     );
     return res.data;
@@ -77,7 +77,7 @@ export async function fetchForecastByCityName(
 ): Promise<WeatherDataTypes.ForecastWeatherData> {
   try {
     const res = await axios.get(
-      `data/2.5/forecast/?units=metric&q=${cityName}&appid=${API_KEY}`,
+      `data/2.5/forecast/?q=${cityName}&appid=${API_KEY}`,
       { signal, params: { ...params } }
     );
     return res.data;
@@ -104,7 +104,7 @@ export async function fetchCurrentWeatherByCityName(
 ): Promise<WeatherDataTypes.CurrentWeatherData> {
   try {
     const res = await axios.get(
-      `data/2.5/weather/?units=metric&q=${cityName}&appid=${API_KEY}`,
+      `data/2.5/weather/?q=${cityName}&appid=${API_KEY}`,
       { signal, params: { ...params } }
     );
     return res.data;

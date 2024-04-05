@@ -5,6 +5,7 @@ import { getDayString, getTimeFromDate } from '../lib/date';
 
 import { fetchForecastByCityName } from '../util/http';
 import { ForecastDataFormat } from './useForecastData';
+import { useWeatherUnitsContext } from './useWeatherUnitsContext';
 
 /**
  * Custom React hook to fetch and manage forecast temperature data for a given city.
@@ -16,13 +17,16 @@ export function useForecastTemperature(cityName: string) {
     i18n: { language },
   } = useTranslation();
 
+  const { units } = useWeatherUnitsContext();
+
   const { data, isError } = useQuery({
-    queryKey: ['forecast', cityName],
-    queryFn: ({ signal }) => fetchForecastByCityName(cityName, signal),
+    queryKey: ['forecast', cityName, units],
+    queryFn: ({ signal }) =>
+      fetchForecastByCityName(cityName, signal, { units }),
     // 3 minutes auto data refresh
     staleTime: 1000 * 60 * 3,
   });
-  
+
   if (isError) throw new Error('Could not fetch current weather');
 
   if (data) {

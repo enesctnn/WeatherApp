@@ -13,9 +13,10 @@ import {
 
 import { Card } from '../../../ui/card';
 
-import { useForecastTemperature } from '../../../../hooks/useForecastTemperature';
-
 import { useTranslation } from 'react-i18next';
+import { useForecastTemperature } from '../../../../hooks/useForecastTemperature';
+import { useWeatherUnitsContext } from '../../../../hooks/useWeatherUnitsContext';
+
 import { AvailableDayList } from './AvailableDayList';
 
 export function WeeklyChart() {
@@ -36,7 +37,9 @@ export function WeeklyChart() {
     }
     if (data && !activeDay) setActiveDay(data[0].day);
   }, [data, activeDay]);
-
+  const {
+    symbol: { degree },
+  } = useWeatherUnitsContext();
   return (
     <Card className="weather-card space-y-4 h-96 overflow-hidden !pl-0 pr-10">
       {data && (
@@ -50,12 +53,7 @@ export function WeeklyChart() {
         data
           .filter((list) => list.day === activeDay)
           .map((filteredData) => (
-            <ResponsiveContainer
-              key={activeDay}
-              className=""
-              width="100%"
-              height="100%"
-            >
+            <ResponsiveContainer key={activeDay} width="100%" height="100%">
               <LineChart height={200} data={filteredData.temperature}>
                 <XAxis dataKey="time" />
                 <YAxis />
@@ -66,7 +64,7 @@ export function WeeklyChart() {
                   dataKey="temperature"
                   stroke="#c70039"
                   strokeWidth={3}
-                  name="c°"
+                  name={degree + '°'}
                 />
                 <Line
                   type="monotone"

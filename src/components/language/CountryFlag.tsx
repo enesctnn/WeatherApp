@@ -3,7 +3,7 @@ import ReactCountryFlag from 'react-country-flag';
 export const CountryFlag = ({ language }: { language: string }) => (
   <ReactCountryFlag
     className="mx-2 text-xl"
-    countryCode={language.includes('tr') ? 'TR' : 'US'}
+    countryCode={language.slice(2, 4) || language.includes('tr') ? 'tr' : 'us'}
     svg
   />
 );

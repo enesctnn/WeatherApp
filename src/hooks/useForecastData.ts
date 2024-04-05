@@ -6,6 +6,7 @@ import { getShortDayString } from '../lib/date';
 import { fetchForecastByCityName } from '../util/http';
 
 import { icons } from './../lib/images';
+import { useWeatherUnitsContext } from './useWeatherUnitsContext';
 
 export type ForecastDataFormat = {
   [key: string]: {
@@ -30,14 +31,15 @@ export function useForecastData(cityName: string): ForecastDataFormat | null {
   const {
     i18n: { language },
   } = useTranslation();
-
+  const { units } = useWeatherUnitsContext();
   const { data, isError } = useQuery({
-    queryKey: ['forecast', cityName],
-    queryFn: ({ signal }) => fetchForecastByCityName(cityName, signal),
+    queryKey: ['forecast', cityName, units],
+    queryFn: ({ signal }) =>
+      fetchForecastByCityName(cityName, signal, { units }),
     // 3 minutes auto data refresh
     staleTime: 1000 * 60 * 3,
   });
-  
+
   if (isError) throw new Error('Could not fetch current weather');
 
   if (data) {

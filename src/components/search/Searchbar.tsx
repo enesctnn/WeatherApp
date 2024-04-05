@@ -33,7 +33,7 @@ export const SearchBar = () => {
           150
         );
         return () => clearTimeout(timer);
-      }
+      } else setCurrentCities(undefined);
     } else setCurrentCities(undefined);
   }, [searchTerm]);
 

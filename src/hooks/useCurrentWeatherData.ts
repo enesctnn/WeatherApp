@@ -4,6 +4,7 @@ import { getDayString, getMonthString } from '../lib/date';
 import { bgs, icons } from '../lib/images';
 import { fetchCurrentWeatherByCityName } from '../util/http';
 import { useCurrentWeatherPop } from './useCurrentWeatherPop';
+import { useWeatherUnitsContext } from './useWeatherUnitsContext';
 
 type FormattedWeatherData = {
   city: { name: string; country: string };
@@ -32,10 +33,12 @@ export function useCurrentWeatherData(
   const {
     i18n: { language: lang },
   } = useTranslation();
+  const { units } = useWeatherUnitsContext();
+
   const { data, isError } = useQuery({
-    queryKey: [cityName, lang],
+    queryKey: [cityName, lang, units],
     queryFn: ({ signal }) =>
-      fetchCurrentWeatherByCityName(cityName, signal, { lang }),
+      fetchCurrentWeatherByCityName(cityName, signal, { lang, units }),
     // auto invalidate time set to 3 minutes
     staleTime: 1000 * 60 * 3,
     // delete unused queries from memory after 2 minutes
