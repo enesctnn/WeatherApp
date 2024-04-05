@@ -108,6 +108,9 @@ export default {
       animation: {
         bump: 'bump 0.2s',
       },
+      backgroundImage: {
+        ellipse: 'radial-gradient(ellipse at top, var(--tw-gradient-stops))',
+      },
     },
   },
   plugins: [],

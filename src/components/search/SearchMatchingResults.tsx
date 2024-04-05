@@ -1,23 +1,27 @@
-import { Country, IState } from 'country-state-city';
+import AutoPlaceCompleteAPI from '../../auto-complete-response';
 import { Card } from '../ui/card';
 
 export const SearchMatchingResults = ({
-  currentCities,
+  currentPlaces,
   onSelect,
 }: {
-  currentCities: IState[];
+  currentPlaces: AutoPlaceCompleteAPI.Address[];
   onSelect: (cityName: string) => void;
 }) => (
   <Card className="w-full !bg-transparent mt-2 !rounded-lg !p-0 overflow-hidden">
     <ul className="flex flex-col gap-y-[1px] ">
-      {currentCities.map((city, index) => (
+      {currentPlaces.map((place, index) => (
         <li key={index} className="w-full bg-gray-500">
           <button
             type="button"
             className="text-start flex text-gray-100 text-md !px-5 !py-4 w-full"
-            onClick={onSelect.bind(null, city.name)}
+            onClick={onSelect.bind(
+              null,
+              place.city || place.county || place.addressLabel
+            )}
           >
-            {city.name} - {Country.getCountryByCode(city.countryCode)?.name}
+            {place.city || place.county || place.addressLabel} -{' '}
+            {place.countryCode}
           </button>
         </li>
       ))}

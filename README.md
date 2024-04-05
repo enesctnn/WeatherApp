@@ -90,7 +90,6 @@ npm run build
 - **[@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query)** [![npm](https://img.shields.io/npm/v/@tanstack/react-query)](https://www.npmjs.com/package/@tanstack/react-query)
 - **[axios](https://www.npmjs.com/package/axios)** [![npm](https://img.shields.io/npm/v/axios)](https://www.npmjs.com/package/axios)
 - **[clsx](https://www.npmjs.com/package/clsx)** [![npm](https://img.shields.io/npm/v/clsx)](https://www.npmjs.com/package/clsx)
-- **[country-state-city](https://www.npmjs.com/package/country-state-city)** [![npm](https://img.shields.io/npm/v/country-state-city)](https://www.npmjs.com/package/country-state-city)
 - **[framer-motion](https://www.npmjs.com/package/framer-motion)** [![npm](https://img.shields.io/npm/v/framer-motion)](https://www.npmjs.com/package/framer-motion)
 - **[localforage](https://www.npmjs.com/package/localforage)** [![npm](https://img.shields.io/npm/v/localforage)](https://www.npmjs.com/package/localforage)
 - **[react](https://www.npmjs.com/package/react)** [![npm](https://img.shields.io/npm/v/react)](https://www.npmjs.com/package/react)

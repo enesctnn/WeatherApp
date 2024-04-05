@@ -5,36 +5,31 @@ import { Input } from '../ui/input';
 
 import { SearchForm } from './SearchForm';
 
-import { IState } from 'country-state-city';
-import { getAllStates } from 'country-state-city/lib/state';
-
 import { SearchMatchingResults } from './SearchMatchingResults';
 
 import { SpinnerGap } from '@phosphor-icons/react';
 import { AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import AutoPlaceCompleteAPI from '../../auto-complete-response';
+import { fetchAutoCompletePlaces } from '../../util/http-place';
 
 export const SearchBar = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
   const { state } = useNavigation();
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [currentCities, setCurrentCities] = useState<IState[] | undefined>();
+  const [currentPlaces, setCurrentPlaces] = useState<
+    AutoPlaceCompleteAPI.Address[] | undefined
+  >();
 
   useEffect(() => {
     if (searchTerm.trim().length >= 1) {
-      const cities = getAllStates()
-        .filter((c) =>
-          c.name.toLowerCase().startsWith(searchTerm.trim().toLowerCase())
-        )
-        .slice(0, 5);
-      if (cities.length > 0) {
-        const timer = setTimeout(
-          () => setCurrentCities(() => structuredClone(cities)),
-          150
+      const timer = setTimeout(() => {
+        fetchAutoCompletePlaces(searchTerm).then((data) =>
+          setCurrentPlaces(data?.addresses)
         );
-        return () => clearTimeout(timer);
-      } else setCurrentCities(undefined);
-    } else setCurrentCities(undefined);
+      }, 150);
+      return () => clearTimeout(timer);
+    } else setCurrentPlaces(undefined);
   }, [searchTerm]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -65,9 +60,9 @@ export const SearchBar = () => {
         )}
       </div>
       <AnimatePresence>
-        {!!currentCities && (
+        {!!currentPlaces && (
           <SearchMatchingResults
-            currentCities={currentCities}
+            currentPlaces={currentPlaces}
             onSelect={async (cityName) => {
               await setSearchTerm(cityName);
               // Waiting for to set search term for better user experience on loading screen
