@@ -36,6 +36,8 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 
 - Multiple languages: Including English and Turkish. Users can specify their preferred language in App requests to receive weather forecasts and information in the language of their choice.
 
+- Toggle Units: Users can choose between imperial or metric units.
+
 ---
 
 ### Supported Languages:
@@ -81,7 +83,6 @@ npm run build
 ```
 
 ---
-
 
 ## Dependencies
 
