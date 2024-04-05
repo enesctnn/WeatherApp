@@ -17,7 +17,7 @@ export const PinnedButton = ({
     <motion.button
       initial={{ x: -100, opacity: 0.8 }}
       animate={{
-        x: [80, -25, 0],
+        x: [80, -20, 0],
         transition: { type: 'tween', ease: 'easeInOut', duration: 0.8 },
       }}
       whileHover={{ x: 80, opacity: 1 }}

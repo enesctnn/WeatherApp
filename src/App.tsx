@@ -13,7 +13,9 @@ import MainRoot from './pages/MainRoot';
 import SearchLocationPage, {
   action as searchLocationAction,
 } from './pages/SearchLocation';
-import WeatherDetailsPage from './pages/WeatherDetails';
+import WeatherDetailsPage, {
+  loader as weatherDetailsLoader,
+} from './pages/WeatherDetails';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,7 +25,11 @@ const router = createBrowserRouter(
         element={<SearchLocationPage />}
         action={searchLocationAction}
       />
-      <Route path="weather/:cityName" element={<WeatherDetailsPage />} />
+      <Route
+        path="weather/:cityName"
+        loader={weatherDetailsLoader}
+        element={<WeatherDetailsPage />}
+      />
     </Route>
   )
 );
