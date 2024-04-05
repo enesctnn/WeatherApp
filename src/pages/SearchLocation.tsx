@@ -37,7 +37,8 @@ export async function action({ request }: SearchBarActionArgs) {
         .toLowerCase()
         .replace('ğ', 'g')
         .replace('ç', 'c')
-        .replace('ş', 's');
+        .replace('ş', 's')
+        .replace(' ', '');
     }
     return redirect(`/weather/${correctShapedCity}`);
   }

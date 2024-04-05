@@ -7,7 +7,6 @@ import { Card } from '../../ui/card';
 
 export const CurrentWeather = () => {
   const { cityName } = useParams();
-  console.log(cityName);
   if (!cityName) throw new Error('URL missing params !');
 
   const data = useCurrentWeatherData(cityName);
