@@ -22,7 +22,7 @@ export const SearchBar = () => {
   >();
 
   useEffect(() => {
-    if (searchTerm.trim().length >= 1) {
+    if (searchTerm.trim().length >= 2) {
       const timer = setTimeout(() => {
         fetchAutoCompletePlaces(searchTerm).then((data) =>
           setCurrentPlaces(data?.addresses)

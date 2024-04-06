@@ -23,7 +23,7 @@ type FormattedWeatherData = {
 
 /**
  * Custom React hook for processing and formatting current weather data.
- * @param {WeatherDataTypes.CurrentWeatherData} data - The current weather data to process.
+ * @param {string} cityName - The name of the city.
  * @returns {FormattedWeatherData | null} The processed current weather data.
  */
 export function useCurrentWeatherData(

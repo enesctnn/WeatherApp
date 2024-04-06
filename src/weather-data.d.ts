@@ -1,108 +1,103 @@
-import { icons } from './lib/images';
-// Define a namespace or module to encapsulate the types
-export declare namespace WeatherDataTypes {
-  // Define the type for the first JSON data structure
-  interface ForecastWeatherData {
+import type { icons } from './lib/images';
+
+export declare namespace WeatherData {
+  interface Coord {
+    lon: number;
+    lat: number;
+  }
+
+  interface Weather {
+    id: number;
+    main: string;
+    description: string;
+    icon: keyof typeof icons;
+  }
+
+  interface Main {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+    sea_level: number;
+    grnd_level: number;
+  }
+
+  interface Wind {
+    speed: number;
+    deg: number;
+    gust: number;
+  }
+
+  interface Rain {
+    '1h'?: number;
+    '3h'?: number;
+  }
+
+  interface Snow {
+    '1h'?: number;
+    '3h'?: number;
+  }
+
+  interface Clouds {
+    all: number;
+  }
+
+  interface Sys {
+    pod: string;
+    type: number;
+    id: number;
+    country: string;
+    sunrise: number;
+    sunset: number;
+  }
+
+  interface City {
+    id: number;
+    name: string;
+    coord: Coord;
+    country: string;
+    population: number;
+    timezone: number;
+    sunrise: number;
+    sunset: number;
+  }
+
+  interface ForecastList {
+    dt: number;
+    main: Main;
+    weather: Weather[];
+    clouds: Clouds;
+    wind: Wind;
+    visibility: number;
+    pop: number;
+    rain?: Rain;
+    snow?: Snow;
+    sys: Sys;
+    dt_txt: string;
+  }
+
+  export interface FiveDaysForecast {
     cod: string;
     message: number;
     cnt: number;
-    list: {
-      dt: number;
-      main: {
-        temp: number;
-        feels_like: number;
-        temp_min: number;
-        temp_max: number;
-        pressure: number;
-        sea_level: number;
-        grnd_level: number;
-        humidity: number;
-        temp_kf: number;
-      };
-      weather: {
-        id: number;
-        main: string;
-        description: string;
-        icon: keyof typeof icons;
-      }[];
-      clouds: {
-        all: number;
-      };
-      wind: {
-        speed: number;
-        deg: number;
-        gust: number;
-      };
-      visibility: number;
-      pop: number;
-      sys: {
-        pod: string;
-      };
-      dt_txt: string;
-    }[];
-    city: {
-      id: number;
-      name: string;
-      coord: {
-        lat: number;
-        lon: number;
-      };
-      country: string;
-      population: number;
-      timezone: number;
-      sunrise: number;
-      sunset: number;
-    };
+    list: ForecastList[];
+    city: City;
   }
 
-  // Define the type for the second JSON data structure
-  interface CurrentWeatherData {
-    coord: {
-      lon: number;
-      lat: number;
-    };
-    weather: {
-      id: number;
-      main: string;
-      description: string;
-      icon: keyof typeof icons;
-    }[];
+  export interface CurrentWeather {
+    coord: Coord;
+    weather: Weather[];
     base: string;
-    main: {
-      temp: number;
-      feels_like: number;
-      temp_min: number;
-      temp_max: number;
-      pressure: number;
-      humidity: number;
-      sea_level: number;
-      grnd_level: number;
-    };
+    main: Main;
     visibility: number;
-    wind: {
-      speed: number;
-      deg: number;
-      gust: number;
-    };
-    rain: {
-      '1h'?: number;
-      '3h'?: number;
-    };
-    snow: {
-      '1h'?: number;
-      '3h'?: number;
-    };
-    clouds: {
-      all: number;
-    };
+    wind: Wind;
+    rain?: Rain;
+    snow?: Snow;
+    clouds: Clouds;
     dt: number;
-    sys: {
-      type: number;
-      id: number;
-      country: string;
-      sunrise: number;
-      sunset: number;
-    };
+    sys: Sys;
     timezone: number;
     id: number;
     name: string;

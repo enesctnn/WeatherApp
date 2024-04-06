@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useSubmit } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 
@@ -11,7 +11,7 @@ export const SearchForm = React.forwardRef<
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const location = formData.get('location') as string;
-    if (location.trim().length > 0) submit(formData, { method: 'POST'});
+    if (location.trim().length > 0) submit(formData, { method: 'POST' });
   };
   return (
     <form

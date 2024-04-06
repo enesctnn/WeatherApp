@@ -1,6 +1,8 @@
 import axios from 'axios';
 import AutoPlaceCompleteAPI from '../auto-complete-response';
 
+const API_KEY = 'prj_test_pk_f258b3a0c6dc2c8f4eb39572bb6a156656235f7d';
+
 /**
  * Fetches autocomplete places based on the provided search term using the Radar.io API.
  * @param {string} searchTerm The search term to be used for autocomplete.
@@ -15,7 +17,7 @@ export async function fetchAutoCompletePlaces(
       {
         headers: {
           Accept: 'application/json',
-          Authorization: 'prj_test_pk_f258b3a0c6dc2c8f4eb39572bb6a156656235f7d',
+          Authorization: API_KEY,
         },
       }
     );

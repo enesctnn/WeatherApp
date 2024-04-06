@@ -17,11 +17,18 @@ export const SearchMatchingResults = ({
             className="text-start flex text-gray-100 text-md !px-5 !py-4 w-full"
             onClick={onSelect.bind(
               null,
-              place.city || place.county || place.addressLabel
+              (place.county ? place.county + ',' : '') +
+                (place.city
+                  ? place.city + ','
+                  : place.stateCode
+                  ? place.stateCode + ','
+                  : '') +
+                (place.countryCode ?? '')
             )}
           >
-            {place.city || place.county || place.addressLabel} -{' '}
-            {place.countryCode}
+            {place.city || place.addressLabel}
+            {place.county && ', ' + place.county}
+            {place.countryCode && ' - ' + place.countryCode}
           </button>
         </li>
       ))}

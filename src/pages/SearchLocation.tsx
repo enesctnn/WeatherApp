@@ -38,7 +38,9 @@ export async function action({ request }: SearchBarActionArgs) {
         .replace('ğ', 'g')
         .replace('ç', 'c')
         .replace('ş', 's')
-        .replace(' ', '');
+        .replace('(', '')
+        .replace(')', '')
+        .replace(' ', ',');
     }
     return redirect(`/weather/${correctShapedCity}`);
   }
