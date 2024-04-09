@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -110,6 +111,10 @@ export default {
       },
       backgroundImage: {
         ellipse: 'radial-gradient(ellipse at top, var(--tw-gradient-stops))',
+      },
+      dropShadow: {
+        border: '0px 0px 2px rgba(0, 0, 0, 0.6)',
+        'white-border': '0px 0px 2px rgba(255, 255, 255, 0.6)',
       },
     },
   },

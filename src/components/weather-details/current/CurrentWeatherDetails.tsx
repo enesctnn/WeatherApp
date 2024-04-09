@@ -12,7 +12,7 @@ import {
   Wind,
 } from '@phosphor-icons/react';
 import { useTranslation } from 'react-i18next';
-import { useWeatherUnitsContext } from '../../../hooks/useWeatherUnitsContext';
+import { useWeatherUnitsContext } from '../../../hooks/context/useWeatherUnitsContext';
 import { WeatherDetailsArticle } from './WeatherDetailsArticle';
 
 export const CurrentWeatherDetails = () => {

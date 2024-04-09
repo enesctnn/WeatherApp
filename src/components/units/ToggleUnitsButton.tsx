@@ -1,4 +1,4 @@
-import { useWeatherUnitsContext } from '../../hooks/useWeatherUnitsContext';
+import { useWeatherUnitsContext } from '../../hooks/context/useWeatherUnitsContext';
 import { Button } from '../ui/button';
 
 export const ToggleUnitsButton = () => {

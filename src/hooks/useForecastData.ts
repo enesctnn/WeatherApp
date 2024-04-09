@@ -6,7 +6,7 @@ import { getShortDayString } from '../lib/date';
 import { fetchForecastByCityName } from '../util/http';
 
 import { icons } from './../lib/images';
-import { useWeatherUnitsContext } from './useWeatherUnitsContext';
+import { useWeatherUnitsContext } from './context/useWeatherUnitsContext';
 
 export type ForecastDataFormat = {
   [key: string]: {

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { WeatherUnitsContext } from '../context/units-context';
+import { WeatherUnitsContext } from '../../context/units-context';
 
 /**
  * A hook for consuming the WeatherUnitsContext.

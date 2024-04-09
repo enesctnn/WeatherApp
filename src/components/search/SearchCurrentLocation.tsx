@@ -59,7 +59,7 @@ export const SearchCurrentLocation = () => {
         >
           <Link
             to={`/weather/${data.name.toLowerCase()}`}
-            className="flex items-center gap-x-3"
+            className="flex items-center gap-x-3 text-gray-500 dark:text-gray-50"
           >
             <MapPinLine className="animate-bounce group-hover:animate-none" />
             {t('current')} {data.name + ' - ' + data.country}

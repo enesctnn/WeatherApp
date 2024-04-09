@@ -5,11 +5,14 @@ import { FavoriteSearchsContextProvider } from './context/favorite-searchs-conte
 import './index.css';
 
 import './i18n';
+import { ThemeContextProvider } from './context/theme-context.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.Suspense fallback={<h2>Loading...</h2>}>
-    <FavoriteSearchsContextProvider>
-      <App />
-    </FavoriteSearchsContextProvider>
+    <ThemeContextProvider>
+      <FavoriteSearchsContextProvider>
+        <App />
+      </FavoriteSearchsContextProvider>
+    </ThemeContextProvider>
   </React.Suspense>
 );

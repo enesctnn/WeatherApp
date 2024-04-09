@@ -4,7 +4,7 @@ import { getDayString, getMonthString } from '../lib/date';
 import { bgs, icons } from '../lib/images';
 import { fetchCurrentWeatherByCityName } from '../util/http';
 import { useCurrentWeatherPop } from './useCurrentWeatherPop';
-import { useWeatherUnitsContext } from './useWeatherUnitsContext';
+import { useWeatherUnitsContext } from './context/useWeatherUnitsContext';
 
 type FormattedWeatherData = {
   city: { name: string; country: string };

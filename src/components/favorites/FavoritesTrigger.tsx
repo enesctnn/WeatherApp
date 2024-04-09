@@ -1,5 +1,5 @@
 import { FaStar } from 'react-icons/fa';
-import { useFavoriteSearchsContext } from '../../hooks/useFavoriteSearchsContext';
+import { useFavoriteSearchsContext } from '../../hooks/context/useFavoriteSearchsContext';
 import { cn } from '../../lib/utils';
 import { PinnedButton } from '../ui/pinned-button';
 import { useTranslation } from 'react-i18next';

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
-import { useWeatherUnitsContext } from '../../../hooks/useWeatherUnitsContext';
+import { useWeatherUnitsContext } from '../../../hooks/context/useWeatherUnitsContext';
 
 import { ToggleFavoriteButton } from '../../favorites/ToggleFavoriteButton';
 import { Card } from '../../ui/card';

@@ -15,7 +15,7 @@ import { Card } from '../../../ui/card';
 
 import { useTranslation } from 'react-i18next';
 import { useForecastTemperature } from '../../../../hooks/useForecastTemperature';
-import { useWeatherUnitsContext } from '../../../../hooks/useWeatherUnitsContext';
+import { useWeatherUnitsContext } from '../../../../hooks/context/useWeatherUnitsContext';
 
 import { AvailableDayList } from './AvailableDayList';
 

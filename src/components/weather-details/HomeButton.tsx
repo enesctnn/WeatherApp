@@ -11,7 +11,7 @@ export const HomeButton = () => {
         to="/"
         className="h-full pl-6 mr-6 py-3 select-none cursor-pointer active:cursor-grabbing flex items-center justify-between w-full border-r border-gray-50 text-gray-100 user-drag-none"
       >
-        {t('search')} <BiSearchAlt className="mr-1" size={20} fill="#22222F" />
+        {t('search')} <BiSearchAlt className="mr-1 dark:text-[#22222F]" size={20} />
       </Link>
     </PinnedButton>
   );

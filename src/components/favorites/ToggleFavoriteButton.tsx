@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useRef } from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import { MdBlock } from 'react-icons/md';
-import { useFavoriteSearchsContext } from '../../hooks/useFavoriteSearchsContext';
+import { useFavoriteSearchsContext } from '../../hooks/context/useFavoriteSearchsContext';
 
 export function ToggleFavoriteButton({ cityName }: { cityName: string }) {
   const ref = useRef<number>(0);

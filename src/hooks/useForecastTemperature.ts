@@ -5,7 +5,7 @@ import { getDayString, getTimeFromDate } from '../lib/date';
 
 import { fetchForecastByCityName } from '../util/http';
 import { ForecastDataFormat } from './useForecastData';
-import { useWeatherUnitsContext } from './useWeatherUnitsContext';
+import { useWeatherUnitsContext } from './context/useWeatherUnitsContext';
 
 /**
  * Custom React hook to fetch and manage forecast temperature data for a given city.
