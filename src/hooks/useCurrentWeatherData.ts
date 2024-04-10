@@ -6,6 +6,9 @@ import { fetchCurrentWeatherByCoords } from "../util/http";
 import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
 import { useCurrentWeatherPop } from "./useCurrentWeatherPop";
 
+/**
+ * Represents the formatted data for current weather.
+ */
 type FormattedWeatherData = {
   city: { name: string; country: string };
   weather: string;
@@ -23,7 +26,8 @@ type FormattedWeatherData = {
 
 /**
  * Custom React hook for processing and formatting current weather data.
- * @param {string} cityName - The name of the city.
+ * @param {number} lat - The latitude of the location.
+ * @param {number} lon - The longitude of the location.
  * @returns {FormattedWeatherData | null} The processed current weather data.
  */
 export function useCurrentWeatherData(
