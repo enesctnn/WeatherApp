@@ -11,6 +11,7 @@ function ErrorPage() {
   const { t } = useTranslation(undefined, { keyPrefix: "error" });
   let message: string = t("errorpage");
   if (error instanceof Error) message = error.message;
+  if (typeof error === "string") message = error;
 
   return (
     <div className="relative flex-grow bg-gray-900 text-white">

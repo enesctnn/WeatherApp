@@ -18,5 +18,5 @@
  */
 export default {
   searchLocation: "/",
-  weatherDetails: "/weather/:cityName",
+  weatherDetails: "/weather/:coords",
 } as const;

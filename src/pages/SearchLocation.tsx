@@ -7,6 +7,7 @@ import {
 import { Logo } from "../components/search/Logo";
 import { SearchSection } from "../components/search/SearchSection";
 import Routes from "../routes";
+import { fetchCoordsByCityName, queryClient } from "../util/http";
 
 const SearchLocationPage = () => (
   <>
@@ -24,26 +25,18 @@ interface SearchBarActionArgs extends ActionFunctionArgs {
 // eslint-disable-next-line react-refresh/only-export-components
 export async function action({ request }: SearchBarActionArgs) {
   const formData = await request.formData();
-  const cityName = formData.get("location") as string | null;
+  const location = formData.get("location") as string;
+  const lat = formData.get("lat") as string;
+  const lon = formData.get("lon") as string;
+  console.log({ lat, lon, location });
+  if (lat.trim().length > 0 && lon.trim().length > 0)
+    return redirect(`/weather/${lat},${lon}`);
 
-  if (!!cityName && cityName.trim().length > 0) {
-    let correctShapedCity = "";
-    for (const letter of cityName) {
-      correctShapedCity += letter
-        .split("ı")
-        .join("i")
-        .split("İ")
-        .join("I")
-        .toLowerCase()
-        .replace("ğ", "g")
-        .replace("ç", "c")
-        .replace("ş", "s")
-        .replace("(", "")
-        .replace(")", "")
-        .replace(" ", ",");
-    }
-    return redirect(`/weather/${correctShapedCity}`);
-  }
-
-  return null;
+  const data = await queryClient.fetchQuery({
+    queryKey: [lat, lon],
+    queryFn: ({ signal }) => fetchCoordsByCityName(location, signal),
+  });
+  console.log({ data });
+  if (!data[0]) throw new Error("Couldn't find the place");
+  return redirect(`/weather/${data[0].lat},${data[0].lon}`);
 }

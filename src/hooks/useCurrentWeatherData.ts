@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { getDayString, getMonthString } from "../lib/date";
 import { bgs, icons } from "../lib/images";
-import { fetchCurrentWeatherByCityName } from "../util/http";
-import { useCurrentWeatherPop } from "./useCurrentWeatherPop";
+import { fetchCurrentWeatherByCoords } from "../util/http";
 import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
+import { useCurrentWeatherPop } from "./useCurrentWeatherPop";
 
 type FormattedWeatherData = {
   city: { name: string; country: string };
@@ -27,18 +27,19 @@ type FormattedWeatherData = {
  * @returns {FormattedWeatherData | null} The processed current weather data.
  */
 export function useCurrentWeatherData(
-  cityName: string,
+  lat: number,
+  lon: number,
 ): FormattedWeatherData | null {
-  const rainProbability = useCurrentWeatherPop(cityName);
+  const rainProbability = useCurrentWeatherPop(lat, lon);
   const {
     i18n: { language: lang },
   } = useTranslation();
   const { units } = useWeatherUnitsContext();
 
   const { data, isError } = useQuery({
-    queryKey: [cityName, lang, units],
+    queryKey: [lat, lon, lang, units],
     queryFn: ({ signal }) =>
-      fetchCurrentWeatherByCityName(cityName, signal, { lang, units }),
+      fetchCurrentWeatherByCoords(lat, lon, signal, { lang, units }),
     // auto invalidate time set to 3 minutes
     staleTime: 1000 * 60 * 3,
     // delete unused queries from memory after 2 minutes

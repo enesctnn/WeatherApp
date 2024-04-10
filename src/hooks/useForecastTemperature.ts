@@ -3,16 +3,16 @@ import { useTranslation } from "react-i18next";
 
 import { getDayString, getTimeFromDate } from "../lib/date";
 
-import { fetchForecastByCityName } from "../util/http";
-import { ForecastDataFormat } from "./useForecastData";
+import { fetchForecastByCoords } from "../util/http";
 import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
+import { ForecastDataFormat } from "./useForecastData";
 
 /**
  * Custom React hook to fetch and manage forecast temperature data for a given city.
  * @param {string} cityName - The name of the city for which forecast temperature data is to be fetched.
  * @returns {Array<{ day: string, temperature: Array<{ time: string, temperature: number }> }>|null} - An array of objects containing forecast temperature data for each day, or null if data is not yet available.
  */
-export function useForecastTemperature(cityName: string) {
+export function useForecastTemperature(lat: number, lon: number) {
   const {
     i18n: { language },
   } = useTranslation();
@@ -20,9 +20,8 @@ export function useForecastTemperature(cityName: string) {
   const { units } = useWeatherUnitsContext();
 
   const { data, isError } = useQuery({
-    queryKey: ["forecast", cityName, units],
-    queryFn: ({ signal }) =>
-      fetchForecastByCityName(cityName, signal, { units }),
+    queryKey: ["forecast", lat, lon, units],
+    queryFn: ({ signal }) => fetchForecastByCoords(lat, lon, signal, { units }),
     // 3 minutes auto data refresh
     staleTime: 1000 * 60 * 3,
   });

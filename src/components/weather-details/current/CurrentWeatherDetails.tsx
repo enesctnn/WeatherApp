@@ -16,11 +16,11 @@ import { useWeatherUnitsContext } from "../../../hooks/context/useWeatherUnitsCo
 import { WeatherDetailsArticle } from "./WeatherDetailsArticle";
 
 export const CurrentWeatherDetails = () => {
-  const { cityName } = useParams();
-
-  if (!cityName) throw new Error("URL missing params !");
-
-  const data = useCurrentWeatherData(cityName);
+  const { coords } = useParams();
+  if (!coords) throw new Error("URL missing params !");
+  const lat = +coords.split(",")[0];
+  const lon = +coords.split(",")[1];
+  const data = useCurrentWeatherData(lat, lon);
 
   const { t } = useTranslation(undefined, { keyPrefix: "weatherdetails" });
 

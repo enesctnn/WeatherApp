@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { getShortDayString } from "../lib/date";
 
-import { fetchForecastByCityName } from "../util/http";
+import { fetchForecastByCoords } from "../util/http";
 
 import { icons } from "./../lib/images";
 import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
@@ -27,15 +27,17 @@ export type ForecastDataFormat = {
  * @returns {ForecastDataFormat | null} An array of forecast objects containing temperature, icon, and day information,
  * or null if data is not available yet.
  */
-export function useForecastData(cityName: string): ForecastDataFormat | null {
+export function useForecastData(
+  lat: number,
+  lon: number,
+): ForecastDataFormat | null {
   const {
     i18n: { language },
   } = useTranslation();
   const { units } = useWeatherUnitsContext();
   const { data, isError } = useQuery({
-    queryKey: ["forecast", cityName, units],
-    queryFn: ({ signal }) =>
-      fetchForecastByCityName(cityName, signal, { units }),
+    queryKey: ["forecast", lat, lon, units],
+    queryFn: ({ signal }) => fetchForecastByCoords(lat, lon, signal, { units }),
     // 3 minutes auto data refresh
     staleTime: 1000 * 60 * 3,
   });

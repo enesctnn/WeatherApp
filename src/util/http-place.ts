@@ -1,7 +1,7 @@
 import axios from "axios";
 import AutoPlaceCompleteAPI from "../auto-complete-response";
 
-import { OPENWEATHER_API_KEY } from "./api-keys";
+import { RADAR_API_KEY } from "./api-keys";
 
 /**
  * Fetches autocomplete places based on the provided search term using the Radar.io API.
@@ -17,7 +17,7 @@ export async function fetchAutoCompletePlaces(
       {
         headers: {
           Accept: "application/json",
-          Authorization: OPENWEATHER_API_KEY,
+          Authorization: RADAR_API_KEY,
         },
       },
     );

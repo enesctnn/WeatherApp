@@ -14,7 +14,7 @@ import { WeeklyChart } from "../components/weather-details/forecast/charts/Weekl
 import { HomeButton } from "../components/weather-details/HomeButton";
 import { WeatherUnitsContextProvider } from "../context/units-context";
 import Routes from "../routes/index";
-import { fetchCurrentWeatherByCityName, queryClient } from "../util/http";
+import { fetchCurrentWeatherByCoords, queryClient } from "../util/http";
 
 const WeatherDetailsPage = () => (
   <WeatherUnitsContextProvider>
@@ -36,14 +36,15 @@ interface WeatherDetailsLoaderArgs extends LoaderFunctionArgs {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export function loader({ params }: WeatherDetailsLoaderArgs) {
-  if (params.cityName && params.cityName.trim().length > 0) {
-    const cityName = params.cityName.replace("%20", "");
+  if (params.coords && params.coords.trim().length > 0) {
+    const lat = +params.coords.split(",")[0];
+    const lon = +params.coords.split(",")[1];
     const lang = JSON.parse(JSON.stringify(localStorage.getItem("i18nextLng")));
     const units = JSON.parse(JSON.stringify(localStorage.getItem("UNIT")));
     return queryClient.fetchQuery({
-      queryKey: [cityName, lang, units],
+      queryKey: [lat, lon, lang, units],
       queryFn: ({ signal }) =>
-        fetchCurrentWeatherByCityName(cityName, signal, { lang, units }),
+        fetchCurrentWeatherByCoords(lat, lon, signal, { lang, units }),
       // auto invalidate time set to 3 minutes
       staleTime: 1000 * 60 * 3,
       // delete unused queries from memory after 2 minutes

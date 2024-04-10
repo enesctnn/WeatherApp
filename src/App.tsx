@@ -26,7 +26,7 @@ const router = createBrowserRouter(
         action={searchLocationAction}
       />
       <Route
-        path="weather/:cityName"
+        path="weather/:coords"
         loader={weatherDetailsLoader}
         element={<WeatherDetailsPage />}
       />

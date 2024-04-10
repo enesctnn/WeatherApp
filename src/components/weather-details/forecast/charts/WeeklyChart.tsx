@@ -21,10 +21,13 @@ import { AvailableDayList } from "./AvailableDayList";
 
 export function WeeklyChart() {
   const [activeDay, setActiveDay] = useState<string | null>(null);
-  const { cityName } = useParams();
-  if (!cityName) throw new Error("URL missing params");
 
-  const data = useForecastTemperature(cityName);
+  const { coords } = useParams();
+  if (!coords) throw new Error("URL missing params !");
+  const lat = +coords.split(",")[0];
+  const lon = +coords.split(",")[1];
+
+  const data = useForecastTemperature(lat, lon);
 
   const handleSetActiveDay = (day: string) => setActiveDay(day);
 

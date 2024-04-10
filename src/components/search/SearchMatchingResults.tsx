@@ -6,7 +6,15 @@ export const SearchMatchingResults = ({
   onSelect,
 }: {
   currentPlaces: AutoPlaceCompleteAPI.Address[];
-  onSelect: (cityName: string) => void;
+  onSelect: ({
+    name,
+    lat,
+    lon,
+  }: {
+    name: string;
+    lat: string;
+    lon: string;
+  }) => void;
 }) => (
   <Card className="mt-2 w-full overflow-hidden !rounded-lg !bg-transparent !p-0">
     <ul className="flex flex-col gap-y-[1px] ">
@@ -15,16 +23,14 @@ export const SearchMatchingResults = ({
           <button
             type="button"
             className="flex w-full !px-5 !py-4 text-start text-md text-gray-100"
-            onClick={onSelect.bind(
-              null,
-              (place.county ? place.county + "," : "") +
-                (place.city
-                  ? place.city + ","
-                  : place.stateCode
-                    ? place.stateCode + ","
-                    : "") +
-                (place.countryCode ?? ""),
-            )}
+            onClick={onSelect.bind(null, {
+              name:
+                (place.city ?? place.county ?? place.addressLabel) +
+                " " +
+                place.countryCode,
+              lat: place.latitude.toString(),
+              lon: place.longitude.toString(),
+            })}
           >
             {place.city || place.addressLabel}
             {place.county && ", " + place.county}

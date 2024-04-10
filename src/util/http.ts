@@ -5,7 +5,7 @@ import { QueryClient } from "@tanstack/react-query";
 
 import { WeatherData } from "../weather-data";
 
-import { RADAR_API_KEY } from "./api-keys";
+import { OPENWEATHER_API_KEY } from "./api-keys";
 
 type ParamsT = {
   [key: string]: string;
@@ -30,11 +30,39 @@ export async function fetchCityNameByCoords(
   signal: AbortSignal,
   params?: ParamsT,
 ) {
-  const res = await axios.get(
-    `geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${RADAR_API_KEY}`,
-    { signal, params },
-  );
-  return res.data[0];
+  try {
+    const res = await axios.get(
+      `geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}`,
+      { signal, params },
+    );
+    return res.data[0];
+  } catch (error) {
+    if (error instanceof Error) throw new Error(error.message);
+    throw new Error("Something went wrong while fetching cityname by coords");
+  }
+}
+
+/**
+ * Retrieves the city name from the provided latitude and longitude coordinates.
+ * @param {string} place - The place name to search for coords as lat and long.
+ * @param {AbortSignal} [signal] - An optional abort signal to cancel the request.
+ * @returns {Promise<string>} A promise that resolves with the city name.
+ */
+export async function fetchCoordsByCityName(
+  place: string,
+  signal: AbortSignal,
+  params?: ParamsT,
+) {
+  try {
+    const res = await axios.get(
+      `geo/1.0/direct?q=${place}&appid=${OPENWEATHER_API_KEY}`,
+      { signal, params },
+    );
+    return res.data;
+  } catch (error) {
+    if (error instanceof Error) throw new Error(error.message);
+    throw new Error("Something went wrong while fetching coords by placename");
+  }
 }
 
 /**
@@ -52,7 +80,7 @@ export async function fetchForecastByCoords(
 ): Promise<WeatherData.FiveDaysForecast> {
   try {
     const res = await axios.get(
-      `data/2.5/forecast/?lat=${lat}&lon=${lon}&appid=${RADAR_API_KEY}`,
+      `data/2.5/forecast/?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}`,
       { signal, params: { ...params } },
     );
     return res.data;
@@ -77,7 +105,7 @@ export async function fetchForecastByCityName(
 ): Promise<WeatherData.FiveDaysForecast> {
   try {
     const res = await axios.get(
-      `data/2.5/forecast/?q=${cityName}&appid=${RADAR_API_KEY}`,
+      `data/2.5/forecast/?q=${cityName}&appid=${OPENWEATHER_API_KEY}`,
       { signal, params: { ...params } },
     );
     return res.data;
@@ -105,7 +133,7 @@ export async function fetchCurrentWeatherByCityName(
 ): Promise<WeatherData.CurrentWeather> {
   try {
     const res = await axios.get(
-      `data/2.5/weather/?q=${cityName}&appid=${RADAR_API_KEY}`,
+      `data/2.5/weather/?q=${cityName}&appid=${OPENWEATHER_API_KEY}`,
       { signal, params: { ...params } },
     );
     return res.data;
@@ -133,7 +161,7 @@ export async function fetchCurrentWeatherByCoords(
 ): Promise<WeatherData.CurrentWeather> {
   try {
     const res = await axios.get(
-      `data/2.5/weather/?lat=${lat}&lon=${lon}&appid=${RADAR_API_KEY}`,
+      `data/2.5/weather/?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}`,
       { signal, params: { ...params } },
     );
     return res.data;

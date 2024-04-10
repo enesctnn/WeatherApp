@@ -6,10 +6,12 @@ import { ToggleFavoriteButton } from "../../favorites/ToggleFavoriteButton";
 import { Card } from "../../ui/card";
 
 export const CurrentWeather = () => {
-  const { cityName } = useParams();
-  if (!cityName) throw new Error("URL missing params !");
+  const { coords } = useParams();
+  if (!coords) throw new Error("URL missing params !");
+  const lat = +coords.split(",")[0];
+  const lon = +coords.split(",")[1];
+  const data = useCurrentWeatherData(lat, lon);
 
-  const data = useCurrentWeatherData(cityName);
   const {
     symbol: { degree },
   } = useWeatherUnitsContext();

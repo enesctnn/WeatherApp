@@ -6,9 +6,12 @@ import { Card } from "../../ui/card";
 import { ForecastArticle } from "./ForecastArticle";
 
 export const ForecastWeather = () => {
-  const { cityName } = useParams();
-  if (!cityName) throw new Error("Missing URL parameter");
-  const forecastData = useForecastData(cityName);
+  const { coords } = useParams();
+  if (!coords) throw new Error("Missing URL parameter");
+  const lat = +coords.split(",")[0];
+  const lon = +coords.split(",")[1];
+  const forecastData = useForecastData(lat, lon);
+
   return (
     <Card className="weather-card !flex min-h-44 !flex-row !p-3">
       {forecastData && (
