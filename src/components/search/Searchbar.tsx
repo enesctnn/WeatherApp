@@ -1,22 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigation } from 'react-router-dom';
+import { useEffect, useRef, useState } from "react";
+import { useNavigation } from "react-router-dom";
 
-import { Input } from '../ui/input';
+import { Input } from "../ui/input";
 
-import { SearchForm } from './SearchForm';
+import { SearchForm } from "./SearchForm";
 
-import { SearchMatchingResults } from './SearchMatchingResults';
+import { SearchMatchingResults } from "./SearchMatchingResults";
 
-import { SpinnerGap } from '@phosphor-icons/react';
-import { AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import AutoPlaceCompleteAPI from '../../auto-complete-response';
-import { fetchAutoCompletePlaces } from '../../util/http-place';
+import { SpinnerGap } from "@phosphor-icons/react";
+import { AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import AutoPlaceCompleteAPI from "../../auto-complete-response";
+import { fetchAutoCompletePlaces } from "../../util/http-place";
 
 export const SearchBar = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
   const { state } = useNavigation();
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPlaces, setCurrentPlaces] = useState<
     AutoPlaceCompleteAPI.Address[] | undefined
   >();
@@ -25,7 +25,7 @@ export const SearchBar = () => {
     if (searchTerm.trim().length >= 2) {
       const timer = setTimeout(() => {
         fetchAutoCompletePlaces(searchTerm).then((data) =>
-          setCurrentPlaces(data?.addresses)
+          setCurrentPlaces(data?.addresses),
         );
       }, 150);
       return () => clearTimeout(timer);
@@ -35,11 +35,11 @@ export const SearchBar = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearchTerm(e.target.value);
 
-  const { t } = useTranslation(undefined, { keyPrefix: 'home.input' });
+  const { t } = useTranslation(undefined, { keyPrefix: "home.input" });
 
   return (
     <SearchForm ref={formRef}>
-      <div className="w-full relative">
+      <div className="relative w-full">
         <label htmlFor="location" hidden>
           Location
         </label>
@@ -47,14 +47,14 @@ export const SearchBar = () => {
           id="location"
           name="location"
           type="search"
-          placeholder={t('placeholder')}
+          placeholder={t("placeholder")}
           value={searchTerm}
           onChange={onChange}
-          disabled={state === 'loading'}
+          disabled={state === "loading"}
         />
-        {state === 'loading' && (
+        {state === "loading" && (
           <SpinnerGap
-            className="text-inherit absolute right-2 top-2 !text-blue-light select-none animate-spin"
+            className="absolute right-2 top-2 animate-spin select-none !text-blue-light text-inherit"
             size={32}
           />
         )}

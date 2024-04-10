@@ -1,10 +1,10 @@
-import { createContext } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { createContext } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
-type UNIT = 'metric' | 'imperial';
+type UNIT = "metric" | "imperial";
 type SYMBOL = {
-  speed: 'km/h' | 'mph';
-  degree: 'C' | 'F';
+  speed: "km/h" | "mph";
+  degree: "C" | "F";
 };
 
 type WeatherUnitsContextT = {
@@ -15,8 +15,8 @@ type WeatherUnitsContextT = {
 
 export const WeatherUnitsContext = createContext<WeatherUnitsContextT>({
   toggleUnits: () => {},
-  units: 'metric',
-  symbol: { speed: 'km/h', degree: 'C' },
+  units: "metric",
+  symbol: { speed: "km/h", degree: "C" },
 });
 
 /**
@@ -34,22 +34,22 @@ export function WeatherUnitsContextProvider({
    * Represents the current units for weather measurements.
    * @type {UNIT}
    */
-  const [units, setUnits] = useLocalStorage<UNIT>('UNIT', 'metric');
+  const [units, setUnits] = useLocalStorage<UNIT>("UNIT", "metric");
 
   /**
    * Toggles between metric and imperial units.
    * @returns {void}
    */
   const toggleUnits = () =>
-    setUnits((prevUnits) => (prevUnits === 'metric' ? 'imperial' : 'metric'));
+    setUnits((prevUnits) => (prevUnits === "metric" ? "imperial" : "metric"));
 
   /**
    * Represents the symbols for different weather measurements.
    * @type {SYMBOL}
    */
   const symbol: SYMBOL = {
-    speed: units === 'imperial' ? 'mph' : 'km/h',
-    degree: units === 'imperial' ? 'F' : 'C',
+    speed: units === "imperial" ? "mph" : "km/h",
+    degree: units === "imperial" ? "F" : "C",
   };
 
   return (

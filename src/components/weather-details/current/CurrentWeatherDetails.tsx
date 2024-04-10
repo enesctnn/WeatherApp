@@ -1,7 +1,7 @@
-import { useParams } from 'react-router-dom';
-import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
+import { useParams } from "react-router-dom";
+import { useCurrentWeatherData } from "../../../hooks/useCurrentWeatherData";
 
-import { Card } from '../../ui/card';
+import { Card } from "../../ui/card";
 
 import {
   CloudArrowDown,
@@ -10,91 +10,91 @@ import {
   Snowflake,
   Thermometer,
   Wind,
-} from '@phosphor-icons/react';
-import { useTranslation } from 'react-i18next';
-import { useWeatherUnitsContext } from '../../../hooks/context/useWeatherUnitsContext';
-import { WeatherDetailsArticle } from './WeatherDetailsArticle';
+} from "@phosphor-icons/react";
+import { useTranslation } from "react-i18next";
+import { useWeatherUnitsContext } from "../../../hooks/context/useWeatherUnitsContext";
+import { WeatherDetailsArticle } from "./WeatherDetailsArticle";
 
 export const CurrentWeatherDetails = () => {
   const { cityName } = useParams();
 
-  if (!cityName) throw new Error('URL missing params !');
+  if (!cityName) throw new Error("URL missing params !");
 
   const data = useCurrentWeatherData(cityName);
 
-  const { t } = useTranslation(undefined, { keyPrefix: 'weatherdetails' });
+  const { t } = useTranslation(undefined, { keyPrefix: "weatherdetails" });
 
   const {
     symbol: { degree, speed },
   } = useWeatherUnitsContext();
 
   return (
-    <Card className="divide-y divide-gray-600 !py-1 !px-4 weather-card">
+    <Card className="weather-card divide-y divide-gray-600 !px-4 !py-1">
       {data && (
         <>
           <WeatherDetailsArticle
-            header={t('sensation')}
+            header={t("sensation")}
             value={data.temp.sensation}
             symbol={<>&deg;{degree}</>}
             icon={Thermometer}
             useCounter
           />
           <WeatherDetailsArticle
-            header={t('poprain')}
+            header={t("poprain")}
             value={data.rainProbability}
             symbol="%"
             icon={CloudRain}
             useCounter
           />
           <WeatherDetailsArticle
-            header={t('wind')}
+            header={t("wind")}
             value={data.windSpeed}
-            symbol={' ' + speed}
+            symbol={" " + speed}
             icon={Wind}
             useCounter
           />
           <WeatherDetailsArticle
-            header={t('humidity')}
+            header={t("humidity")}
             value={data.humidity}
             symbol="%"
             icon={Drop}
             useCounter
           />
           <WeatherDetailsArticle
-            header={t('atmosphericpressure')}
+            header={t("atmosphericpressure")}
             value={data.atmosphericPressure}
             symbol=" hPa"
             icon={CloudArrowDown}
             useCounter
           />
-          {data.snowVolume?.['1h'] && (
+          {data.snowVolume?.["1h"] && (
             <WeatherDetailsArticle
-              header={t('snowvalue') + ' (1h)'}
-              value={data.snowVolume?.['1h']}
+              header={t("snowvalue") + " (1h)"}
+              value={data.snowVolume?.["1h"]}
               icon={Snowflake}
               symbol={<> mm&#xb3;</>}
             />
           )}
-          {data.snowVolume?.['3h'] && (
+          {data.snowVolume?.["3h"] && (
             <WeatherDetailsArticle
-              header={t('snowvalue') + ' (3h)'}
-              value={data.snowVolume?.['3h']}
+              header={t("snowvalue") + " (3h)"}
+              value={data.snowVolume?.["3h"]}
               icon={Snowflake}
               symbol={<> mm&#xb3;</>}
             />
           )}
-          {data.rainVolume?.['1h'] && (
+          {data.rainVolume?.["1h"] && (
             <WeatherDetailsArticle
-              header={t('rainvalue') + ' (1h)'}
-              value={data.rainVolume?.['1h']}
+              header={t("rainvalue") + " (1h)"}
+              value={data.rainVolume?.["1h"]}
               icon={CloudRain}
               symbol={<> mm&#xb3;</>}
             />
           )}
-          {data.rainVolume?.['3h'] && (
+          {data.rainVolume?.["3h"] && (
             <WeatherDetailsArticle
-              header={t('rainvalue') + ' (3h)'}
-              value={data.rainVolume?.['3h']}
+              header={t("rainvalue") + " (3h)"}
+              value={data.rainVolume?.["3h"]}
               icon={CloudRain}
               symbol={<> mm&#xb3;</>}
             />

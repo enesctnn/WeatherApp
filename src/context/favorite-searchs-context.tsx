@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { createContext, useEffect, useState } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 /**
  * Defines the structure of the context for managing favorite searches.
@@ -38,8 +38,8 @@ export function FavoriteSearchsContextProvider({
   children: React.ReactNode;
 }) {
   const [favorites, setFavorites] = useLocalStorage(
-    'favoriteSearches',
-    [] as string[]
+    "favoriteSearches",
+    [] as string[],
   );
 
   const [isExceededLimit, setIsExceededLimit] = useState<boolean>(false);
@@ -59,7 +59,7 @@ export function FavoriteSearchsContextProvider({
   function removeFavoriteSearch(searchTerm: string) {
     setFavorites((prevFavorites) => {
       const updatedFavorites = prevFavorites.filter(
-        (fav) => fav !== searchTerm
+        (fav) => fav !== searchTerm,
       );
       return updatedFavorites;
     });

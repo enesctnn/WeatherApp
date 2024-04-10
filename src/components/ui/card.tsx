@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { cn } from '../../lib/utils';
+import { motion } from "framer-motion";
+import { cn } from "../../lib/utils";
 
 type CardProps = {
   children: React.ReactNode;
@@ -11,10 +11,10 @@ export const Card = ({ children, className }: CardProps) => (
     initial={{ opacity: 0, y: -20 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -20 }}
-    transition={{ type: 'tween', ease: 'easeInOut' }}
+    transition={{ type: "tween", ease: "easeInOut" }}
     className={cn(
-      'rounded-xl shadow-md bg-gray-500 dark:bg-gray-800 flex flex-col p-3 mx-auto',
-      className
+      "mx-auto flex flex-col rounded-xl bg-gray-500 p-3 shadow-md dark:bg-gray-800",
+      className,
     )}
   >
     {children}

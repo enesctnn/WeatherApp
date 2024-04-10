@@ -1,7 +1,7 @@
-import axios from 'axios';
-import AutoPlaceCompleteAPI from '../auto-complete-response';
+import axios from "axios";
+import AutoPlaceCompleteAPI from "../auto-complete-response";
 
-const API_KEY = 'prj_test_pk_f258b3a0c6dc2c8f4eb39572bb6a156656235f7d';
+import { OPENWEATHER_API_KEY } from "./api-keys";
 
 /**
  * Fetches autocomplete places based on the provided search term using the Radar.io API.
@@ -9,20 +9,20 @@ const API_KEY = 'prj_test_pk_f258b3a0c6dc2c8f4eb39572bb6a156656235f7d';
  * @returns {Promise<AutoPlaceCompleteAPI.Response | undefined>} A promise that resolves to an object representing autocomplete response, or undefined .
  */
 export async function fetchAutoCompletePlaces(
-  searchTerm: string
+  searchTerm: string,
 ): Promise<AutoPlaceCompleteAPI.Response | undefined> {
   try {
     const res = await axios.get(
       `https://api.radar.io/v1/search/autocomplete?query=${searchTerm}&limit=5`,
       {
         headers: {
-          Accept: 'application/json',
-          Authorization: API_KEY,
+          Accept: "application/json",
+          Authorization: OPENWEATHER_API_KEY,
         },
-      }
+      },
     );
     return res.data;
   } catch {
-    console.log('Could not fetch auto complete places');
+    console.log("Could not fetch auto complete places");
   }
 }

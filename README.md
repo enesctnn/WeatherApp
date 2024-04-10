@@ -38,6 +38,10 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 
 - Toggle Units: Users can choose between imperial or metric units.
 
+- Light-Dark Theme: Enjoy a personalized experience with the option to switch between light and dark themes for better readability and comfort.
+
+- Place Autocompletion: Integrated with the Radar.io API to provide place autocompletion, making it easier for users to input locations.
+
 ---
 
 ### Supported Languages:
@@ -82,8 +86,6 @@ To build the project for production:
 npm run build
 ```
 
----
-
 ## Dependencies
 
 - **[@phosphor-icons/react](https://www.npmjs.com/package/@phosphor-icons/react)** [![npm](https://img.shields.io/npm/v/@phosphor-icons/react)](https://www.npmjs.com/package/@phosphor-icons/react)
@@ -91,18 +93,18 @@ npm run build
 - **[axios](https://www.npmjs.com/package/axios)** [![npm](https://img.shields.io/npm/v/axios)](https://www.npmjs.com/package/axios)
 - **[clsx](https://www.npmjs.com/package/clsx)** [![npm](https://img.shields.io/npm/v/clsx)](https://www.npmjs.com/package/clsx)
 - **[framer-motion](https://www.npmjs.com/package/framer-motion)** [![npm](https://img.shields.io/npm/v/framer-motion)](https://www.npmjs.com/package/framer-motion)
-- **[localforage](https://www.npmjs.com/package/localforage)** [![npm](https://img.shields.io/npm/v/localforage)](https://www.npmjs.com/package/localforage)
-- **[react](https://www.npmjs.com/package/react)** [![npm](https://img.shields.io/npm/v/react)](https://www.npmjs.com/package/react)
-- **[react-dom](https://www.npmjs.com/package/react-dom)** [![npm](https://img.shields.io/npm/v/react-dom)](https://www.npmjs.com/package/react-dom)
-- **[react-router-dom](https://www.npmjs.com/package/react-router-dom)** [![npm](https://img.shields.io/npm/v/react-router-dom)](https://www.npmjs.com/package/react-router-dom)
-- **[tailwind-merge](https://www.npmjs.com/package/tailwind-merge)** [![npm](https://img.shields.io/npm/v/tailwind-merge)](https://www.npmjs.com/package/tailwind-merge)
-- **[recharts](https://www.npmjs.com/package/recharts)** [![npm](https://img.shields.io/npm/v/recharts)](https://www.npmjs.com/package/recharts)
-- **[react-icons](https://www.npmjs.com/package/react-icons)** [![npm](https://img.shields.io/npm/v/react-icons)](https://www.npmjs.com/package/react-icons)
 - **[i18next](https://www.npmjs.com/package/i18next)** [![npm](https://img.shields.io/npm/v/i18next)](https://www.npmjs.com/package/i18next)
 - **[i18next-browser-languagedetector](https://www.npmjs.com/package/i18next-browser-languagedetector)** [![npm](https://img.shields.io/npm/v/i18next-browser-languagedetector)](https://www.npmjs.com/package/i18next-browser-languagedetector)
 - **[i18next-http-backend](https://www.npmjs.com/package/i18next-http-backend)** [![npm](https://img.shields.io/npm/v/i18next-http-backend)](https://www.npmjs.com/package/i18next-http-backend)
+- **[localforage](https://www.npmjs.com/package/localforage)** [![npm](https://img.shields.io/npm/v/localforage)](https://www.npmjs.com/package/localforage)
+- **[react](https://www.npmjs.com/package/react)** [![npm](https://img.shields.io/npm/v/react)](https://www.npmjs.com/package/react)
 - **[react-country-flag](https://www.npmjs.com/package/react-country-flag)** [![npm](https://img.shields.io/npm/v/react-country-flag)](https://www.npmjs.com/package/react-country-flag)
+- **[react-dom](https://www.npmjs.com/package/react-dom)** [![npm](https://img.shields.io/npm/v/react-dom)](https://www.npmjs.com/package/react-dom)
 - **[react-i18next](https://www.npmjs.com/package/react-i18next)** [![npm](https://img.shields.io/npm/v/react-i18next)](https://www.npmjs.com/package/react-i18next)
+- **[react-icons](https://www.npmjs.com/package/react-icons)** [![npm](https://img.shields.io/npm/v/react-icons)](https://www.npmjs.com/package/react-icons)
+- **[react-router-dom](https://www.npmjs.com/package/react-router-dom)** [![npm](https://img.shields.io/npm/v/react-router-dom)](https://www.npmjs.com/package/react-router-dom)
+- **[recharts](https://www.npmjs.com/package/recharts)** [![npm](https://img.shields.io/npm/v/recharts)](https://www.npmjs.com/package/recharts)
+- **[tailwind-merge](https://www.npmjs.com/package/tailwind-merge)** [![npm](https://img.shields.io/npm/v/tailwind-merge)](https://www.npmjs.com/package/tailwind-merge)
 
 ## Dev Dependencies
 
@@ -116,6 +118,8 @@ npm run build
 - **[eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)** [![npm](https://img.shields.io/npm/v/eslint-plugin-react-hooks)](https://www.npmjs.com/package/eslint-plugin-react-hooks)
 - **[eslint-plugin-react-refresh](https://www.npmjs.com/package/eslint-plugin-react-refresh)** [![npm](https://img.shields.io/npm/v/eslint-plugin-react-refresh)](https://www.npmjs.com/package/eslint-plugin-react-refresh)
 - **[postcss](https://www.npmjs.com/package/postcss)** [![npm](https://img.shields.io/npm/v/postcss)](https://www.npmjs.com/package/postcss)
+- **[prettier](https://www.npmjs.com/package/prettier)** [![npm](https://img.shields.io/npm/v/prettier)](https://www.npmjs.com/package/prettier)
+- **[prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss)** [![npm](https://img.shields.io/npm/v/prettier-plugin-tailwindcss)](https://www.npmjs.com/package/prettier-plugin-tailwindcss)
 - **[tailwindcss](https://www.npmjs.com/package/tailwindcss)** [![npm](https://img.shields.io/npm/v/tailwindcss)](https://www.npmjs.com/package/tailwindcss)
 - **[typescript](https://www.npmjs.com/package/typescript)** [![npm](https://img.shields.io/npm/v/typescript)](https://www.npmjs.com/package/typescript)
 - **[vite](https://www.npmjs.com/package/vite)** [![npm](https://img.shields.io/npm/v/vite)](https://www.npmjs.com/package/vite)
@@ -136,22 +140,30 @@ This project is deployed and hosted on Vercel. You can access the live version b
 
 Dear User,
 
-Thank you for choosing Typeweather for your weather application needs. We've noticed that your API key for OpenWeather is approaching its expiration date. To ensure uninterrupted service, please follow the steps below to update your API key:
+Thank you for choosing Typeweather for your weather application needs. We've noticed that your API keys for OpenWeather and Radar are approaching their expiration dates. To ensure uninterrupted service, please follow the steps below to update your API keys:
 
-1. **Obtaining Your API Key**:
+1. **Obtaining Your OpenWeather API Key**:
 
    - Go to the OpenWeather website at [OpenWeather Website](https://openweathermap.org).
    - Log in to your account or sign up if you haven't already.
    - Once logged in, navigate to the API keys section.
    - Generate a new API key if you don't have one already.
 
-2. **Updating Your API Key in Typeweather**:
+2. **Obtaining Your Radar API Key**:
 
-   - Go to root/src/util/http.ts Locate the field where the API key is entered.
-   - Replace the existing API key with the new one you obtained from OpenWeather.
+   - Go to the Radar website at [Radar Website](https://www.radar.io).
+   - Log in to your account or sign up if you haven't already.
+   - Once logged in, navigate to the API keys section.
+   - Generate a new API key if you don't have one already.
 
-3. **Verification**:
-   - After updating the API key, verify that the weather data is being fetched correctly in your app.
+3. **Updating Your API Keys in Typeweather**:
+
+   - Go to `root/src/util/api-keys.ts`.
+   - Locate the fields where the OpenWeather and Radar API keys are entered.
+   - Replace the existing API keys with the new ones you obtained from OpenWeather and Radar.
+
+4. **Verification**:
+   - After updating the API keys, verify that the weather and radar data are being fetched correctly in your app.
    - Test various locations and weather conditions to ensure the integration is functioning as expected.
 
 If you encounter any issues or need further assistance, feel free to reach out to our support team at suppteam.typeweather@gmail.com.

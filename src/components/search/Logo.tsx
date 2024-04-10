@@ -1,7 +1,7 @@
-import logo from '/logo.png';
+import logo from "/logo.png";
 
 export const Logo = () => (
-  <header className="mt-12 h-8 sm:h-14 md:h-20 flex justify-center transition-[height]">
+  <header className="mt-12 flex h-8 justify-center transition-[height] sm:h-14 md:h-20">
     <img
       src={logo}
       alt="iWeather logo"

@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { FavoriteSearchsContext } from '../../context/favorite-searchs-context';
+import { useContext } from "react";
+import { FavoriteSearchsContext } from "../../context/favorite-searchs-context";
 
 /**
  * A hook for consuming the FavoriteSearchsContext.
@@ -10,7 +10,7 @@ export function useFavoriteSearchsContext() {
   const context = useContext(FavoriteSearchsContext);
   if (!context) {
     throw new Error(
-      'useFavoriteSearchsContext must be wrapped with FavoriteSearchsContextProvider'
+      "useFavoriteSearchsContext must be wrapped with FavoriteSearchsContextProvider",
     );
   }
   return context;

@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { fetchForecastByCityName } from '../util/http';
+import { useQuery } from "@tanstack/react-query";
+import { fetchForecastByCityName } from "../util/http";
 
 /**
  * Custom React hook for fetching and processing the current rain probability for a given city.
@@ -8,7 +8,7 @@ import { fetchForecastByCityName } from '../util/http';
  */
 export function useCurrentWeatherPop(cityName: string) {
   const { data } = useQuery({
-    queryKey: [cityName, 'pop'],
+    queryKey: [cityName, "pop"],
     queryFn: ({ signal }) => fetchForecastByCityName(cityName, signal),
     // 3 minutes auto refresh time
     staleTime: 1000 * 60 * 3,

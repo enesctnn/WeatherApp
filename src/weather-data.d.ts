@@ -1,4 +1,4 @@
-import type { icons } from './lib/images';
+import type { icons } from "./lib/images";
 
 export declare namespace WeatherData {
   interface Coord {
@@ -31,13 +31,13 @@ export declare namespace WeatherData {
   }
 
   interface Rain {
-    '1h'?: number;
-    '3h'?: number;
+    "1h"?: number;
+    "3h"?: number;
   }
 
   interface Snow {
-    '1h'?: number;
-    '3h'?: number;
+    "1h"?: number;
+    "3h"?: number;
   }
 
   interface Clouds {

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const listAnimationVariants = {
   initial: { y: 100, opacity: 0 },
@@ -25,15 +25,15 @@ export const ForecastArticle = ({
     initial="initial"
     whileInView="animate"
     viewport={{ once: true }}
-    transition={{ type: 'spring', mass: 3, stiffness: 400 }}
+    transition={{ type: "spring", mass: 3, stiffness: 400 }}
     custom={index}
-    className="flex-1 flex flex-col w-max items-center justify-center"
+    className="flex w-max flex-1 flex-col items-center justify-center"
   >
     <h3 className="text-heading-xs text-gray-200">{dayString}</h3>
-    <img className="w-[56px] h-[56px]" src={icon.src} alt={icon.alt} />
+    <img className="h-[56px] w-[56px]" src={icon.src} alt={icon.alt} />
     <div className="space-y-2 text-center">
-      <h4 className="text-gray-100 text-heading-xs">{temp.max}&deg;</h4>
-      <h4 className="text-gray-400 text-heading-xs">{temp.min}&deg;</h4>
+      <h4 className="text-heading-xs text-gray-100">{temp.max}&deg;</h4>
+      <h4 className="text-heading-xs text-gray-400">{temp.min}&deg;</h4>
     </div>
   </motion.li>
 );

@@ -1,18 +1,18 @@
-import { useParams } from 'react-router-dom';
-import { useForecastData } from '../../../hooks/useForecastData';
+import { useParams } from "react-router-dom";
+import { useForecastData } from "../../../hooks/useForecastData";
 
-import { Card } from '../../ui/card';
+import { Card } from "../../ui/card";
 
-import { ForecastArticle } from './ForecastArticle';
+import { ForecastArticle } from "./ForecastArticle";
 
 export const ForecastWeather = () => {
   const { cityName } = useParams();
-  if (!cityName) throw new Error('Missing URL parameter');
+  if (!cityName) throw new Error("Missing URL parameter");
   const forecastData = useForecastData(cityName);
   return (
-    <Card className="!p-3 weather-card !flex !flex-row min-h-44">
+    <Card className="weather-card !flex min-h-44 !flex-row !p-3">
       {forecastData && (
-        <ul className="flex justify-between w-full md:divide-x divide-gray-600 overflow-hidden">
+        <ul className="flex w-full justify-between divide-gray-600 overflow-hidden md:divide-x">
           {Object.keys(forecastData).map((key, index) => {
             const data = forecastData[key];
             return (

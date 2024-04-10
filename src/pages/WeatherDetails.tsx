@@ -1,24 +1,24 @@
-import { CurrentWeather } from '../components/weather-details/current/CurrentWeather';
-import { CurrentWeatherDetails } from '../components/weather-details/current/CurrentWeatherDetails';
-import { ForecastWeather } from '../components/weather-details/forecast/ForecastWeather';
+import { CurrentWeather } from "../components/weather-details/current/CurrentWeather";
+import { CurrentWeatherDetails } from "../components/weather-details/current/CurrentWeatherDetails";
+import { ForecastWeather } from "../components/weather-details/forecast/ForecastWeather";
 
 import {
   json,
   LoaderFunctionArgs,
   ParamParseKey,
   Params,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import { ToggleUnitsButton } from '../components/units/ToggleUnitsButton';
-import { WeeklyChart } from '../components/weather-details/forecast/charts/WeeklyChart';
-import { HomeButton } from '../components/weather-details/HomeButton';
-import { WeatherUnitsContextProvider } from '../context/units-context';
-import Routes from '../routes/index';
-import { fetchCurrentWeatherByCityName, queryClient } from '../util/http';
+import { ToggleUnitsButton } from "../components/units/ToggleUnitsButton";
+import { WeeklyChart } from "../components/weather-details/forecast/charts/WeeklyChart";
+import { HomeButton } from "../components/weather-details/HomeButton";
+import { WeatherUnitsContextProvider } from "../context/units-context";
+import Routes from "../routes/index";
+import { fetchCurrentWeatherByCityName, queryClient } from "../util/http";
 
 const WeatherDetailsPage = () => (
   <WeatherUnitsContextProvider>
-    <div className="space-y-3 my-12 relative">
+    <div className="relative my-12 space-y-3">
       <ToggleUnitsButton />
       <HomeButton />
       <CurrentWeather />
@@ -37,9 +37,9 @@ interface WeatherDetailsLoaderArgs extends LoaderFunctionArgs {
 // eslint-disable-next-line react-refresh/only-export-components
 export function loader({ params }: WeatherDetailsLoaderArgs) {
   if (params.cityName && params.cityName.trim().length > 0) {
-    const cityName = params.cityName.replace('%20', '');
-    const lang = JSON.parse(JSON.stringify(localStorage.getItem('i18nextLng')));
-    const units = JSON.parse(JSON.stringify(localStorage.getItem('UNIT')));
+    const cityName = params.cityName.replace("%20", "");
+    const lang = JSON.parse(JSON.stringify(localStorage.getItem("i18nextLng")));
+    const units = JSON.parse(JSON.stringify(localStorage.getItem("UNIT")));
     return queryClient.fetchQuery({
       queryKey: [cityName, lang, units],
       queryFn: ({ signal }) =>
@@ -50,5 +50,5 @@ export function loader({ params }: WeatherDetailsLoaderArgs) {
       gcTime: 1000 * 60 * 2,
     });
   }
-  throw json({ message: 'URL Missing Params.' }, { status: 422 });
+  throw json({ message: "URL Missing Params." }, { status: 422 });
 }

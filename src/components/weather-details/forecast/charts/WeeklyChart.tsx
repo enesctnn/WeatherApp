@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import {
   Legend,
@@ -9,26 +9,26 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from 'recharts';
+} from "recharts";
 
-import { Card } from '../../../ui/card';
+import { Card } from "../../../ui/card";
 
-import { useTranslation } from 'react-i18next';
-import { useForecastTemperature } from '../../../../hooks/useForecastTemperature';
-import { useWeatherUnitsContext } from '../../../../hooks/context/useWeatherUnitsContext';
+import { useTranslation } from "react-i18next";
+import { useForecastTemperature } from "../../../../hooks/useForecastTemperature";
+import { useWeatherUnitsContext } from "../../../../hooks/context/useWeatherUnitsContext";
 
-import { AvailableDayList } from './AvailableDayList';
+import { AvailableDayList } from "./AvailableDayList";
 
 export function WeeklyChart() {
   const [activeDay, setActiveDay] = useState<string | null>(null);
   const { cityName } = useParams();
-  if (!cityName) throw new Error('URL missing params');
+  if (!cityName) throw new Error("URL missing params");
 
   const data = useForecastTemperature(cityName);
 
   const handleSetActiveDay = (day: string) => setActiveDay(day);
 
-  const { t } = useTranslation(undefined, { keyPrefix: 'chart' });
+  const { t } = useTranslation(undefined, { keyPrefix: "chart" });
 
   useEffect(() => {
     if (data) {
@@ -41,7 +41,7 @@ export function WeeklyChart() {
     symbol: { degree },
   } = useWeatherUnitsContext();
   return (
-    <Card className="weather-card space-y-4 h-96 overflow-hidden !pl-0 pr-10">
+    <Card className="weather-card h-96 space-y-4 overflow-hidden !pl-0 pr-10">
       {data && (
         <AvailableDayList
           days={data.map((list) => list.day)}
@@ -64,14 +64,14 @@ export function WeeklyChart() {
                   dataKey="temperature"
                   stroke="#c70039"
                   strokeWidth={3}
-                  name={degree + '°'}
+                  name={degree + "°"}
                 />
                 <Line
                   type="monotone"
                   dataKey="pop"
                   stroke="#8FB2F5"
                   strokeWidth={3}
-                  name={t('legend.precipitation')}
+                  name={t("legend.precipitation")}
                 />
               </LineChart>
             </ResponsiveContainer>

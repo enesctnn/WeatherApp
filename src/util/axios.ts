@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 /**
  * Axios instance configured to make requests to the OpenWeatherMap API.
@@ -17,8 +17,8 @@ import axios from 'axios';
  *   });
  */
 export default axios.create({
-  baseURL: 'https://api.openweathermap.org/',
+  baseURL: "https://api.openweathermap.org/",
   headers: {
-    Accept: 'application/json',
+    Accept: "application/json",
   },
 });

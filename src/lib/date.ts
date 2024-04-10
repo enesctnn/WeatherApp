@@ -5,31 +5,31 @@
  */
 export function getDayString(
   date: string | number | Date,
-  lng: string
+  lng: string,
 ): string {
   const weekdays = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
   ];
   const trweekdays = [
-    'Pazar',
-    'Pazartesi',
-    'Salı',
-    'Çarşamba',
-    'Perşembe',
-    'Cuma',
-    'Cumartesi',
+    "Pazar",
+    "Pazartesi",
+    "Salı",
+    "Çarşamba",
+    "Perşembe",
+    "Cuma",
+    "Cumartesi",
   ];
   const d = new Date(date);
-  if (lng === 'tr') {
+  if (lng === "tr") {
     const day = trweekdays[d.getDay()];
     return day;
-  } else if (lng === 'en') {
+  } else if (lng === "en") {
     const day = weekdays[d.getDay()];
     return day;
   } else {
@@ -44,15 +44,15 @@ export function getDayString(
  */
 export function getShortDayString(
   date: string | number | Date,
-  lng: string
+  lng: string,
 ): string {
-  const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const trweekdays = ['Paz', 'Pts', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const trweekdays = ["Paz", "Pts", "Sal", "Çar", "Per", "Cum", "Cmt"];
   const d = new Date(date);
-  if (lng === 'tr') {
+  if (lng === "tr") {
     const day = trweekdays[d.getDay()];
     return day;
-  } else if (lng === 'en') {
+  } else if (lng === "en") {
     const day = weekdays[d.getDay()];
     return day;
   } else {
@@ -68,10 +68,10 @@ export function getShortDayString(
  */
 export function getMonthString(
   date: string | number | Date,
-  lng: string
+  lng: string,
 ): string {
   const d = new Date(date); // yyyy-mm-dd
-  const month = d.toLocaleString(lng, { month: 'long' }); //set first parameter to default for language detection
+  const month = d.toLocaleString(lng, { month: "long" }); //set first parameter to default for language detection
   return month;
 }
 
@@ -82,6 +82,6 @@ export function getMonthString(
  */
 export function getTimeFromDate(date: string | number | Date) {
   const d = new Date(date);
-  const time = d.toLocaleTimeString('en-GB').slice(0, 5);
+  const time = d.toLocaleTimeString("en-GB").slice(0, 5);
   return time;
 }

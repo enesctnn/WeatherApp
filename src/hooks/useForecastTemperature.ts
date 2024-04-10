@@ -1,11 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
-import { getDayString, getTimeFromDate } from '../lib/date';
+import { getDayString, getTimeFromDate } from "../lib/date";
 
-import { fetchForecastByCityName } from '../util/http';
-import { ForecastDataFormat } from './useForecastData';
-import { useWeatherUnitsContext } from './context/useWeatherUnitsContext';
+import { fetchForecastByCityName } from "../util/http";
+import { ForecastDataFormat } from "./useForecastData";
+import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
 
 /**
  * Custom React hook to fetch and manage forecast temperature data for a given city.
@@ -20,14 +20,14 @@ export function useForecastTemperature(cityName: string) {
   const { units } = useWeatherUnitsContext();
 
   const { data, isError } = useQuery({
-    queryKey: ['forecast', cityName, units],
+    queryKey: ["forecast", cityName, units],
     queryFn: ({ signal }) =>
       fetchForecastByCityName(cityName, signal, { units }),
     // 3 minutes auto data refresh
     staleTime: 1000 * 60 * 3,
   });
 
-  if (isError) throw new Error('Could not fetch current weather');
+  if (isError) throw new Error("Could not fetch current weather");
 
   if (data) {
     const forecastTempData: {

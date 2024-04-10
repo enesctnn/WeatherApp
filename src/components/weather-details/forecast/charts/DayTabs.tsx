@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { cn } from '../../../../lib/utils';
+import { motion } from "framer-motion";
+import { cn } from "../../../../lib/utils";
 
 export function DayTabs({
   day,
@@ -15,8 +15,8 @@ export function DayTabs({
       <button
         type="button"
         className={cn(
-          isActive && '!text-white',
-          'text-gray-200 p-2 select-none relative hover:opacity-90 active:opacity-100 transition-opacity'
+          isActive && "!text-white",
+          "relative select-none p-2 text-gray-200 transition-opacity hover:opacity-90 active:opacity-100",
         )}
         onClick={onClick}
       >
@@ -24,7 +24,7 @@ export function DayTabs({
         {isActive && (
           <motion.div
             layoutId="tab"
-            className="absolute inset-0 bg-blue-light rounded-full"
+            className="absolute inset-0 rounded-full bg-blue-light"
           />
         )}
       </button>

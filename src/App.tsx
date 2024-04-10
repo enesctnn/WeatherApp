@@ -1,21 +1,21 @@
-import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from './util/http';
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./util/http";
 
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import ErrorPage from './pages/Error';
-import MainRoot from './pages/MainRoot';
+import ErrorPage from "./pages/Error";
+import MainRoot from "./pages/MainRoot";
 import SearchLocationPage, {
   action as searchLocationAction,
-} from './pages/SearchLocation';
+} from "./pages/SearchLocation";
 import WeatherDetailsPage, {
   loader as weatherDetailsLoader,
-} from './pages/WeatherDetails';
+} from "./pages/WeatherDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,8 +30,8 @@ const router = createBrowserRouter(
         loader={weatherDetailsLoader}
         element={<WeatherDetailsPage />}
       />
-    </Route>
-  )
+    </Route>,
+  ),
 );
 
 const App = () => (

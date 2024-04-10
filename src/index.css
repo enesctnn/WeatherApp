@@ -26,20 +26,20 @@ input:-webkit-autofill:active {
     @apply relative h-full font-nunito antialiased;
   }
   main#root {
-    @apply relative flex flex-col min-h-screen;
+    @apply relative flex min-h-screen flex-col;
   }
 }
 @layer components {
   .location-heading {
-    @apply text-heading-xs sm:text-heading-sm md:text-heading-md select-none w-max mx-auto transition-[font-size];
+    @apply mx-auto w-max select-none text-heading-xs transition-[font-size] sm:text-heading-sm md:text-heading-md;
   }
   .weather-heading {
-    @apply text-heading-xs sm:text-heading-sm md:text-heading-md select-none transition-[font-size];
+    @apply select-none text-heading-xs transition-[font-size] sm:text-heading-sm md:text-heading-md;
   }
   .weather-article-heading {
-    @apply text-heading-xl sm:text-6xl md:text-7xl transition-[font-size];
+    @apply text-heading-xl transition-[font-size] sm:text-6xl md:text-7xl;
   }
   .weather-card {
-    @apply w-[359px] max-w-full sm:w-2/3 transition-[width];
+    @apply w-[359px] max-w-full transition-[width] sm:w-2/3;
   }
 }

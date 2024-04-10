@@ -1,19 +1,19 @@
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from "react-i18next";
 
 export const SearchHeader = () => {
-  const { t } = useTranslation(undefined, { keyPrefix: 'home' });
+  const { t } = useTranslation(undefined, { keyPrefix: "home" });
   return (
     <header className="flex flex-col gap-y-1">
       <Trans i18nKey="home.header">
-        <h2 className="text-gray-600 dark:text-gray-50 text-heading-md sm:text-heading-lg md:text-heading-xl transition-[font-size]">
+        <h2 className="text-heading-md text-gray-600 transition-[font-size] dark:text-gray-50 sm:text-heading-lg md:text-heading-xl">
           Welcome to
           <span className="!text-blue-light drop-shadow-border dark:drop-shadow-none">
             TypeWeather
           </span>
         </h2>
       </Trans>
-      <p className="text-gray-500 dark:text-gray-200 text-sm sm:text-md md:text-lg transition-[font-size]">
-        {t('description')}
+      <p className="text-sm text-gray-500 transition-[font-size] dark:text-gray-200 sm:text-md md:text-lg">
+        {t("description")}
       </p>
     </header>
   );

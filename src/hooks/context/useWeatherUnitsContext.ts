@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { WeatherUnitsContext } from '../../context/units-context';
+import { useContext } from "react";
+import { WeatherUnitsContext } from "../../context/units-context";
 
 /**
  * A hook for consuming the WeatherUnitsContext.
@@ -10,7 +10,7 @@ export function useWeatherUnitsContext() {
   const context = useContext(WeatherUnitsContext);
   if (!context) {
     throw new Error(
-      'useWeatherUnitsContext must be wrapped with WeatherUnitsContextProvider'
+      "useWeatherUnitsContext must be wrapped with WeatherUnitsContextProvider",
     );
   }
   return context;

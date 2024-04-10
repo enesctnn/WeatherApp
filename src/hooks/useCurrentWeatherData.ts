@@ -1,10 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
-import { getDayString, getMonthString } from '../lib/date';
-import { bgs, icons } from '../lib/images';
-import { fetchCurrentWeatherByCityName } from '../util/http';
-import { useCurrentWeatherPop } from './useCurrentWeatherPop';
-import { useWeatherUnitsContext } from './context/useWeatherUnitsContext';
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import { getDayString, getMonthString } from "../lib/date";
+import { bgs, icons } from "../lib/images";
+import { fetchCurrentWeatherByCityName } from "../util/http";
+import { useCurrentWeatherPop } from "./useCurrentWeatherPop";
+import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
 
 type FormattedWeatherData = {
   city: { name: string; country: string };
@@ -17,8 +17,8 @@ type FormattedWeatherData = {
   humidity: number;
   rainProbability: number;
   atmosphericPressure: number;
-  rainVolume?: { '1h'?: number; '3h'?: number };
-  snowVolume?: { '1h'?: number; '3h'?: number };
+  rainVolume?: { "1h"?: number; "3h"?: number };
+  snowVolume?: { "1h"?: number; "3h"?: number };
 };
 
 /**
@@ -27,7 +27,7 @@ type FormattedWeatherData = {
  * @returns {FormattedWeatherData | null} The processed current weather data.
  */
 export function useCurrentWeatherData(
-  cityName: string
+  cityName: string,
 ): FormattedWeatherData | null {
   const rainProbability = useCurrentWeatherPop(cityName);
   const {
@@ -45,7 +45,7 @@ export function useCurrentWeatherData(
     gcTime: 1000 * 60 * 2,
   });
 
-  if (isError) throw new Error('Could not fetch current weather');
+  if (isError) throw new Error("Could not fetch current weather");
 
   if (data) {
     const dataWeather = data.weather[0];
@@ -77,11 +77,11 @@ export function useCurrentWeatherData(
     const windSpeed = +((data.wind.speed / 1000) * (60 * 60)).toFixed();
     const humidity = +data.main.humidity.toFixed();
     const rainVolume: { [key: string]: number } = {};
-    if (data.rain && data.rain['1h']) rainVolume['1h'] = data.rain['1h'];
-    if (data.rain && data.rain['3h']) rainVolume['3h'] = data.rain['3h'];
+    if (data.rain && data.rain["1h"]) rainVolume["1h"] = data.rain["1h"];
+    if (data.rain && data.rain["3h"]) rainVolume["3h"] = data.rain["3h"];
     const snowVolume: { [key: string]: number } = {};
-    if (data.snow && data.snow['1h']) snowVolume['1h'] = data.snow['1h'];
-    if (data.snow && data.snow['3h']) snowVolume['3h'] = data.snow['3h'];
+    if (data.snow && data.snow["1h"]) snowVolume["1h"] = data.snow["1h"];
+    if (data.snow && data.snow["3h"]) snowVolume["3h"] = data.snow["3h"];
 
     const formattedWeatherData: FormattedWeatherData = {
       city: { name: data.name, country: data.sys.country },

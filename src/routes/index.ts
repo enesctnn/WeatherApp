@@ -17,6 +17,6 @@
  * console.log(routes.weatherDetails.replace(':cityName', 'London')); // Output: '/weather/London'
  */
 export default {
-  searchLocation: '/',
-  weatherDetails: '/weather/:cityName',
+  searchLocation: "/",
+  weatherDetails: "/weather/:cityName",
 } as const;

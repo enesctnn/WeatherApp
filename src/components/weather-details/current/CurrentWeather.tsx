@@ -1,13 +1,13 @@
-import { useParams } from 'react-router-dom';
-import { useCurrentWeatherData } from '../../../hooks/useCurrentWeatherData';
-import { useWeatherUnitsContext } from '../../../hooks/context/useWeatherUnitsContext';
+import { useParams } from "react-router-dom";
+import { useCurrentWeatherData } from "../../../hooks/useCurrentWeatherData";
+import { useWeatherUnitsContext } from "../../../hooks/context/useWeatherUnitsContext";
 
-import { ToggleFavoriteButton } from '../../favorites/ToggleFavoriteButton';
-import { Card } from '../../ui/card';
+import { ToggleFavoriteButton } from "../../favorites/ToggleFavoriteButton";
+import { Card } from "../../ui/card";
 
 export const CurrentWeather = () => {
   const { cityName } = useParams();
-  if (!cityName) throw new Error('URL missing params !');
+  if (!cityName) throw new Error("URL missing params !");
 
   const data = useCurrentWeatherData(cityName);
   const {
@@ -15,7 +15,7 @@ export const CurrentWeather = () => {
   } = useWeatherUnitsContext();
 
   return (
-    <Card className="overflow-hidden text-gray-50 h-[328px] flex flex-col relative !p-7 justify-between weather-card">
+    <Card className="weather-card relative flex h-[328px] flex-col justify-between overflow-hidden !p-7 text-gray-50">
       {data && (
         <>
           <header className="z-50 flex justify-between">
@@ -23,30 +23,30 @@ export const CurrentWeather = () => {
               <h1 className="weather-heading">
                 {data.city.name}, {data.city.country}
               </h1>
-              <p className="text-xs sm:text-sm md:text-md transition-[font-size]">
-                {data.date.dayString}, {data.date.month} {data.date.day},{' '}
+              <p className="text-xs transition-[font-size] sm:text-sm md:text-md">
+                {data.date.dayString}, {data.date.month} {data.date.day},{" "}
                 {data.date.year}
               </p>
             </div>
             <ToggleFavoriteButton cityName={data.city.name} />
           </header>
-          <article className="z-50 flex items-end place-content-between">
+          <article className="z-50 flex place-content-between items-end">
             <section className="flex-1 space-y-2">
               <h2 className="weather-article-heading">
                 {data.temp.index}&deg;{degree}
               </h2>
               <div>
-                <h3 className="text-heading-sm md:text-heading-md transition-[font-size]">
+                <h3 className="text-heading-sm transition-[font-size] md:text-heading-md">
                   {data.temp.min}&deg;{degree} / {data.temp.max}&deg;{degree}
                 </h3>
-                <p className="capitalize text-sm sm:text-md md:text-lg transition-[font-size]">
+                <p className="text-sm capitalize transition-[font-size] sm:text-md md:text-lg">
                   {data.weather}
                 </p>
               </div>
             </section>
-            <div className="flex-[1.2] -mb-5 -mr-5 overflow-hidden">
+            <div className="-mb-5 -mr-5 flex-[1.2] overflow-hidden">
               <img
-                className="max-w-40 max-h-44 ml-auto"
+                className="ml-auto max-h-44 max-w-40"
                 src={data.icon.src}
                 alt={data.icon.alt}
               />
@@ -54,7 +54,7 @@ export const CurrentWeather = () => {
           </article>
           <div
             style={{ backgroundImage: `url(${data.bg.src})` }}
-            className="absolute inset-3 rounded-xl overflow-hidden bg-cover bg-center bg-no-repeat"
+            className="absolute inset-3 overflow-hidden rounded-xl bg-cover bg-center bg-no-repeat"
           />
         </>
       )}

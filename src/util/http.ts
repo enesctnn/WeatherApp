@@ -1,11 +1,11 @@
-import { AxiosError } from 'axios';
-import axios from './axios';
+import { AxiosError } from "axios";
+import axios from "./axios";
 
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient } from "@tanstack/react-query";
 
-import { WeatherData } from '../weather-data';
+import { WeatherData } from "../weather-data";
 
-const API_KEY = '175cc3fc29872d7cb42afe08ab37cc80';
+import { RADAR_API_KEY } from "./api-keys";
 
 type ParamsT = {
   [key: string]: string;
@@ -28,11 +28,11 @@ export async function fetchCityNameByCoords(
   lat: number | undefined,
   lon: number | undefined,
   signal: AbortSignal,
-  params?: ParamsT
+  params?: ParamsT,
 ) {
   const res = await axios.get(
-    `geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
-    { signal, params }
+    `geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${RADAR_API_KEY}`,
+    { signal, params },
   );
   return res.data[0];
 }
@@ -48,19 +48,19 @@ export async function fetchForecastByCoords(
   lat: number | undefined,
   lon: number | undefined,
   signal: AbortSignal,
-  params?: ParamsT
+  params?: ParamsT,
 ): Promise<WeatherData.FiveDaysForecast> {
   try {
     const res = await axios.get(
-      `data/2.5/forecast/?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
-      { signal, params: { ...params } }
+      `data/2.5/forecast/?lat=${lat}&lon=${lon}&appid=${RADAR_API_KEY}`,
+      { signal, params: { ...params } },
     );
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {
       throw new Error(error.message);
     }
-    throw new Error('Something went wrong while fetching weather by coords !');
+    throw new Error("Something went wrong while fetching weather by coords !");
   }
 }
 
@@ -73,12 +73,12 @@ export async function fetchForecastByCoords(
 export async function fetchForecastByCityName(
   cityName: string,
   signal: AbortSignal,
-  params?: ParamsT
+  params?: ParamsT,
 ): Promise<WeatherData.FiveDaysForecast> {
   try {
     const res = await axios.get(
-      `data/2.5/forecast/?q=${cityName}&appid=${API_KEY}`,
-      { signal, params: { ...params } }
+      `data/2.5/forecast/?q=${cityName}&appid=${RADAR_API_KEY}`,
+      { signal, params: { ...params } },
     );
     return res.data;
   } catch (error) {
@@ -86,7 +86,7 @@ export async function fetchForecastByCityName(
       throw new Error(error.message);
     }
     throw new Error(
-      'Something went wrong while fetching weather by city name !'
+      "Something went wrong while fetching weather by city name !",
     );
   }
 }
@@ -101,12 +101,12 @@ export async function fetchForecastByCityName(
 export async function fetchCurrentWeatherByCityName(
   cityName: string,
   signal: AbortSignal,
-  params?: ParamsT
+  params?: ParamsT,
 ): Promise<WeatherData.CurrentWeather> {
   try {
     const res = await axios.get(
-      `data/2.5/weather/?q=${cityName}&appid=${API_KEY}`,
-      { signal, params: { ...params } }
+      `data/2.5/weather/?q=${cityName}&appid=${RADAR_API_KEY}`,
+      { signal, params: { ...params } },
     );
     return res.data;
   } catch (error) {
@@ -114,7 +114,7 @@ export async function fetchCurrentWeatherByCityName(
       throw new Error(error.message);
     }
     throw new Error(
-      'Something went wrong while fetching weather by city name !'
+      "Something went wrong while fetching weather by city name !",
     );
   }
 }
@@ -129,18 +129,18 @@ export async function fetchCurrentWeatherByCoords(
   lat: number | undefined,
   lon: number | undefined,
   signal: AbortSignal,
-  params?: ParamsT
+  params?: ParamsT,
 ): Promise<WeatherData.CurrentWeather> {
   try {
     const res = await axios.get(
-      `data/2.5/weather/?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
-      { signal, params: { ...params } }
+      `data/2.5/weather/?lat=${lat}&lon=${lon}&appid=${RADAR_API_KEY}`,
+      { signal, params: { ...params } },
     );
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {
       throw new Error(error.message);
     }
-    throw new Error('Something went wrong while fetching weather by coords !');
+    throw new Error("Something went wrong while fetching weather by coords !");
   }
 }

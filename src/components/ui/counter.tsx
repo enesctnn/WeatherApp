@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { useInView, useMotionValue, useSpring } from 'framer-motion';
+import { useEffect, useRef } from "react";
+import { useInView, useMotionValue, useSpring } from "framer-motion";
 
 /**
  *
@@ -10,13 +10,13 @@ import { useInView, useMotionValue, useSpring } from 'framer-motion';
  */
 export const Counter = ({
   value,
-  direction = 'up',
+  direction = "up",
 }: {
   value: number;
-  direction?: 'up' | 'down';
+  direction?: "up" | "down";
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const motionValue = useMotionValue(direction === 'down' ? value : 0);
+  const motionValue = useMotionValue(direction === "down" ? value : 0);
   const springValue = useSpring(motionValue, {
     damping: 100,
     stiffness: 100,
@@ -24,19 +24,19 @@ export const Counter = ({
   const isInView = useInView(ref, { once: true });
   useEffect(() => {
     if (isInView) {
-      motionValue.set(direction === 'down' ? 0 : value);
+      motionValue.set(direction === "down" ? 0 : value);
     }
   }, [motionValue, isInView, direction, value]);
   useEffect(
     () =>
-      springValue.on('change', (latest) => {
+      springValue.on("change", (latest) => {
         if (ref.current) {
-          ref.current.textContent = Intl.NumberFormat('en-US').format(
-            latest.toFixed(0)
+          ref.current.textContent = Intl.NumberFormat("en-US").format(
+            latest.toFixed(0),
           );
         }
       }),
-    [springValue]
+    [springValue],
   );
   return <span ref={ref} />;
 };

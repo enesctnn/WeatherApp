@@ -1,12 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
-import { getShortDayString } from '../lib/date';
+import { getShortDayString } from "../lib/date";
 
-import { fetchForecastByCityName } from '../util/http';
+import { fetchForecastByCityName } from "../util/http";
 
-import { icons } from './../lib/images';
-import { useWeatherUnitsContext } from './context/useWeatherUnitsContext';
+import { icons } from "./../lib/images";
+import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
 
 export type ForecastDataFormat = {
   [key: string]: {
@@ -33,14 +33,14 @@ export function useForecastData(cityName: string): ForecastDataFormat | null {
   } = useTranslation();
   const { units } = useWeatherUnitsContext();
   const { data, isError } = useQuery({
-    queryKey: ['forecast', cityName, units],
+    queryKey: ["forecast", cityName, units],
     queryFn: ({ signal }) =>
       fetchForecastByCityName(cityName, signal, { units }),
     // 3 minutes auto data refresh
     staleTime: 1000 * 60 * 3,
   });
 
-  if (isError) throw new Error('Could not fetch current weather');
+  if (isError) throw new Error("Could not fetch current weather");
 
   if (data) {
     const forecastData: ForecastDataFormat = {};
@@ -51,11 +51,11 @@ export function useForecastData(cityName: string): ForecastDataFormat | null {
         forecastData[dayString].temp = {
           max: Math.max(
             forecastData[dayString].temp.max,
-            +list.main.temp_max.toFixed()
+            +list.main.temp_max.toFixed(),
           ),
           min: Math.min(
             forecastData[dayString].temp.min,
-            +list.main.temp_min.toFixed()
+            +list.main.temp_min.toFixed(),
           ),
         };
       } else {
