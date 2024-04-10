@@ -28,7 +28,7 @@ export async function action({ request }: SearchBarActionArgs) {
   const location = formData.get("location") as string;
   const lat = formData.get("lat") as string;
   const lon = formData.get("lon") as string;
-  console.log({ lat, lon, location });
+
   if (lat.trim().length > 0 && lon.trim().length > 0)
     return redirect(`/weather/${lat},${lon}`);
 
@@ -36,7 +36,6 @@ export async function action({ request }: SearchBarActionArgs) {
     queryKey: [lat, lon],
     queryFn: ({ signal }) => fetchCoordsByCityName(location, signal),
   });
-  console.log({ data });
   if (!data[0]) throw new Error("Couldn't find the place");
   return redirect(`/weather/${data[0].lat},${data[0].lon}`);
 }

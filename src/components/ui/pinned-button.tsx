@@ -24,7 +24,7 @@ export const PinnedButton = ({
       drag="x"
       dragConstraints={{ left: 0, right: 80 }}
       className={cn(
-        "group fixed -left-20 z-[100] flex h-max w-32 cursor-grab rounded-r-full bg-ellipse from-gray-400 to-gray-900 text-heading-sm text-gray-200 shadow-md shadow-black active:cursor-grabbing dark:from-gray-200 dark:to-blue-light",
+        "group fixed -left-20 z-[100] flex h-max w-32 cursor-grab rounded-r-full bg-ellipse from-sky-200 to-blue-light text-heading-sm shadow-md  shadow-black active:cursor-grabbing dark:from-gray-400 dark:to-gray-900",
         className,
       )}
       onClick={onClick}

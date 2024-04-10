@@ -1,5 +1,3 @@
-// ThemeSwitch
-
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useThemeContext } from "../../hooks/context/useThemeContext";
 import { cn } from "../../lib/utils";
@@ -20,14 +18,14 @@ export const ThemeSwitch = () => {
         id="themeSwitch"
         checked={theme === "light"}
         onChange={toggleTheme}
-        className={`absolute right-0 z-10 h-6 w-6 cursor-pointer appearance-none overflow-hidden rounded-full border-0 bg-gray-300 shadow dark:bg-slate-700 ${
+        className={`absolute right-0 z-10 h-6 w-6 cursor-pointer appearance-none overflow-hidden rounded-full border-0 bg-gray-300 dark:bg-gray-700 ${
           theme === "light" ? "-translate-x-4" : "translate-x-0"
         } duration-400 transition`}
       />
       <label
         aria-label="Toggle Dark Mode"
         htmlFor="themeSwitch"
-        className="transition-background-color relative flex h-6 cursor-pointer overflow-hidden rounded-full bg-slate-300/70 text-slate-700 shadow-inner duration-200 hover:transition-colors dark:bg-slate-800 dark:text-gray-100 md:hover:text-gray-400"
+        className="transition-background-color relative flex h-6 cursor-pointer overflow-hidden rounded-full bg-gray-400/70 text-gray-800 duration-200 hover:transition-colors dark:bg-gray-700/70 dark:text-gray-100 md:hover:text-gray-400"
       >
         <MdLightMode
           className={cn(

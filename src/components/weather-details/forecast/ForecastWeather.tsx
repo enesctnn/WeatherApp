@@ -15,7 +15,7 @@ export const ForecastWeather = () => {
   return (
     <Card className="weather-card !flex min-h-44 !flex-row !p-3">
       {forecastData && (
-        <ul className="flex w-full justify-between divide-gray-600 overflow-hidden md:divide-x">
+        <ul className="flex w-full justify-between divide-gray-300 overflow-hidden dark:divide-gray-600 md:divide-x">
           {Object.keys(forecastData).map((key, index) => {
             const data = forecastData[key];
             return (

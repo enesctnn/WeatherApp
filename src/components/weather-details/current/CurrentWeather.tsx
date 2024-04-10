@@ -30,7 +30,11 @@ export const CurrentWeather = () => {
                 {data.date.year}
               </p>
             </div>
-            <ToggleFavoriteButton cityName={data.city.name} />
+            <ToggleFavoriteButton
+              placeName={data.city.name + "-" + data.city.country}
+              lat={lat}
+              lon={lon}
+            />
           </header>
           <article className="z-50 flex place-content-between items-end">
             <section className="flex-1 space-y-2">
@@ -56,7 +60,7 @@ export const CurrentWeather = () => {
           </article>
           <div
             style={{ backgroundImage: `url(${data.bg.src})` }}
-            className="absolute inset-3 overflow-hidden rounded-xl bg-cover bg-center bg-no-repeat"
+            className="absolute inset-3 overflow-hidden rounded-xl bg-cover bg-center bg-no-repeat "
           />
         </>
       )}
