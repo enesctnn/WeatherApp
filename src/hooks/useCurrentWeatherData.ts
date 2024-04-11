@@ -10,7 +10,7 @@ import { useCurrentWeatherPop } from "./useCurrentWeatherPop";
  * Represents the formatted data for current weather.
  */
 type FormattedWeatherData = {
-  city: { name: string; country: string };
+  city: { name: string; country: string; sunrise: string; sunset: string };
   weather: string;
   icon: { src: string; alt: string };
   bg: { src: string; alt: string };
@@ -20,8 +20,9 @@ type FormattedWeatherData = {
   humidity: number;
   rainProbability: number;
   atmosphericPressure: number;
-  rainVolume?: { "1h"?: number; "3h"?: number };
-  snowVolume?: { "1h"?: number; "3h"?: number };
+  rainVolume: { "1h"?: number; "3h"?: number };
+  snowVolume: { "1h"?: number; "3h"?: number };
+  visibility: number;
 };
 
 /**
@@ -89,7 +90,18 @@ export function useCurrentWeatherData(
     if (data.snow && data.snow["3h"]) snowVolume["3h"] = data.snow["3h"];
 
     const formattedWeatherData: FormattedWeatherData = {
-      city: { name: data.name, country: data.sys.country },
+      city: {
+        name: data.name,
+        country: data.sys.country,
+        sunrise: new Date(data.sys.sunrise * 1000).toLocaleTimeString(lang, {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString(lang, {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      },
       weather: dataWeather.description,
       icon,
       bg,
@@ -101,6 +113,7 @@ export function useCurrentWeatherData(
       atmosphericPressure: data.main.pressure,
       rainVolume,
       snowVolume,
+      visibility: data.visibility / 1000,
     };
     return formattedWeatherData;
   }

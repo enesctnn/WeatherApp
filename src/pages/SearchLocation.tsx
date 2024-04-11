@@ -33,8 +33,9 @@ export async function action({ request }: SearchBarActionArgs) {
     return redirect(`/weather/${lat},${lon}`);
 
   const data = await queryClient.fetchQuery({
-    queryKey: [lat, lon],
-    queryFn: ({ signal }) => fetchCoordsByCityName(location, signal),
+    queryKey: [location],
+    queryFn: ({ signal }) =>
+      fetchCoordsByCityName(location.trim().replace(" ", ","), signal),
   });
   if (!data[0]) throw new Error("Couldn't find the place");
   return redirect(`/weather/${data[0].lat},${data[0].lon}`);

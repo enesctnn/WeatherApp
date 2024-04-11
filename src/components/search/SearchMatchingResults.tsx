@@ -1,4 +1,4 @@
-import AutoPlaceCompleteAPI from "../../auto-complete-response";
+import AutoPlaceCompleteAPI from "../../types/auto-complete-response";
 import { Card } from "../ui/card";
 
 export const SearchMatchingResults = ({

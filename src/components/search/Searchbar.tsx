@@ -10,7 +10,7 @@ import { SearchMatchingResults } from "./SearchMatchingResults";
 import { SpinnerGap } from "@phosphor-icons/react";
 import { AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import AutoPlaceCompleteAPI from "../../auto-complete-response";
+import AutoPlaceCompleteAPI from "../../types/auto-complete-response";
 import { fetchAutoCompletePlaces } from "../../util/http-place";
 
 export const SearchBar = () => {

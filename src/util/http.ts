@@ -3,7 +3,7 @@ import axios from "./axios";
 
 import { QueryClient } from "@tanstack/react-query";
 
-import { WeatherData } from "../weather-data";
+import { WeatherData } from "../types/weather-data";
 
 import { OPENWEATHER_API_KEY } from "./api-keys";
 

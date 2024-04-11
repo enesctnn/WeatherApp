@@ -11,7 +11,13 @@ import type { ForecastDataFormat } from "./useForecastData";
  * @param {number} lon - The longitude of the location.
  * @returns {Array<{ day: string, temperature: Array<{ time: string, temperature: number }> }>|null} An array of objects containing forecast temperature data for each day, or null if data is not yet available.
  */
-export function useForecastTemperature(lat: number, lon: number): Array<{ day: string, temperature: Array<{ time: string, temperature: number, pop: number }> }> | null {
+export function useForecastTemperature(
+  lat: number,
+  lon: number,
+): Array<{
+  day: string;
+  temperature: Array<{ time: string; temperature: number; pop: number }>;
+}> | null {
   const {
     i18n: { language },
   } = useTranslation();

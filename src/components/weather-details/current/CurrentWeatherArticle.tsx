@@ -38,24 +38,32 @@ export const CurrentWeatherArticle = ({
       </section>
       <div className="-mb-5 -mr-5 flex-[1.2] overflow-hidden">
         <motion.img
-          initial={{ opacity: 0, z: 0, rotate: 15, scale: 2 }}
-          animate={{ opacity: 1, z: 10, rotate: 0, scale: 1 }}
-          transition={{ type: "spring", mass: 1.5 }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: "spring", duration: 0.6 }}
           className="ml-auto max-h-44 max-w-40"
           src={icon.src}
           alt={icon.alt}
         />
       </div>
     </article>
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0, z: 0, rotate: 5, scale: 1.2 }}
-        animate={{ opacity: 1, z: 10, rotate: 0, scale: 1 }}
-        exit={{ opacity: 0, z: 0, rotate: -5, scale: 1.2 }}
-        style={{ backgroundImage: `url(${bg.src})` }}
-        transition={{ type: "spring", mass: 1.3 }}
-        className="absolute inset-3 overflow-hidden rounded-xl bg-cover bg-center bg-no-repeat"
-      />
-    </AnimatePresence>
+    <div className="absolute inset-3 overflow-hidden rounded-xl">
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0, z: 0, rotate: 5, scale: 1.2 }}
+          animate={{ opacity: 1, z: 10, rotate: 0, scale: 1 }}
+          exit={{
+            opacity: 0,
+            z: 0,
+            rotate: -5,
+            scale: 0,
+            transition: { duration: 2 },
+          }}
+          style={{ backgroundImage: `url(${bg.src})` }}
+          transition={{ type: "tween" }}
+          className="h-full w-full overflow-hidden rounded-xl bg-cover bg-center bg-no-repeat"
+        />
+      </AnimatePresence>
+    </div>
   </>
 );

@@ -1,5 +1,5 @@
 import axios from "axios";
-import AutoPlaceCompleteAPI from "../auto-complete-response";
+import AutoPlaceCompleteAPI from "../types/auto-complete-response";
 
 import { RADAR_API_KEY } from "./api-keys";
 

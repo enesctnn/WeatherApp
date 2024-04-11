@@ -1,5 +1,5 @@
 {
-  "error": {"errorpage":"Something went wrong !"},
+  "error": { "errorpage": "Something went wrong !" },
   "nav": {
     "favorites": {
       "label": "Favorites",
@@ -27,7 +27,10 @@
     "humidity": "Air Humidity",
     "atmosphericpressure": "Atmospheric Pressure",
     "rainvalue": "Rain Volume",
-    "snowvalue": "Snow Volume"
+    "snowvalue": "Snow Volume",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "visibility": "Visibility"
   },
   "chart": { "legend": { "precipitation": "Precipitation %" } }
 }
