@@ -13,10 +13,18 @@
  * import routes from './routes';
  *
  * // Access the routes
- * console.log(routes.searchLocation); // Output: '/'
- * console.log(routes.weatherDetails.replace(':cityName', 'London')); // Output: '/weather/London'
+ * routes.searchLocation '/'
+ * replace':coords', 'lat:39.9048704, lon:32.9416704' // Output: '/weather/39.9048704,32.9416704' (this coordinates fetches weather for Mamak,TR)
  */
 export default {
+  /**
+   * The route for searching locations.
+   * @type {string}
+   */
   searchLocation: "/",
-  weatherDetails: "/weather/:cityName",
+  /**
+   * The route for weather details of a specific city.
+   * @type {string}
+   */
+  weatherDetails: "/weather/:coords",
 } as const;

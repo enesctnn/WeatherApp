@@ -14,17 +14,21 @@ import {
 import { Card } from "../../../ui/card";
 
 import { useTranslation } from "react-i18next";
-import { useForecastTemperature } from "../../../../hooks/useForecastTemperature";
 import { useWeatherUnitsContext } from "../../../../hooks/context/useWeatherUnitsContext";
+import { useForecastTemperature } from "../../../../hooks/useForecastTemperature";
 
+import { useThemeContext } from "../../../../hooks/context/useThemeContext";
 import { AvailableDayList } from "./AvailableDayList";
 
 export function WeeklyChart() {
   const [activeDay, setActiveDay] = useState<string | null>(null);
-  const { cityName } = useParams();
-  if (!cityName) throw new Error("URL missing params");
 
-  const data = useForecastTemperature(cityName);
+  const { coords } = useParams();
+  if (!coords) throw new Error("URL missing params !");
+  const lat = +coords.split(",")[0];
+  const lon = +coords.split(",")[1];
+
+  const data = useForecastTemperature(lat, lon);
 
   const handleSetActiveDay = (day: string) => setActiveDay(day);
 
@@ -40,8 +44,11 @@ export function WeeklyChart() {
   const {
     symbol: { degree },
   } = useWeatherUnitsContext();
+
+  const { theme } = useThemeContext();
+
   return (
-    <Card className="weather-card h-96 space-y-4 overflow-hidden !pl-0 pr-10">
+    <Card className="weather-card h-96 space-y-4 overflow-hidden !pl-0 pr-8">
       {data && (
         <AvailableDayList
           days={data.map((list) => list.day)}
@@ -54,23 +61,27 @@ export function WeeklyChart() {
           .filter((list) => list.day === activeDay)
           .map((filteredData) => (
             <ResponsiveContainer key={activeDay} width="100%" height="100%">
-              <LineChart height={200} data={filteredData.temperature}>
-                <XAxis dataKey="time" />
-                <YAxis />
+              <LineChart
+                height={200}
+                data={filteredData.temperature}
+                className="-ml-2"
+              >
+                <XAxis dataKey="time" stroke="white" />
+                <YAxis stroke="white" />
                 <Tooltip />
                 <Legend />
                 <Line
                   type="monotone"
                   dataKey="temperature"
-                  stroke="#c70039"
-                  strokeWidth={3}
+                  stroke={theme === "dark" ? "#c70039" : "#C7003F"}
+                  strokeWidth={2.5}
                   name={degree + "°"}
                 />
                 <Line
                   type="monotone"
                   dataKey="pop"
-                  stroke="#8FB2F5"
-                  strokeWidth={3}
+                  stroke={theme === "dark" ? "#8FB2F5" : "#8EBCF5"}
+                  strokeWidth={2.5}
                   name={t("legend.precipitation")}
                 />
               </LineChart>

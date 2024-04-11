@@ -29,11 +29,17 @@ export const ForecastArticle = ({
     custom={index}
     className="flex w-max flex-1 flex-col items-center justify-center"
   >
-    <h3 className="text-heading-xs text-gray-200">{dayString}</h3>
+    <h3 className="text-heading-xs text-gray-800 dark:text-gray-200">
+      {dayString}
+    </h3>
     <img className="h-[56px] w-[56px]" src={icon.src} alt={icon.alt} />
     <div className="space-y-2 text-center">
-      <h4 className="text-heading-xs text-gray-100">{temp.max}&deg;</h4>
-      <h4 className="text-heading-xs text-gray-400">{temp.min}&deg;</h4>
+      <h4 className="text-heading-xs text-gray-600 dark:text-gray-100">
+        {temp.max}&deg;
+      </h4>
+      <h4 className="text-heading-xs text-gray-500 dark:text-gray-400">
+        {temp.min}&deg;
+      </h4>
     </div>
   </motion.li>
 );

@@ -11,7 +11,11 @@ export const SearchForm = React.forwardRef<
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const location = formData.get("location") as string;
-    if (location.trim().length > 0) submit(formData, { method: "POST" });
+    const lat = formData.get("lat") as string;
+    const lon = formData.get("lon") as string;
+    if ((location.trim().length >= 1 || lat.length >= 1, lon.length >= 1))
+      submit(formData, { method: "POST" });
+    return null;
   };
   return (
     <form

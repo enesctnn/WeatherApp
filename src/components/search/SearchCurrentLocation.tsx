@@ -58,7 +58,7 @@ export const SearchCurrentLocation = () => {
           animate={animate}
         >
           <Link
-            to={`/weather/${data.name.toLowerCase()}`}
+            to={`/weather/${coords.lat},${coords.lon}`}
             className="flex items-center gap-x-3 text-gray-500 dark:text-gray-50"
           >
             <MapPinLine className="animate-bounce group-hover:animate-none" />

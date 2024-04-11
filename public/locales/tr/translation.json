@@ -1,5 +1,5 @@
 {
-  "error": {"errorpage":"Bir şeyler ters gitti !"},
+  "error": { "errorpage": "Bir şeyler ters gitti !" },
   "nav": {
     "favorites": {
       "label": "Favoriler",
@@ -27,7 +27,10 @@
     "humidity": "Hava Nemi",
     "atmosphericpressure": "Atmosferik Basınç",
     "rainvalue": "Yağmur Hacmi",
-    "snowvalue": "Kar Hacmi"
+    "snowvalue": "Kar Hacmi",
+    "sunrise": "Gün Doğumu",
+    "sunset": "Gün Batımı",
+    "visibility": "Görüş Mesafesi"
   },
   "chart": { "legend": { "precipitation": "Yağış %" } }
 }

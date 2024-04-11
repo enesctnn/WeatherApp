@@ -7,20 +7,22 @@ import {
   CloudArrowDown,
   CloudRain,
   Drop,
+  Eye,
   Snowflake,
   Thermometer,
   Wind,
 } from "@phosphor-icons/react";
 import { useTranslation } from "react-i18next";
+import { GiSunrise, GiSunset } from "react-icons/gi";
 import { useWeatherUnitsContext } from "../../../hooks/context/useWeatherUnitsContext";
 import { WeatherDetailsArticle } from "./WeatherDetailsArticle";
 
 export const CurrentWeatherDetails = () => {
-  const { cityName } = useParams();
-
-  if (!cityName) throw new Error("URL missing params !");
-
-  const data = useCurrentWeatherData(cityName);
+  const { coords } = useParams();
+  if (!coords) throw new Error("URL missing params !");
+  const lat = +coords.split(",")[0];
+  const lon = +coords.split(",")[1];
+  const data = useCurrentWeatherData(lat, lon);
 
   const { t } = useTranslation(undefined, { keyPrefix: "weatherdetails" });
 
@@ -66,6 +68,22 @@ export const CurrentWeatherDetails = () => {
             symbol=" hPa"
             icon={CloudArrowDown}
             useCounter
+          />
+          <WeatherDetailsArticle
+            header={t("sunrise")}
+            value={data.city.sunrise}
+            icon={GiSunrise}
+          />
+          <WeatherDetailsArticle
+            header={t("sunset")}
+            value={data.city.sunset}
+            icon={GiSunset}
+          />
+          <WeatherDetailsArticle
+            header={t("visibility")}
+            symbol=" km"
+            value={data.visibility}
+            icon={Eye}
           />
           {data.snowVolume?.["1h"] && (
             <WeatherDetailsArticle

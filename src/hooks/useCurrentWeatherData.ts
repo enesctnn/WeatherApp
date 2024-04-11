@@ -2,12 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { getDayString, getMonthString } from "../lib/date";
 import { bgs, icons } from "../lib/images";
-import { fetchCurrentWeatherByCityName } from "../util/http";
-import { useCurrentWeatherPop } from "./useCurrentWeatherPop";
+import { fetchCurrentWeatherByCoords } from "../util/http";
 import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
+import { useCurrentWeatherPop } from "./useCurrentWeatherPop";
 
+/**
+ * Represents the formatted data for current weather.
+ */
 type FormattedWeatherData = {
-  city: { name: string; country: string };
+  city: { name: string; country: string; sunrise: string; sunset: string };
   weather: string;
   icon: { src: string; alt: string };
   bg: { src: string; alt: string };
@@ -17,28 +20,31 @@ type FormattedWeatherData = {
   humidity: number;
   rainProbability: number;
   atmosphericPressure: number;
-  rainVolume?: { "1h"?: number; "3h"?: number };
-  snowVolume?: { "1h"?: number; "3h"?: number };
+  rainVolume: { "1h"?: number; "3h"?: number };
+  snowVolume: { "1h"?: number; "3h"?: number };
+  visibility: number;
 };
 
 /**
  * Custom React hook for processing and formatting current weather data.
- * @param {string} cityName - The name of the city.
+ * @param {number} lat - The latitude of the location.
+ * @param {number} lon - The longitude of the location.
  * @returns {FormattedWeatherData | null} The processed current weather data.
  */
 export function useCurrentWeatherData(
-  cityName: string,
+  lat: number,
+  lon: number,
 ): FormattedWeatherData | null {
-  const rainProbability = useCurrentWeatherPop(cityName);
+  const rainProbability = useCurrentWeatherPop(lat, lon);
   const {
     i18n: { language: lang },
   } = useTranslation();
   const { units } = useWeatherUnitsContext();
 
   const { data, isError } = useQuery({
-    queryKey: [cityName, lang, units],
+    queryKey: [lat, lon, lang, units],
     queryFn: ({ signal }) =>
-      fetchCurrentWeatherByCityName(cityName, signal, { lang, units }),
+      fetchCurrentWeatherByCoords(lat, lon, signal, { lang, units }),
     // auto invalidate time set to 3 minutes
     staleTime: 1000 * 60 * 3,
     // delete unused queries from memory after 2 minutes
@@ -84,7 +90,18 @@ export function useCurrentWeatherData(
     if (data.snow && data.snow["3h"]) snowVolume["3h"] = data.snow["3h"];
 
     const formattedWeatherData: FormattedWeatherData = {
-      city: { name: data.name, country: data.sys.country },
+      city: {
+        name: data.name,
+        country: data.sys.country,
+        sunrise: new Date(data.sys.sunrise * 1000).toLocaleTimeString(lang, {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString(lang, {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      },
       weather: dataWeather.description,
       icon,
       bg,
@@ -96,6 +113,7 @@ export function useCurrentWeatherData(
       atmosphericPressure: data.main.pressure,
       rainVolume,
       snowVolume,
+      visibility: data.visibility / 1000,
     };
     return formattedWeatherData;
   }

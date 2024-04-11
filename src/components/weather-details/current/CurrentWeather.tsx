@@ -1,15 +1,18 @@
 import { useParams } from "react-router-dom";
-import { useCurrentWeatherData } from "../../../hooks/useCurrentWeatherData";
 import { useWeatherUnitsContext } from "../../../hooks/context/useWeatherUnitsContext";
+import { useCurrentWeatherData } from "../../../hooks/useCurrentWeatherData";
 
 import { ToggleFavoriteButton } from "../../favorites/ToggleFavoriteButton";
 import { Card } from "../../ui/card";
+import { CurrentWeatherArticle } from "./CurrentWeatherArticle";
 
 export const CurrentWeather = () => {
-  const { cityName } = useParams();
-  if (!cityName) throw new Error("URL missing params !");
+  const { coords } = useParams();
+  if (!coords) throw new Error("URL missing params !");
+  const lat = +coords.split(",")[0];
+  const lon = +coords.split(",")[1];
+  const data = useCurrentWeatherData(lat, lon);
 
-  const data = useCurrentWeatherData(cityName);
   const {
     symbol: { degree },
   } = useWeatherUnitsContext();
@@ -28,33 +31,19 @@ export const CurrentWeather = () => {
                 {data.date.year}
               </p>
             </div>
-            <ToggleFavoriteButton cityName={data.city.name} />
+            <ToggleFavoriteButton
+              placeName={data.city.name + "-" + data.city.country}
+              lat={lat}
+              lon={lon}
+            />
           </header>
-          <article className="z-50 flex place-content-between items-end">
-            <section className="flex-1 space-y-2">
-              <h2 className="weather-article-heading">
-                {data.temp.index}&deg;{degree}
-              </h2>
-              <div>
-                <h3 className="text-heading-sm transition-[font-size] md:text-heading-md">
-                  {data.temp.min}&deg;{degree} / {data.temp.max}&deg;{degree}
-                </h3>
-                <p className="text-sm capitalize transition-[font-size] sm:text-md md:text-lg">
-                  {data.weather}
-                </p>
-              </div>
-            </section>
-            <div className="-mb-5 -mr-5 flex-[1.2] overflow-hidden">
-              <img
-                className="ml-auto max-h-44 max-w-40"
-                src={data.icon.src}
-                alt={data.icon.alt}
-              />
-            </div>
-          </article>
-          <div
-            style={{ backgroundImage: `url(${data.bg.src})` }}
-            className="absolute inset-3 overflow-hidden rounded-xl bg-cover bg-center bg-no-repeat"
+          <CurrentWeatherArticle
+            key={coords}
+            degree={degree}
+            temp={data.temp}
+            icon={data.icon}
+            bg={data.bg}
+            weather={data.weather}
           />
         </>
       )}

@@ -4,21 +4,29 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import { MdBlock } from "react-icons/md";
 import { useFavoriteSearchsContext } from "../../hooks/context/useFavoriteSearchsContext";
 
-export function ToggleFavoriteButton({ cityName }: { cityName: string }) {
+export function ToggleFavoriteButton({
+  placeName,
+  lat,
+  lon,
+}: {
+  placeName: string;
+  lat: number;
+  lon: number;
+}) {
   const ref = useRef<number>(0);
   const {
     toggleFavoriteSearch,
     removeFavoriteSearch,
     favorites,
-    isExceededLimit,
+    favoritesLength,
   } = useFavoriteSearchsContext();
 
   function handleToggleFavorite() {
-    if (!isExceededLimit) toggleFavoriteSearch(cityName);
-    else removeFavoriteSearch(cityName);
+    if (favoritesLength < 10) toggleFavoriteSearch(placeName, lat, lon);
+    else removeFavoriteSearch(placeName);
   }
 
-  const isFavoriteCity = favorites.includes(cityName);
+  const isFavoriteCity = Object.keys(favorites).includes(placeName);
 
   return (
     <button
@@ -37,7 +45,7 @@ export function ToggleFavoriteButton({ cityName }: { cityName: string }) {
             <FaStar fill="#8FB2F5" className="h-full w-full" />
           </motion.div>
         )}
-        {!isFavoriteCity && !isExceededLimit && (
+        {!isFavoriteCity && favoritesLength < 10 && (
           <motion.div
             key="border"
             initial={{ scale: 0 }}
@@ -48,7 +56,7 @@ export function ToggleFavoriteButton({ cityName }: { cityName: string }) {
             <FaRegStar color="#8FB2F5" className="h-full w-full" />
           </motion.div>
         )}
-        {isExceededLimit && !isFavoriteCity && (
+        {favoritesLength >= 10 && !isFavoriteCity && (
           <motion.div
             key={ref.current}
             animate={{ x: [0, 2, -2, 0] }}

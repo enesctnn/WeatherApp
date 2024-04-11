@@ -15,8 +15,8 @@ export function DayTabs({
       <button
         type="button"
         className={cn(
-          isActive && "!text-white",
-          "relative select-none p-2 text-gray-200 transition-opacity hover:opacity-90 active:opacity-100",
+          isActive && "!text-gray-100 dark:!text-gray-600",
+          "relative select-none px-2 py-1 text-heading-sm font-bold text-gray-800 transition-all hover:opacity-90 active:opacity-100 dark:text-gray-200",
         )}
         onClick={onClick}
       >
@@ -24,7 +24,7 @@ export function DayTabs({
         {isActive && (
           <motion.div
             layoutId="tab"
-            className="absolute inset-0 rounded-full bg-blue-light"
+            className="absolute inset-0 rounded-full bg-ellipse from-gray-400 to-gray-800 dark:from-sky-200 dark:to-blue-light"
           />
         )}
       </button>
