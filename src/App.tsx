@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import ErrorPage from "./pages/Error";
-import MainRoot from "./pages/MainRoot";
+import MainRoot from "./layouts/MainRoot";
 import SearchLocationPage, {
   action as searchLocationAction,
 } from "./pages/SearchLocation";

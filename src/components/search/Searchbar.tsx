@@ -55,7 +55,7 @@ export const SearchBar = () => {
         <button type="submit" hidden aria-hidden />
         {state === "loading" && (
           <SpinnerGap
-            className="absolute right-2 top-2 animate-spin select-none !text-blue-light text-inherit"
+            className="absolute right-2 top-2 animate-spin select-none text-gray-900 text-inherit dark:!text-blue-light"
             size={32}
           />
         )}
