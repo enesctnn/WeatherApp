@@ -1,4 +1,4 @@
-import type { icons } from "../lib/images";
+import type { icons } from "../lib/weather-images";
 
 export declare namespace WeatherData {
   interface Coord {

@@ -3,6 +3,13 @@ import { PhotoListResponse } from "../types/unsplash-api-response";
 
 const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
 
+/**
+ * Fetches a list of photos from the Unsplash API based on a search term.
+ * @param {string} searchTerm The search term used to query photos.
+ * @param {AbortSignal} signal The AbortSignal object used to cancel the request.
+ * @param {Object.<string, string>} [params] Additional query parameters for the API request.
+ * @returns {Promise<PhotoListResponse | undefined>} A promise that resolves to the response data containing a list of photos, or undefined if an error occurs.
+ */
 export async function fetchImageBySearchTerm(
   searchTerm: string,
   signal: AbortSignal,

@@ -32,5 +32,8 @@
     "sunset": "Sunset",
     "visibility": "Visibility"
   },
+  "slideImages": {
+    "searchMessage": "Search All Around The World !"
+  },
   "chart": { "legend": { "precipitation": "Precipitation %" } }
 }

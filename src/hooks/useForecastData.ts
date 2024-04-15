@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { getShortDayString } from "../lib/date";
 import { fetchForecastByCoords } from "../util/http-weather";
-import { icons } from "./../lib/images";
+import { icons } from "../lib/weather-images";
 import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
 
 /**

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { getDayString, getMonthString } from "../lib/date";
-import { bgs, icons } from "../lib/images";
+import { bgs, icons } from "../lib/weather-images";
 import { fetchCurrentWeatherByCoords } from "../util/http-weather";
 import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
 import { useCurrentWeatherPop } from "./useCurrentWeatherPop";

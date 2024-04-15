@@ -10,6 +10,7 @@ import { RADAR_API_KEY } from "./api-keys";
  */
 export async function fetchAutoCompletePlaces(
   searchTerm: string,
+  signal?: AbortSignal,
 ): Promise<AutoPlaceCompleteAPI.Response | undefined> {
   try {
     const res = await axios.get(
@@ -19,6 +20,7 @@ export async function fetchAutoCompletePlaces(
           Accept: "application/json",
           Authorization: RADAR_API_KEY,
         },
+        signal,
       },
     );
     return res.data;

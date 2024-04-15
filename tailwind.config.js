@@ -1,120 +1,127 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class',
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: "class",
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontSize: {
-        'heading-hg': [
-          '96px',
+        "heading-hg": [
+          "96px",
           {
-            lineHeight: '100%',
+            lineHeight: "100%",
             fontWeight: 800,
           },
         ],
-        'heading-xl': [
-          '48px',
+        "heading-xl": [
+          "48px",
           {
-            lineHeight: '100%',
+            lineHeight: "100%",
             fontWeight: 800,
           },
         ],
-        'heading-lg': [
-          '32px',
+        "heading-lg": [
+          "32px",
           {
-            lineHeight: '120%',
+            lineHeight: "120%",
             fontWeight: 700,
           },
         ],
-        'heading-md': [
-          '20px',
+        "heading-md": [
+          "20px",
           {
-            lineHeight: '140%',
+            lineHeight: "140%",
             fontWeight: 700,
           },
         ],
-        'heading-sm': [
-          '16px',
+        "heading-sm": [
+          "16px",
           {
-            lineHeight: '140%',
+            lineHeight: "140%",
             fontWeight: 700,
           },
         ],
-        'heading-xs': [
-          '14px',
+        "heading-xs": [
+          "14px",
           {
-            lineHeight: '140%',
+            lineHeight: "140%",
             fontWeight: 700,
           },
         ],
         lg: [
-          '20px',
+          "20px",
           {
-            lineHeight: '140%',
+            lineHeight: "140%",
             fontWeight: 400,
           },
         ],
         md: [
-          '16px',
+          "16px",
           {
-            lineHeight: '140%',
+            lineHeight: "140%",
             fontWeight: 400,
           },
         ],
         sm: [
-          '14px',
+          "14px",
           {
-            lineHeight: '140%',
+            lineHeight: "140%",
             fontWeight: 400,
           },
         ],
         xs: [
-          '12px',
+          "12px",
           {
-            lineHeight: '140%',
+            lineHeight: "140%",
             fontWeight: 400,
           },
         ],
       },
       colors: {
         gray: {
-          50: '#FFFFFF',
-          100: '#FAFAFA',
-          200: '#BFBFD4',
-          300: '#ABABC4',
-          400: '#7F7F98',
-          500: '#3B3B54',
-          600: '#22222F',
-          700: '#1C1C27',
-          800: '#16161F',
-          900: '#13131A',
+          50: "#FFFFFF",
+          100: "#FAFAFA",
+          200: "#BFBFD4",
+          300: "#ABABC4",
+          400: "#7F7F98",
+          500: "#3B3B54",
+          600: "#22222F",
+          700: "#1C1C27",
+          800: "#16161F",
+          900: "#13131A",
         },
         blue: {
-          light: '#8FB2F5',
+          light: "#8FB2F5",
         },
-        'input-bg': '#1E1E29',
+        "input-bg": "#1E1E29",
       },
       fontFamily: {
-        nunito: ['"Nunito"', 'sans-serif'],
+        nunito: ['"Nunito"', "sans-serif"],
       },
       keyframes: {
         bump: {
-          '0%': { transform: 'scale(1)' },
-          '10%': { transform: 'scale(0.8)' },
-          '30%': { transform: 'scale(1.1)' },
-          '50%': { transform: 'scale(1.3)' },
-          '100%': { transform: 'scale(1)' },
+          "0%": { transform: "scale(1)" },
+          "10%": { transform: "scale(0.8)" },
+          "30%": { transform: "scale(1.1)" },
+          "50%": { transform: "scale(1.3)" },
+          "100%": { transform: "scale(1)" },
+        },
+        shake: {
+          "10%, 90%": { transform: "translateX(-1px)" },
+          "20%, 80%": { transform: "translateX(2px)" },
+          "30%, 50%, 70%": { transform: "translateX(-4px)" },
+          "40%, 60%": { transform: "translateX(4px)" },
         },
       },
       animation: {
-        bump: 'bump 0.2s',
+        bump: "bump 0.2s",
+        shake: "shake 0.82s cubic-bezier(.36,.07,.19,.97) both",
       },
       backgroundImage: {
-        ellipse: 'radial-gradient(ellipse at top, var(--tw-gradient-stops))',
+        ellipse: "radial-gradient(ellipse at top, var(--tw-gradient-stops))",
       },
       dropShadow: {
-        border: '0px 0px 2px rgba(0, 0, 0, 0.6)',
-        'white-border': '0px 0px 2px rgba(255, 255, 255, 0.6)',
+        border: "0px 0px 2px rgba(0, 0, 0, 0.6)",
+        "white-border": "0px 0px 2px rgba(255, 255, 255, 0.6)",
       },
     },
   },

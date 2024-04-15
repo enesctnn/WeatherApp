@@ -10,8 +10,9 @@ import { SearchMatchingResults } from "./SearchMatchingResults";
 import { SpinnerGap } from "@phosphor-icons/react";
 import { AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useAutoCompletePlaces } from "../../hooks/useAutoCompletePlaces";
+import { useFirstRender } from "../../hooks/useFirstTimeRender";
 import AutoPlaceCompleteAPI from "../../types/auto-complete-response";
-import { fetchAutoCompletePlaces } from "../../util/http-place";
 
 export const SearchBar = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -22,34 +23,50 @@ export const SearchBar = () => {
   const [currentPlaces, setCurrentPlaces] = useState<
     AutoPlaceCompleteAPI.Address[] | undefined
   >();
+  const places = useAutoCompletePlaces(searchTerm);
 
-  useEffect(() => {
-    if (searchTerm.trim().length >= 1) {
-      const timer = setTimeout(() => {
-        fetchAutoCompletePlaces(searchTerm).then((data) =>
-          setCurrentPlaces(data?.addresses),
-        );
-      }, 150);
-      return () => clearTimeout(timer);
-    } else setCurrentPlaces(undefined);
-  }, [searchTerm]);
+  const isFirstRender = useFirstRender();
+
+  const { t } = useTranslation(undefined, { keyPrefix: "home.input" });
+
+  const [inputVariants, setInputVariants] = useState<string | null>(null);
+
+  const errorInputVariants =
+    "!outline-1 !outline-red-600 outline-offset-1 dark:!bg-red-300/10 !bg-red-600/20 animate-shake";
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearchTerm(e.target.value);
 
-  const { t } = useTranslation(undefined, { keyPrefix: "home.input" });
+  const onBlur = () =>
+    searchTerm.trim().length <= 0 && setInputVariants(errorInputVariants);
+
+  useEffect(() => {
+    if (!isFirstRender && searchTerm.trim().length <= 0) {
+      setInputVariants(errorInputVariants);
+      setCurrentPlaces(undefined);
+    } else setCurrentPlaces(places);
+  }, [searchTerm, places, isFirstRender]);
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      setInputVariants(null);
+    }, 800);
+    return () => clearTimeout(timeOut);
+  }, [inputVariants]);
 
   return (
     <SearchForm ref={formRef}>
       <div className="relative w-full">
         <label htmlFor="location" aria-label="location" />
         <Input
+          className={inputVariants ? inputVariants : ""}
           id="location"
           name="location"
           type="text"
           placeholder={t("placeholder")}
-          value={searchTerm}
+          onBlur={onBlur}
           onChange={onChange}
+          value={searchTerm}
           disabled={state === "loading"}
         />
         <button type="submit" hidden aria-hidden />

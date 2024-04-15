@@ -32,5 +32,8 @@
     "sunset": "Gün Batımı",
     "visibility": "Görüş Mesafesi"
   },
+  "slideImages": {
+    "searchMessage": "Dünya'nın her yerinde ara !"
+  },
   "chart": { "legend": { "precipitation": "Yağış %" } }
 }
