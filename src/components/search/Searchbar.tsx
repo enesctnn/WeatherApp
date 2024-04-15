@@ -38,11 +38,25 @@ export const SearchBar = () => {
     setSearchTerm(e.target.value);
 
   const onBlur = () =>
-    searchTerm.trim().length <= 0 && setInputVariants(errorInputVariants);
+    searchTerm.trim().length <= 0 &&
+    setInputVariants((prevVariants) =>
+      prevVariants === null ? errorInputVariants : prevVariants,
+    );
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && searchTerm.trim().length <= 0) {
+      e.preventDefault();
+      setInputVariants((prevVariants) =>
+        prevVariants === null ? errorInputVariants : prevVariants,
+      );
+    }
+  };
 
   useEffect(() => {
     if (!isFirstRender && searchTerm.trim().length <= 0) {
-      setInputVariants(errorInputVariants);
+      setInputVariants((prevVariants) =>
+        prevVariants === null ? errorInputVariants : prevVariants,
+      );
       setCurrentPlaces(undefined);
     } else setCurrentPlaces(places);
   }, [searchTerm, places, isFirstRender]);
@@ -66,8 +80,11 @@ export const SearchBar = () => {
           placeholder={t("placeholder")}
           onBlur={onBlur}
           onChange={onChange}
+          onKeyDown={onKeyDown}
           value={searchTerm}
           disabled={state === "loading"}
+          min={1}
+          required
         />
         <button type="submit" hidden aria-hidden />
         {state === "loading" && (
