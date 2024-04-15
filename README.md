@@ -8,6 +8,8 @@ TypeWeather is a weather application built using Vite, React, and TypeScript.
 
 TypeWeather fetches weather data from the OpenWeather API and provides current weather & weather forecast information to users for different locations. TypeWeather is powered by geolocation for automatic location detection and allows users to search for weather forecasts by city name.
 
+---
+
 ## Features
 
 - Current Weather & 5-Day Forecast Display: View current weather conditions and a 5-day forecast for any selected location.
@@ -86,6 +88,8 @@ To build the project for production:
 npm run build
 ```
 
+---
+
 ## Dependencies
 
 - **[@phosphor-icons/react](https://www.npmjs.com/package/@phosphor-icons/react)** [![npm](https://img.shields.io/npm/v/@phosphor-icons/react)](https://www.npmjs.com/package/@phosphor-icons/react)
@@ -124,6 +128,8 @@ npm run build
 - **[typescript](https://www.npmjs.com/package/typescript)** [![npm](https://img.shields.io/npm/v/typescript)](https://www.npmjs.com/package/typescript)
 - **[vite](https://www.npmjs.com/package/vite)** [![npm](https://img.shields.io/npm/v/vite)](https://www.npmjs.com/package/vite)
 
+---
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
@@ -136,35 +142,56 @@ This project is deployed and hosted on Vercel. You can access the live version b
 
 ---
 
+## Local Usage (On your machine)
+
 ### Guidance for Updating API Key in Typeweather App
 
 Dear User,
 
-Thank you for choosing Typeweather for your weather application needs. We've noticed that your API keys for OpenWeather and Radar are approaching their expiration dates. To ensure uninterrupted service, please follow the steps below to update your API keys:
+Thank you for choosing Typeweather for your weather application needs.To add missing Unsplash API key and update your API keys for OpenWeather and Radar please follow these steps:
 
 1. **Obtaining Your OpenWeather API Key**:
 
-   - Go to the OpenWeather website at [OpenWeather Website](https://openweathermap.org).
+   - Visit the [OpenWeather Website](https://openweathermap.org).
    - Log in to your account or sign up if you haven't already.
    - Once logged in, navigate to the API keys section.
    - Generate a new API key if you don't have one already.
 
 2. **Obtaining Your Radar API Key**:
 
-   - Go to the Radar website at [Radar Website](https://www.radar.io).
+   - Visit the [Radar Website](https://www.radar.io).
    - Log in to your account or sign up if you haven't already.
    - Once logged in, navigate to the API keys section.
    - Generate a new API key if you don't have one already.
 
-3. **Updating Your API Keys in Typeweather**:
+3. **Obtaining Your Unsplash API Key**:
 
-   - Go to `root/src/util/api-keys.ts`.
+   - Visit the [Unsplash Website](https://unsplash.com).
+   - Log in to your account or sign up if you haven't already.
+   - Once logged in, navigate to the Developers section.
+   - Generate a new API key if you don't have one already.
+
+4. **Updating Your OpenWeather & Radar API Keys in Typeweather**:
+
+   - **Open `root/src/util/api-keys.ts`**.
    - Locate the fields where the OpenWeather and Radar API keys are entered.
    - Replace the existing API keys with the new ones you obtained from OpenWeather and Radar.
 
-4. **Verification**:
-   - After updating the API keys, verify that the weather and radar data are being fetched correctly in your app.
-   - Test various locations and weather conditions to ensure the integration is functioning as expected.
+5. **Local Environment Setup For UnSplash API KEY**:
+
+   - **Create a `.env` file** in the project root.
+   - **Open your `.env` file**
+   - Define the `VITE_UNSPLASH_API_KEY` variable in your local .env file and set it to your Unsplash API key.
+
+6. **Verification**:
+   - After updating the API keys, verify that the weather, radar, and image data are being fetched correctly in your app.
+   - Test various locations, weather conditions, and image searches to ensure the integration is functioning as expected.
+
+If you have any questions or encounter issues during this process, feel free to reach out for further assistance. Thank you!
+
+---
+
+## Assistance
 
 If you encounter any issues or need further assistance, feel free to reach out to our support team at suppteam.typeweather@gmail.com.
 

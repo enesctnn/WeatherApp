@@ -37,9 +37,9 @@ input:-webkit-autofill:active {
     @apply select-none text-heading-xs transition-[font-size] sm:text-heading-sm md:text-heading-md;
   }
   .weather-article-heading {
-    @apply text-heading-xl transition-[font-size] sm:text-6xl md:text-7xl;
+    @apply text-heading-xl transition-[font-size] sm:text-6xl;
   }
   .weather-card {
-    @apply w-[359px] max-w-full transition-[width] sm:w-2/3;
+    @apply w-[359px] max-w-full transition-[width] sm:w-full;
   }
 }

@@ -2,14 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { getDayString, getMonthString } from "../lib/date";
 import { bgs, icons } from "../lib/images";
-import { fetchCurrentWeatherByCoords } from "../util/http";
+import { fetchCurrentWeatherByCoords } from "../util/http-weather";
 import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
 import { useCurrentWeatherPop } from "./useCurrentWeatherPop";
 
 /**
  * Represents the formatted data for current weather.
  */
-type FormattedWeatherData = {
+export type FormattedWeatherData = {
   city: { name: string; country: string; sunrise: string; sunset: string };
   weather: string;
   icon: { src: string; alt: string };
@@ -42,13 +42,11 @@ export function useCurrentWeatherData(
   const { units } = useWeatherUnitsContext();
 
   const { data, isError } = useQuery({
-    queryKey: [lat, lon, lang, units],
+    queryKey: ["current", lat, lon, lang, units],
     queryFn: ({ signal }) =>
       fetchCurrentWeatherByCoords(lat, lon, signal, { lang, units }),
-    // auto invalidate time set to 3 minutes
-    staleTime: 1000 * 60 * 3,
-    // delete unused queries from memory after 2 minutes
-    gcTime: 1000 * 60 * 2,
+    // auto invalidate time set to 5 minutes
+    staleTime: 1000 * 60 * 5,
   });
 
   if (isError) throw new Error("Could not fetch current weather");

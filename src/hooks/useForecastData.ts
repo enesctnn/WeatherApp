@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { getShortDayString } from "../lib/date";
-import { fetchForecastByCoords } from "../util/http";
+import { fetchForecastByCoords } from "../util/http-weather";
 import { icons } from "./../lib/images";
 import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
 
@@ -41,8 +41,8 @@ export function useForecastData(
   const { data, isError } = useQuery({
     queryKey: ["forecast", lat, lon, units],
     queryFn: ({ signal }) => fetchForecastByCoords(lat, lon, signal, { units }),
-    // 3 minutes auto data refresh
-    staleTime: 1000 * 60 * 3,
+    // 5 minutes auto data refresh
+    staleTime: 1000 * 60 * 5,
   });
 
   if (isError) throw new Error("Could not fetch current weather");

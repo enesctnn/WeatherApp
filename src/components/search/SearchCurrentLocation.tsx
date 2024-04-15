@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useGeolocation } from "../../hooks/useGeolocation";
-import { fetchCityNameByCoords } from "../../util/http";
+import { fetchCityNameByCoords } from "../../util/http-weather";
 import { useTranslation } from "react-i18next";
 
 export const SearchCurrentLocation = () => {
@@ -67,7 +67,7 @@ export const SearchCurrentLocation = () => {
         </motion.h2>
       )}
       {!!coords && !!coords.lat && !!coords.lon && !error && isPending && (
-        <h2 className="location-heading flex animate-pulse items-center gap-x-3 text-gray-100">
+        <h2 className="location-heading flex animate-pulse items-center gap-x-3 text-gray-500 dark:text-gray-100">
           {t("feedback.fetch")}
           <SpinnerGap className="animate-spin" size={32} />
         </h2>
