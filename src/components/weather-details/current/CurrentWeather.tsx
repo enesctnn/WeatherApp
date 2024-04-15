@@ -13,7 +13,7 @@ export const CurrentWeather = ({
   degree: "C" | "F";
   coords: { index: string; lat: number; lon: number };
 }) => (
-  <Card className="weather-card relative flex  min-h-[328px] flex-col justify-between overflow-hidden !p-7 text-gray-50">
+  <Card className="weather-card relative flex h-[328px] flex-col justify-between overflow-hidden !p-7 text-gray-50 lg:min-h-72">
     {data && (
       <>
         <header className="z-50 flex justify-between">

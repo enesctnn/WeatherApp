@@ -2,10 +2,12 @@ import { MapPinLine, SpinnerGap } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { GiClick } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { useGeolocation } from "../../hooks/useGeolocation";
 import { fetchCityNameByCoords } from "../../util/http-weather";
-import { useTranslation } from "react-i18next";
+import { CursorClicking } from "../ui/cursor-clicking";
 
 export const SearchCurrentLocation = () => {
   const [error, setError] = useState<string | undefined>();
@@ -59,10 +61,14 @@ export const SearchCurrentLocation = () => {
         >
           <Link
             to={`/weather/${coords.lat},${coords.lon}`}
-            className="flex items-center gap-x-3 text-gray-500 dark:text-gray-50"
+            className="relative flex items-center gap-x-3 text-gray-500 dark:text-gray-50"
           >
             <MapPinLine className="animate-bounce group-hover:animate-none" />
             {t("current")} {data.name + " - " + data.country}
+            <CursorClicking
+              className="-bottom-2 -right-5 scale-125 lg:scale-150"
+              icon={GiClick}
+            />
           </Link>
         </motion.h2>
       )}

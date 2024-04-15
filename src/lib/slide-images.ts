@@ -23,7 +23,7 @@ export const images: SlideImagesT = [
   {
     src: "/slideshow/statue-of-liberty.jpg",
     alt: "Statue of Liberty",
-    coords: { lat: 40.6892, lon: 74.0445 },
+    coords: { lat: 40.6892, lon: -74.0445 },
   },
   {
     src: "/slideshow/petra-jordan.jpg",
@@ -32,8 +32,8 @@ export const images: SlideImagesT = [
   },
   {
     src: "/slideshow/statue-rio.jpg",
-    alt: "Christ the Redeemer, Rio de Janeiro",
-    coords: { lat: 22.9519, lon: 43.2105 },
+    alt: "Christ Statue, Rio de Janeiro",
+    coords: { lat: -22.9519, lon: -43.2105 },
   },
   {
     src: "/slideshow/the-taj-mahal.jpg",
