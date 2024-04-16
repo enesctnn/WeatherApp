@@ -16,7 +16,7 @@ export const SearchMatchingResults = ({
     lon: string;
   }) => void;
 }) => (
-  <Card className="mt-2 w-full overflow-hidden !rounded-lg !bg-transparent !p-0">
+  <Card className="z-50 -mt-14 w-full overflow-hidden !rounded-lg !bg-transparent !p-0">
     <ul className="flex flex-col gap-y-[1px] ">
       {currentPlaces.map((place, index) => (
         <li key={index} className="w-full bg-gray-500">

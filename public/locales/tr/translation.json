@@ -18,7 +18,10 @@
         "permission": "Konum izni reddedildi !"
       }
     },
-    "input": { "placeholder": "Konum Ara" }
+    "input": {
+      "placeholder": "Konum Ara",
+      "invalid": "Minimum 1 Karakter Gereklidir!"
+    }
   },
   "weatherdetails": {
     "sensation": "Hissedilen Sıcaklık",

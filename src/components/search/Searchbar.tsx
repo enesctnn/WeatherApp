@@ -86,6 +86,11 @@ export const SearchBar = () => {
           min={1}
           required
         />
+        <p
+          className={`mt-10 text-heading-sm text-red-600 opacity-0 transition-all dark:text-red-700 ${inputVariants ? " mt-3 !opacity-100" : ""}`}
+        >
+          {t("invalid")}
+        </p>
         <button type="submit" hidden aria-hidden />
         {state === "loading" && (
           <SpinnerGap

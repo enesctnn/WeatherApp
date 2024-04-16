@@ -105,6 +105,13 @@ export default {
           "50%": { transform: "scale(1.3)" },
           "100%": { transform: "scale(1)" },
         },
+        "big-bump": {
+          "0%": { transform: "scale(1)" },
+          "10%": { transform: "scale(0.6)" },
+          "30%": { transform: "scale(1.4)" },
+          "50%": { transform: "scale(1.6)" },
+          "100%": { transform: "scale(1)" },
+        },
         shake: {
           "10%, 90%": { transform: "translateX(-1px)" },
           "20%, 80%": { transform: "translateX(2px)" },
@@ -114,6 +121,7 @@ export default {
       },
       animation: {
         bump: "bump 0.2s",
+        "big-bump": "big-bump 0.5s",
         shake: "shake 0.82s cubic-bezier(.36,.07,.19,.97) both",
       },
       backgroundImage: {

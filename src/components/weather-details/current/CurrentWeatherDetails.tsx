@@ -13,7 +13,7 @@ import {
 } from "@phosphor-icons/react";
 import { useTranslation } from "react-i18next";
 import { GiSunrise, GiSunset } from "react-icons/gi";
-import { WeatherDetailsArticle } from "./WeatherDetailsArticle";
+import { CurrentWeatherDetailsArticle } from "./CurrentWeatherDetailsArticle";
 
 export const CurrentWeatherDetails = ({
   data,
@@ -29,59 +29,59 @@ export const CurrentWeatherDetails = ({
     <Card className="weather-card divide-y divide-gray-600 !px-4 !py-1 lg:flex lg:flex-col lg:justify-between ">
       {data && (
         <>
-          <WeatherDetailsArticle
+          <CurrentWeatherDetailsArticle
             header={t("sensation")}
             value={data.temp.sensation}
             symbol={<>&deg;{degree}</>}
             icon={Thermometer}
             useCounter
           />
-          <WeatherDetailsArticle
+          <CurrentWeatherDetailsArticle
             header={t("poprain")}
             value={data.rainProbability}
             symbol="%"
             icon={CloudRain}
             useCounter
           />
-          <WeatherDetailsArticle
+          <CurrentWeatherDetailsArticle
             header={t("wind")}
             value={data.windSpeed}
             symbol={" " + speed}
             icon={Wind}
             useCounter
           />
-          <WeatherDetailsArticle
+          <CurrentWeatherDetailsArticle
             header={t("humidity")}
             value={data.humidity}
             symbol="%"
             icon={Drop}
             useCounter
           />
-          <WeatherDetailsArticle
+          <CurrentWeatherDetailsArticle
             header={t("atmosphericpressure")}
             value={data.atmosphericPressure}
             symbol=" hPa"
             icon={CloudArrowDown}
             useCounter
           />
-          <WeatherDetailsArticle
+          <CurrentWeatherDetailsArticle
             header={t("sunrise")}
             value={data.city.sunrise}
             icon={GiSunrise}
           />
-          <WeatherDetailsArticle
+          <CurrentWeatherDetailsArticle
             header={t("sunset")}
             value={data.city.sunset}
             icon={GiSunset}
           />
-          <WeatherDetailsArticle
+          <CurrentWeatherDetailsArticle
             header={t("visibility")}
             symbol=" km"
             value={data.visibility}
             icon={Eye}
           />
           {data.snowVolume?.["1h"] && (
-            <WeatherDetailsArticle
+            <CurrentWeatherDetailsArticle
               header={t("snowvalue") + " (1h)"}
               value={data.snowVolume?.["1h"]}
               icon={Snowflake}
@@ -89,7 +89,7 @@ export const CurrentWeatherDetails = ({
             />
           )}
           {data.snowVolume?.["3h"] && (
-            <WeatherDetailsArticle
+            <CurrentWeatherDetailsArticle
               header={t("snowvalue") + " (3h)"}
               value={data.snowVolume?.["3h"]}
               icon={Snowflake}
@@ -97,7 +97,7 @@ export const CurrentWeatherDetails = ({
             />
           )}
           {data.rainVolume?.["1h"] && (
-            <WeatherDetailsArticle
+            <CurrentWeatherDetailsArticle
               header={t("rainvalue") + " (1h)"}
               value={data.rainVolume?.["1h"]}
               icon={CloudRain}
@@ -105,7 +105,7 @@ export const CurrentWeatherDetails = ({
             />
           )}
           {data.rainVolume?.["3h"] && (
-            <WeatherDetailsArticle
+            <CurrentWeatherDetailsArticle
               header={t("rainvalue") + " (3h)"}
               value={data.rainVolume?.["3h"]}
               icon={CloudRain}

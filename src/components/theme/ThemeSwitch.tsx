@@ -18,18 +18,18 @@ export const ThemeSwitch = () => {
         id="themeSwitch"
         checked={theme === "light"}
         onChange={toggleTheme}
-        className={`absolute right-0 z-10 h-6 w-6 cursor-pointer appearance-none overflow-hidden rounded-full border-0 bg-gray-300 dark:bg-gray-700 ${
+        className={`absolute right-0 z-10 h-7 w-7 cursor-pointer appearance-none overflow-hidden rounded-full border border-gray-200 bg-gray-300 dark:border-gray-600 dark:bg-gray-700 ${
           theme === "light" ? "-translate-x-4" : "translate-x-0"
         } duration-400 transition`}
       />
       <label
         aria-label="Toggle Dark Mode"
         htmlFor="themeSwitch"
-        className="transition-background-color relative flex h-6 cursor-pointer overflow-hidden rounded-full bg-gray-400/70 text-gray-800 duration-200 hover:transition-colors dark:bg-gray-700/70 dark:text-gray-100 md:hover:text-gray-400"
+        className="transition-background-color relative flex h-7 cursor-pointer overflow-hidden rounded-full bg-gray-400/70 text-gray-800 duration-200 hover:transition-colors dark:bg-gray-700/70 dark:text-gray-100 md:hover:text-gray-400"
       >
         <MdLightMode
           className={cn(
-            "left-[2px]",
+            "left-0",
             styles.default,
             theme === "light" ? styles.active : styles.inactive,
           )}
@@ -37,7 +37,7 @@ export const ThemeSwitch = () => {
         />
         <MdDarkMode
           className={cn(
-            "right-[2px]",
+            "right-1",
             styles.default,
             theme === "light" ? styles.inactive : styles.active,
           )}

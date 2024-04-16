@@ -23,7 +23,15 @@ export function LanguageSelect() {
         className="inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium uppercase text-gray-700 shadow-md hover:bg-gray-200 focus:outline-none"
         aria-expanded={isOpen}
       >
-        <CountryFlag language={i18n.language} />
+        <CountryFlag
+          nation={
+            i18n.language.length > 3
+              ? i18n.language.slice(3, 5)
+              : i18n.language === "tr"
+                ? "tr"
+                : "us"
+          }
+        />
         {i18n.language}
         <svg
           className="-me-1 ms-2 h-5 w-5"
@@ -57,7 +65,7 @@ export function LanguageSelect() {
               } inline-flex items-center rounded-sm px-4 py-2 text-start text-sm hover:bg-gray-200 hover:text-white`}
               role="menuitem"
             >
-              <CountryFlag language={language} />
+              <CountryFlag nation={language === "tr" ? "tr" : "us"} />
               <span className="truncate uppercase">{language}</span>
             </button>
           ))}

@@ -23,7 +23,8 @@ export function FavoritesTrigger({ onClick }: { onClick: () => void }) {
         <div
           key={favoritesLength}
           className={cn(
-            favoritesLength === 10 && "text-purple-800 dark:text-blue-light",
+            favoritesLength === 10 &&
+              "!animate-big-bump text-purple-800 dark:text-blue-light",
             "absolute -right-5 animate-bump cursor-grab transition-all active:cursor-grabbing",
           )}
         >

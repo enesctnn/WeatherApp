@@ -31,10 +31,10 @@ export const PinnedButton = ({
     >
       {children}
       {toolTip && (
-        <div className="absolute -right-20 flex h-full scale-0 items-center text-white transition-transform group-hover:scale-100 group-focus:scale-0">
-          <div className="flex max-w-20 rounded-md bg-gray-600 px-1 py-[1px] text-xs capitalize md:text-sm lg:text-md">
+        <div className="absolute -right-24 flex h-full w-20 scale-0 items-center justify-center transition-transform group-hover:scale-100 group-focus:scale-0">
+          <p className="rounded-md bg-blue-light p-1 text-heading-md text-gray-500  dark:bg-gray-500 dark:text-gray-100">
             {toolTip}
-          </div>
+          </p>
         </div>
       )}
     </motion.button>,

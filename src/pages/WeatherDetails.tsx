@@ -5,10 +5,8 @@ import {
   Params,
 } from "react-router-dom";
 
-import { ToggleUnitsButton } from "../components/units/ToggleUnitsButton";
-import { CurrentWeatherCompWrapper } from "../components/weather-details/current/CurrentWeatherCompWrapper";
-import { ForecastCompWrapper } from "../components/weather-details/forecast/ForecastCompWrapper";
-import { HomeButton } from "../components/weather-details/HomeButton";
+import { HomeButton } from "../components/ui/home-button";
+import { WeatherDetailsCompWrapper } from "../components/weather-details/WeatherDetailsCompWrapper";
 import { WeatherUnitsContextProvider } from "../context/units-context";
 import Routes from "../routes/index";
 import { fetchCurrentWeatherByCoords, queryClient } from "../util/http-weather";
@@ -16,11 +14,7 @@ import { fetchCurrentWeatherByCoords, queryClient } from "../util/http-weather";
 const WeatherDetailsPage = () => (
   <WeatherUnitsContextProvider>
     <HomeButton />
-    <div className="relative mx-auto mb-12 mt-10 space-y-3 sm:w-4/5">
-      <ToggleUnitsButton />
-      <CurrentWeatherCompWrapper />
-      <ForecastCompWrapper />
-    </div>
+    <WeatherDetailsCompWrapper />
   </WeatherUnitsContextProvider>
 );
 

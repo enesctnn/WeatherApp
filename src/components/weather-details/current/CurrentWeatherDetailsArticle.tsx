@@ -2,7 +2,7 @@ import { Icon } from "@phosphor-icons/react";
 import { IconType } from "react-icons";
 import { Counter } from "../../ui/counter";
 
-type WeatherDetailsArticleProps = {
+type CurrentWeatherDetailsArticleProps = {
   icon: Icon | IconType;
   header: string;
   value: number | string;
@@ -10,13 +10,13 @@ type WeatherDetailsArticleProps = {
   useCounter?: boolean;
 };
 
-export const WeatherDetailsArticle = ({
+export const CurrentWeatherDetailsArticle = ({
   icon: Icon,
   value,
   header,
   symbol,
   useCounter,
-}: WeatherDetailsArticleProps) => (
+}: CurrentWeatherDetailsArticleProps) => (
   <article className="flex w-full items-center justify-between py-4">
     <h2 className="flex items-center gap-x-3 text-heading-xs text-gray-800 dark:text-gray-200 lg:text-heading-sm">
       <Icon className="text-[24px] lg:text-[30px]" />

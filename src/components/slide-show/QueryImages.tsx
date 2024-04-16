@@ -64,7 +64,7 @@ export const QueryImages = ({
             {alt ?? <p className="text-heading-sm">{t("searchMessage")}</p>}
             {"coords" in image && (
               <Link
-                className="relative whitespace-nowrap text-heading-md underline decoration-1 transition-all hover:scale-110 hover:animate-pulse"
+                className="user-drag-none relative whitespace-nowrap text-heading-md underline decoration-1 transition-all hover:scale-110 hover:animate-pulse"
                 to={`/weather/${image.coords.lat},${image.coords.lon}`}
               >
                 {image.alt}

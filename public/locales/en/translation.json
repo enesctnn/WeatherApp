@@ -18,7 +18,10 @@
         "permission": "Location permission denied !"
       }
     },
-    "input": { "placeholder": "Search Location" }
+    "input": {
+      "placeholder": "Search Location",
+      "invalid": "Minimum 1 Character is Required !"
+    }
   },
   "weatherdetails": {
     "sensation": "Thermal Sensation",

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { PhotoListResponse } from "../types/unsplash-api-response";
 
 const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
@@ -24,9 +24,11 @@ export async function fetchImageBySearchTerm(
       signal,
     });
     return res.data;
-  } catch {
+  } catch (error) {
     console.log(
-      "Couldn't fetch photos check the .env file UNSPLASH_API_KEY may be missing/expired. To obtain missing Unsplash API KEY correctly please open README.md on project root and follow the steps for using typeweather on your local machine.",
+      "Couldn't fetch photos check the .env file UNSPLASH_API_KEY may be wrong/missing/expired. To obtain missing Unsplash API KEY correctly please open README.md on project root and follow the steps for using typeweather on your local machine.",
     );
+    if (error instanceof AxiosError) console.log(error.message);
+    throw error;
   }
 }
