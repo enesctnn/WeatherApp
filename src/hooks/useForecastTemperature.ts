@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { getDayString, getTimeFromDate } from "../lib/date";
-import { fetchForecastByCoords } from "../util/http";
+import { fetchForecastByCoords } from "../util/http-weather";
 import { useWeatherUnitsContext } from "./context/useWeatherUnitsContext";
 import type { ForecastDataFormat } from "./useForecastData";
 

@@ -7,7 +7,7 @@ import {
 import { Logo } from "../components/search/Logo";
 import { SearchSection } from "../components/search/SearchSection";
 import Routes from "../routes";
-import { fetchCoordsByCityName, queryClient } from "../util/http";
+import { fetchCoordsByCityName, queryClient } from "../util/http-weather";
 
 const SearchLocationPage = () => (
   <>

@@ -1,5 +1,5 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "./util/http";
+import { queryClient } from "./util/http-weather";
 
 import {
   createBrowserRouter,

@@ -1,5 +1,4 @@
-import { useParams } from "react-router-dom";
-import { useCurrentWeatherData } from "../../../hooks/useCurrentWeatherData";
+import { FormattedWeatherData } from "../../../hooks/useCurrentWeatherData";
 
 import { Card } from "../../ui/card";
 
@@ -14,24 +13,20 @@ import {
 } from "@phosphor-icons/react";
 import { useTranslation } from "react-i18next";
 import { GiSunrise, GiSunset } from "react-icons/gi";
-import { useWeatherUnitsContext } from "../../../hooks/context/useWeatherUnitsContext";
 import { WeatherDetailsArticle } from "./WeatherDetailsArticle";
 
-export const CurrentWeatherDetails = () => {
-  const { coords } = useParams();
-  if (!coords) throw new Error("URL missing params !");
-  const lat = +coords.split(",")[0];
-  const lon = +coords.split(",")[1];
-  const data = useCurrentWeatherData(lat, lon);
-
+export const CurrentWeatherDetails = ({
+  data,
+  degree,
+  speed,
+}: {
+  data: FormattedWeatherData | null;
+  degree: "C" | "F";
+  speed: "mph" | "km/h";
+}) => {
   const { t } = useTranslation(undefined, { keyPrefix: "weatherdetails" });
-
-  const {
-    symbol: { degree, speed },
-  } = useWeatherUnitsContext();
-
   return (
-    <Card className="weather-card divide-y divide-gray-600 !px-4 !py-1">
+    <Card className="weather-card divide-y divide-gray-600 !px-4 !py-1 lg:flex lg:flex-col lg:justify-between">
       {data && (
         <>
           <WeatherDetailsArticle

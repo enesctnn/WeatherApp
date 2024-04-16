@@ -59,9 +59,7 @@ export function ToggleFavoriteButton({
         {favoritesLength >= 10 && !isFavoriteCity && (
           <motion.div
             key={ref.current}
-            animate={{ x: [0, 2, -2, 0] }}
-            transition={{ type: "keyframes", ease: "linear", repeat: 1 }}
-            className="absolute inset-0"
+            className="animate-shake absolute inset-0 transition ease-in-out"
             onClick={() => ref.current++}
           >
             <MdBlock color="red" className="h-full w-full" />

@@ -9,14 +9,6 @@ import { useEffect, useState } from "react";
  * }} - An object containing latitude, longitude, and permission status.
  */
 export function useGeolocation() {
-  /**
-   * State hook to manage the geolocation coordinates and permission status.
-   * @type {[{
-   *   lat?: number;
-   *   lon?: number;
-   *   permission?: boolean;
-   * }, function]}
-   */
   const [coords, setCoords] = useState<{
     lat?: number;
     lon?: number;
@@ -24,10 +16,6 @@ export function useGeolocation() {
   }>({});
 
   useEffect(() => {
-    /**
-     * Retrieves the current geolocation coordinates and updates the state.
-     * @param {GeolocationPosition} position - The geolocation position object.
-     */
     const successCallback = (position: GeolocationPosition) => {
       setCoords({
         lat: +position.coords.latitude,
