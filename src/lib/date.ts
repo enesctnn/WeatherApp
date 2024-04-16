@@ -26,10 +26,10 @@ export function getDayString(
     "Cumartesi",
   ];
   const d = new Date(date);
-  if (lng === "tr") {
+  if (lng.includes("tr")) {
     const day = trweekdays[d.getDay()];
     return day;
-  } else if (lng === "en") {
+  } else if (lng.includes("en")) {
     const day = weekdays[d.getDay()];
     return day;
   } else {
@@ -49,10 +49,10 @@ export function getShortDayString(
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const trweekdays = ["Paz", "Pts", "Sal", "Çar", "Per", "Cum", "Cmt"];
   const d = new Date(date);
-  if (lng === "tr") {
+  if (lng.includes("tr")) {
     const day = trweekdays[d.getDay()];
     return day;
-  } else if (lng === "en") {
+  } else if (lng.includes("en")) {
     const day = weekdays[d.getDay()];
     return day;
   } else {
