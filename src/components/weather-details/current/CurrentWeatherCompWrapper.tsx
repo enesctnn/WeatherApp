@@ -17,7 +17,7 @@ export const CurrentWeatherCompWrapper = () => {
   } = useWeatherUnitsContext();
 
   return (
-    <div className="w-full max-lg:space-y-3 lg:grid lg:grid-cols-2 lg:gap-x-2">
+    <div className="w-full max-lg:space-y-3 lg:grid lg:grid-cols-[0.8fr_2fr] lg:gap-x-2">
       <div className="space-y-2 lg:flex lg:flex-col">
         <CurrentWeather
           data={data}

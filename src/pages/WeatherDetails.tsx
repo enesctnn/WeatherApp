@@ -1,5 +1,3 @@
-import { ForecastWeather } from "../components/weather-details/forecast/ForecastWeather";
-
 import {
   json,
   LoaderFunctionArgs,
@@ -9,7 +7,7 @@ import {
 
 import { ToggleUnitsButton } from "../components/units/ToggleUnitsButton";
 import { CurrentWeatherCompWrapper } from "../components/weather-details/current/CurrentWeatherCompWrapper";
-import { WeeklyChart } from "../components/weather-details/forecast/charts/WeeklyChart";
+import { ForecastCompWrapper } from "../components/weather-details/forecast/ForecastCompWrapper";
 import { HomeButton } from "../components/weather-details/HomeButton";
 import { WeatherUnitsContextProvider } from "../context/units-context";
 import Routes from "../routes/index";
@@ -17,12 +15,11 @@ import { fetchCurrentWeatherByCoords, queryClient } from "../util/http-weather";
 
 const WeatherDetailsPage = () => (
   <WeatherUnitsContextProvider>
-    <div className="relative mx-auto mb-12 mt-10 space-y-3 sm:w-2/3">
+    <HomeButton />
+    <div className="relative mx-auto mb-12 mt-10 space-y-3 sm:w-4/5">
       <ToggleUnitsButton />
-      <HomeButton />
       <CurrentWeatherCompWrapper />
-      <ForecastWeather />
-      <WeeklyChart />
+      <ForecastCompWrapper />
     </div>
   </WeatherUnitsContextProvider>
 );

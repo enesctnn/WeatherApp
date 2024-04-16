@@ -66,7 +66,7 @@ export const SearchCurrentLocation = () => {
             <MapPinLine className="animate-bounce group-hover:animate-none" />
             {t("current")} {data.name + " - " + data.country}
             <CursorClicking
-              className="-bottom-2 -right-5 scale-125 lg:scale-150"
+              className="-bottom-2 -right-6 scale-125 lg:scale-150"
               icon={GiClick}
             />
           </Link>

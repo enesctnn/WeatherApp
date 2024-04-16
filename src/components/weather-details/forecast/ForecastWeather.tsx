@@ -1,15 +1,14 @@
-import { useParams } from "react-router-dom";
 import { useForecastData } from "../../../hooks/useForecastData";
 
 import { Card } from "../../ui/card";
 
 import { ForecastArticle } from "./ForecastArticle";
 
-export const ForecastWeather = () => {
-  const { coords } = useParams();
-  if (!coords) throw new Error("Missing URL parameter");
-  const lat = +coords.split(",")[0];
-  const lon = +coords.split(",")[1];
+export const ForecastWeather = ({
+  coords: { lat, lon },
+}: {
+  coords: { lat: number; lon: number };
+}) => {
   const forecastData = useForecastData(lat, lon);
 
   return (

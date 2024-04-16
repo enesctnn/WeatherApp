@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 import {
   Legend,
@@ -20,13 +19,12 @@ import { useForecastTemperature } from "../../../../hooks/useForecastTemperature
 import { useThemeContext } from "../../../../hooks/context/useThemeContext";
 import { AvailableDayList } from "./AvailableDayList";
 
-export function WeeklyChart() {
+export function WeeklyChart({
+  coords: { lat, lon },
+}: {
+  coords: { lat: number; lon: number };
+}) {
   const [activeDay, setActiveDay] = useState<string | null>(null);
-
-  const { coords } = useParams();
-  if (!coords) throw new Error("URL missing params !");
-  const lat = +coords.split(",")[0];
-  const lon = +coords.split(",")[1];
 
   const data = useForecastTemperature(lat, lon);
 
@@ -48,7 +46,7 @@ export function WeeklyChart() {
   const { theme } = useThemeContext();
 
   return (
-    <Card className="weather-card h-96 space-y-4 overflow-hidden !pl-0 pr-8">
+    <Card className="weather-card h-full space-y-4 overflow-hidden !pl-0 pr-8">
       {data && (
         <AvailableDayList
           days={data.map((list) => list.day)}

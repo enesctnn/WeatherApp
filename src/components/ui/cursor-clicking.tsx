@@ -15,11 +15,11 @@ export const CursorClicking = ({
     {SpecialIcon && <SpecialIcon />}
     <div className="relative -z-10" aria-hidden>
       <span
-        className="absolute bottom-[9px] right-[10px] h-2 w-2 animate-ping rounded-full bg-blue-light duration-1000"
+        className="absolute bottom-[9px] right-[10px] h-2 w-2 animate-ping rounded-full bg-gray-500 duration-1000 dark:bg-blue-light"
         aria-hidden
       />
       <span
-        className="absolute bottom-[9px] right-[10px] h-2 w-2 rounded-full bg-blue-light/80"
+        className="absolute bottom-[9px] right-[10px] h-2 w-2 rounded-full bg-gray-500/80 dark:bg-blue-light/80"
         aria-hidden
       />
     </div>

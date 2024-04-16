@@ -26,7 +26,7 @@ export const CurrentWeatherDetails = ({
 }) => {
   const { t } = useTranslation(undefined, { keyPrefix: "weatherdetails" });
   return (
-    <Card className="weather-card divide-y divide-gray-600 !px-4 !py-1 lg:flex lg:flex-col lg:justify-between">
+    <Card className="weather-card divide-y divide-gray-600 !px-4 !py-1 lg:flex lg:flex-col lg:justify-between ">
       {data && (
         <>
           <WeatherDetailsArticle

@@ -56,7 +56,7 @@ export const QueryImages = ({
           />
           <div
             className={cn(
-              "absolute bottom-3 left-4 w-4/5 max-w-max scale-125 select-none rounded-md bg-gray-600/40 px-2 py-1 text-2xl capitalize text-gray-100 opacity-0 blur-lg drop-shadow-border transition-all duration-500 max-lg:text-heading-lg",
+              "absolute bottom-3 mx-2 scale-125 select-none rounded-md bg-gray-600/40 px-2 py-1 text-2xl capitalize text-gray-100 opacity-0 blur-lg drop-shadow-border transition-all duration-500 max-lg:text-heading-lg",
               activeImageIndex === index &&
                 "z-20 rotate-0 scale-100 opacity-100 blur-none",
             )}
@@ -64,11 +64,11 @@ export const QueryImages = ({
             {alt ?? <p className="text-heading-sm">{t("searchMessage")}</p>}
             {"coords" in image && (
               <Link
-                className="relative text-heading-md underline decoration-1 transition-all hover:scale-110 hover:animate-pulse"
+                className="relative whitespace-nowrap text-heading-md underline decoration-1 transition-all hover:scale-110 hover:animate-pulse"
                 to={`/weather/${image.coords.lat},${image.coords.lon}`}
               >
                 {image.alt}
-                <CursorClicking className="-right-4 top-4" />
+                <CursorClicking className="-right-[18px] top-5" />
               </Link>
             )}
           </div>
