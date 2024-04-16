@@ -13,7 +13,7 @@ const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
 export async function fetchImageBySearchTerm(
   searchTerm: string,
   signal: AbortSignal,
-  params?: { [key: string]: string },
+  params?: { [key: string]: string | number },
 ): Promise<PhotoListResponse | undefined> {
   try {
     const res = await axios.get("https://api.unsplash.com/search/photos/", {
