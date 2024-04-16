@@ -44,6 +44,8 @@ TypeWeather fetches weather data from the OpenWeather API and provides current w
 
 - Place Autocompletion: Integrated with the Radar.io API to provide place autocompletion, making it easier for users to input locations.
 
+- Live Weather Map: Integrated a live weather map powered by Ventusky, providing real-time weather visualization and forecasts directly within the app using an iframe.
+
 ---
 
 ### Supported Languages:

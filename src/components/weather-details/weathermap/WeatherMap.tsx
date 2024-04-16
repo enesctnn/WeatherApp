@@ -16,7 +16,7 @@ export function WeatherMap({
   const mapLink = `https://www.ventusky.com/?p=${lat};${lon};8;`;
 
   return (
-    <Card className="weather-card relative h-[500px] overflow-hidden !p-0 lg:h-full">
+    <Card className="weather-card relative h-[500px] !p-0 lg:h-full">
       <div className="absolute bottom-[100px] flex w-full justify-center text-heading-md">
         <a
           className="relative flex w-max gap-x-2 text-gray-100 underline decoration-1 transition-all hover:scale-110 2xl:ml-16"
@@ -28,7 +28,7 @@ export function WeatherMap({
         </a>
       </div>
       <iframe
-        className="h-full w-full"
+        className="h-full w-full rounded-xl"
         src={mapLink}
         onLoad={() => setLoaded(true)}
         hidden={!firstRender && !loaded}

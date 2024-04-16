@@ -46,7 +46,7 @@ export function WeeklyChart({
   const { theme } = useThemeContext();
 
   return (
-    <Card className="weather-card h-full space-y-4 overflow-hidden !pl-0 pr-8">
+    <Card className="weather-card h-full space-y-4 overflow-hidden !pl-0 pr-8 max-sm:h-96">
       {data && (
         <AvailableDayList
           days={data.map((list) => list.day)}
