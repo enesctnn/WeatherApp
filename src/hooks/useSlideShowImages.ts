@@ -13,6 +13,8 @@ export function useSlideShowImages(searchTerm?: string) {
     i18n: { language: lang },
   } = useTranslation();
 
+  const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
+
   const { data } = useQuery({
     queryKey: ["photos", searchTerm, lang],
     queryFn: ({ signal }) =>
@@ -21,7 +23,7 @@ export function useSlideShowImages(searchTerm?: string) {
         content_filter: "high",
         lang: lang.includes("tr") ? "tr" : "en",
       }),
-    enabled: !!searchTerm && searchTerm?.length >= 1,
+    enabled: !!UNSPLASH_API_KEY && !!searchTerm && searchTerm?.length >= 1,
     gcTime: Infinity,
   });
 

@@ -17,7 +17,7 @@ export function WeatherMap({
 
   return (
     <Card className="weather-card relative h-[500px] overflow-hidden !p-0 lg:h-full">
-      <p className="absolute bottom-[100px] flex w-full justify-center text-heading-md">
+      <div className="absolute bottom-[100px] flex w-full justify-center text-heading-md">
         <a
           className="relative flex w-max gap-x-2 text-gray-100 underline decoration-1 transition-all hover:scale-110 2xl:ml-16"
           target="_blank"
@@ -26,7 +26,7 @@ export function WeatherMap({
           Open Map <FaMapMarkedAlt />
           <CursorClicking className="-bottom-1 -right-4" />
         </a>
-      </p>
+      </div>
       <iframe
         className="h-full w-full"
         src={mapLink}
