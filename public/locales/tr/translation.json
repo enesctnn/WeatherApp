@@ -20,7 +20,7 @@
     },
     "input": {
       "placeholder": "Konum Ara",
-      "invalid": "Minimum 1 Karakter Gereklidir!"
+      "invalid": "Minimum 1 Karakter Gereklidir !"
     }
   },
   "weatherdetails": {

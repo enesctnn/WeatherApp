@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SlideImagesT } from "../../lib/slide-images";
 import { cn } from "../../lib/utils";
 import { CursorClicking } from "../ui/cursor-clicking";
-import { ForwardBackButtons } from "./DirectionButtons";
+import { ForwardBackButtons } from "../ui/direction-buttons";
 
 export const QueryImages = ({
   images,
@@ -35,6 +35,7 @@ export const QueryImages = ({
       prevIndex < images.length - 1 ? prevIndex + 1 : 0,
     );
   const { t } = useTranslation(undefined, { keyPrefix: "slideImages" });
+
   return (
     <>
       {images.length > 1 && (

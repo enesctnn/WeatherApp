@@ -11,7 +11,6 @@ import { SpinnerGap } from "@phosphor-icons/react";
 import { AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useAutoCompletePlaces } from "../../hooks/useAutoCompletePlaces";
-import { useFirstRender } from "../../hooks/useFirstTimeRender";
 import AutoPlaceCompleteAPI from "../../types/auto-complete-response";
 
 export const SearchBar = () => {
@@ -24,12 +23,10 @@ export const SearchBar = () => {
     AutoPlaceCompleteAPI.Address[] | undefined
   >();
   const places = useAutoCompletePlaces(searchTerm);
-
-  const isFirstRender = useFirstRender();
-
   const { t } = useTranslation(undefined, { keyPrefix: "home.input" });
 
   const [inputVariants, setInputVariants] = useState<string | null>(null);
+  const [inputTyped, setInputTyped] = useState<boolean>(false);
 
   const errorInputVariants =
     "!outline-1 !outline-red-600 outline-offset-1 dark:!bg-red-300/10 !bg-red-600/20 animate-shake";
@@ -37,11 +34,13 @@ export const SearchBar = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearchTerm(e.target.value);
 
-  const onBlur = () =>
-    searchTerm.trim().length <= 0 &&
-    setInputVariants((prevVariants) =>
-      prevVariants === null ? errorInputVariants : prevVariants,
-    );
+  const onBlur = () => {
+    if (searchTerm.trim().length <= 0) {
+      setInputVariants((prevVariants) =>
+        prevVariants === null ? errorInputVariants : prevVariants,
+      );
+    }
+  };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && searchTerm.trim().length <= 0) {
@@ -53,20 +52,27 @@ export const SearchBar = () => {
   };
 
   useEffect(() => {
-    if (!isFirstRender && searchTerm.trim().length <= 0) {
+    if (inputTyped && searchTerm.trim().length <= 0) {
       setInputVariants((prevVariants) =>
         prevVariants === null ? errorInputVariants : prevVariants,
       );
       setCurrentPlaces(undefined);
     } else setCurrentPlaces(places);
-  }, [searchTerm, places, isFirstRender]);
+  }, [searchTerm, places, inputTyped]);
 
   useEffect(() => {
-    const timeOut = setTimeout(() => {
-      setInputVariants(null);
-    }, 800);
+    const timeOut = setTimeout(() => setInputVariants(null), 800);
     return () => clearTimeout(timeOut);
   }, [inputVariants]);
+
+  useEffect(() => {
+    if (searchTerm.trim().length > 0) setInputTyped(true);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => setInputTyped(false), 800);
+    return () => clearTimeout(timeOut);
+  }, [inputTyped]);
 
   return (
     <SearchForm ref={formRef}>
@@ -87,7 +93,7 @@ export const SearchBar = () => {
           required
         />
         <p
-          className={`mt-10 text-heading-sm text-red-600 opacity-0 transition-all dark:text-red-700 ${inputVariants ? " mt-3 !opacity-100" : ""}`}
+          className={`translate-y-10 text-heading-sm text-red-600 opacity-0 transition-all dark:text-red-700 ${inputVariants ? " !translate-y-3 !opacity-100" : ""}`}
         >
           {t("invalid")}
         </p>
