@@ -70,9 +70,8 @@ export const SearchBar = () => {
   }, [searchTerm]);
 
   useEffect(() => {
-    const timeOut = setTimeout(() => setInputTyped(false), 800);
-    return () => clearTimeout(timeOut);
-  }, [inputTyped]);
+    if (searchTerm.length <= 0) setInputTyped(false);
+  }, [searchTerm]);
 
   return (
     <SearchForm ref={formRef}>
