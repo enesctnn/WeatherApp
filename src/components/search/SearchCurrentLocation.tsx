@@ -55,13 +55,13 @@ export const SearchCurrentLocation = () => {
       </AnimatePresence>
       {data && (
         <motion.h2
-          className="group text-gray-100 hover:scale-105 hover:animate-pulse"
+          className="location-heading group text-gray-100 hover:scale-105 hover:animate-pulse"
           initial={initialAnimation}
           animate={animate}
         >
           <Link
             to={`/weather/${coords.lat},${coords.lon}`}
-            className="location-heading relative flex w-full items-center gap-x-3 text-gray-500 dark:text-gray-50"
+            className="relative flex w-max items-center gap-x-3 text-gray-500 dark:text-gray-50"
           >
             <MapPinLine className="animate-bounce group-hover:animate-none" />
             {t("current")} {data.name + " - " + data.country}
