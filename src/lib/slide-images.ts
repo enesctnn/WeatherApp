@@ -1,10 +1,8 @@
-export type SlideImagesT = {
+export const images: {
   src: string;
   alt: string;
   coords: { lat: number; lon: number };
-}[];
-
-export const images: SlideImagesT = [
+}[] = [
   {
     src: "/slideshow/chichen-itza.jpg",
     alt: "El Castillo, Chichen Itza",

@@ -31,8 +31,8 @@ export const PinnedButton = ({
     >
       {children}
       {toolTip && (
-        <div className="absolute -right-24 flex h-full w-20 scale-0 items-center justify-center transition-transform group-hover:scale-100 group-focus:scale-0">
-          <p className="rounded-md bg-blue-light p-1 text-heading-md text-gray-500  dark:bg-gray-500 dark:text-gray-100">
+        <div className="pointer-events-none absolute -right-2/3 flex h-full w-20 -translate-x-20 scale-0 items-center justify-center transition-transform group-hover:translate-x-0 group-hover:!scale-100">
+          <p className="rounded-md bg-blue-light p-1 text-heading-md text-gray-500 dark:bg-gray-500 dark:text-gray-100">
             {toolTip}
           </p>
         </div>

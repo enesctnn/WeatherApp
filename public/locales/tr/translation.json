@@ -38,5 +38,6 @@
   "slideImages": {
     "searchMessage": "Dünya'nın her yerinde ara !"
   },
-  "chart": { "legend": { "precipitation": "Yağış %" } }
+  "chart": { "legend": { "precipitation": "Yağış %" } },
+  "map": "Haritada İncele !"
 }

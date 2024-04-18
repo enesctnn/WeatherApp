@@ -38,5 +38,6 @@
   "slideImages": {
     "searchMessage": "Search All Around The World !"
   },
-  "chart": { "legend": { "precipitation": "Precipitation %" } }
+  "chart": { "legend": { "precipitation": "Precipitation %" } },
+  "map": "Explore on Map !"
 }

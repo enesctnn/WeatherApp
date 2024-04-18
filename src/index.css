@@ -31,7 +31,7 @@ input:-webkit-autofill:active {
 }
 @layer components {
   .location-heading {
-    @apply mx-auto w-max select-none text-heading-xs transition-[font-size] sm:text-heading-sm md:text-heading-md;
+    @apply flex w-full select-none items-center justify-center text-heading-xs transition-[font-size] sm:text-heading-sm md:text-heading-md;
   }
   .weather-heading {
     @apply select-none text-heading-xs transition-[font-size] sm:text-heading-sm md:text-heading-md;

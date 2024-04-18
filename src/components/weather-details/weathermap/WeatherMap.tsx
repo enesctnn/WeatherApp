@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { useFirstRender } from "../../../hooks/useFirstTimeRender";
 import { Card } from "../../ui/card";
@@ -15,15 +16,17 @@ export function WeatherMap({
   const [loaded, setLoaded] = useState(false);
   const mapLink = `https://www.ventusky.com/?p=${lat};${lon};8;`;
 
+  const { t } = useTranslation();
+
   return (
     <Card className="weather-card relative h-[500px] !p-0 lg:h-full">
-      <div className="absolute bottom-[100px] flex w-full justify-center text-heading-md">
+      <div className="absolute top-[370px] flex w-full text-heading-md sm:justify-center md:!top-[70px] lg:!top-20">
         <a
-          className="relative flex w-max gap-x-2 text-gray-100 underline decoration-1 transition-all hover:scale-110 2xl:ml-16"
+          className="relative flex w-max gap-x-2 px-1 text-gray-100 underline decoration-1 transition-all hover:scale-110"
           target="_blank"
           href={mapLink}
         >
-          Open Map <FaMapMarkedAlt />
+          {t("map")} <FaMapMarkedAlt />
           <CursorClicking className="-bottom-1 -right-4" />
         </a>
       </div>
