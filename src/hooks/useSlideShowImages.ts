@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
 import { images } from "../lib/slide-images";
 import { fetchImageBySearchTerm } from "../util/http-image";
 
@@ -9,19 +8,14 @@ import { fetchImageBySearchTerm } from "../util/http-image";
  * @param {string} [searchTerm] The optional search term used as the query parameter for fetching images.
  */
 export function useSlideShowImages(searchTerm?: string) {
-  const {
-    i18n: { language: lang },
-  } = useTranslation();
-
   const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
 
   const { data } = useQuery({
-    queryKey: ["photos", searchTerm, lang],
+    queryKey: ["photos", searchTerm],
     queryFn: ({ signal }) =>
       fetchImageBySearchTerm(searchTerm!, signal, {
-        per_page: 20,
+        per_page: 15,
         content_filter: "high",
-        lang: lang.includes("tr") ? "tr" : "en",
       }),
     enabled: !!UNSPLASH_API_KEY && !!searchTerm && searchTerm?.length >= 1,
     gcTime: Infinity,

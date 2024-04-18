@@ -32,6 +32,10 @@ export function WeatherMap({
         src={mapLink}
         onLoad={() => setLoaded(true)}
         hidden={!firstRender && !loaded}
+        onError={(err) => {
+          if (err instanceof Error) console.log(err.message);
+          throw err;
+        }}
       />
       {!loaded && <ImageSkeleton />}
     </Card>

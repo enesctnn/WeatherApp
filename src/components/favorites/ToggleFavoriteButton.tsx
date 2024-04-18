@@ -13,6 +13,8 @@ export function ToggleFavoriteButton({
   lat: number;
   lon: number;
 }) {
+  const coords = lat + "," + lon;
+
   const ref = useRef<number>(0);
   const {
     toggleFavoriteSearch,
@@ -23,10 +25,10 @@ export function ToggleFavoriteButton({
 
   function handleToggleFavorite() {
     if (favoritesLength < 10) toggleFavoriteSearch(placeName, lat, lon);
-    else removeFavoriteSearch(placeName);
+    else removeFavoriteSearch(coords);
   }
 
-  const isFavoriteCity = Object.keys(favorites).includes(placeName);
+  const isFavoriteCity = Object.keys(favorites).includes(coords);
 
   return (
     <button
@@ -59,7 +61,7 @@ export function ToggleFavoriteButton({
         {favoritesLength >= 10 && !isFavoriteCity && (
           <motion.div
             key={ref.current}
-            className="animate-shake absolute inset-0 transition ease-in-out"
+            className="absolute inset-0 animate-shake transition ease-in-out"
             onClick={() => ref.current++}
           >
             <MdBlock color="red" className="h-full w-full" />
