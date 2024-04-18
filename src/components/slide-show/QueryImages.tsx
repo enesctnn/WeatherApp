@@ -5,6 +5,7 @@ import { SlideImagesT } from "../../lib/slide-images";
 import { cn } from "../../lib/utils";
 import { CursorClicking } from "../ui/cursor-clicking";
 import { ForwardBackButtons } from "../ui/direction-buttons";
+import { SlideImage } from "../ui/slide-image";
 
 export const QueryImages = ({
   images,
@@ -34,6 +35,7 @@ export const QueryImages = ({
     setActiveImageIndex((prevIndex) =>
       prevIndex < images.length - 1 ? prevIndex + 1 : 0,
     );
+
   const { t } = useTranslation(undefined, { keyPrefix: "slideImages" });
 
   return (
@@ -46,14 +48,10 @@ export const QueryImages = ({
       )}
       {images.map((image, index) => (
         <React.Fragment key={image.src}>
-          <img
-            className={cn(
-              "user-drag-none absolute left-0 top-0 z-0 h-full w-full -translate-x-4 rotate-6 scale-125 overflow-hidden object-cover opacity-0 blur-lg transition-all duration-500 ease-in-out",
-              activeImageIndex === index &&
-                "z-10 translate-x-0 rotate-0 scale-100 opacity-100 blur-none",
-            )}
+          <SlideImage
             src={image.src}
-            alt={image.alt}
+            alt={image.alt}            
+            isActive={activeImageIndex === index}
           />
           <div
             className={cn(

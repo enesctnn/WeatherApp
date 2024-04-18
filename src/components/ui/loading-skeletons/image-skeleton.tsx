@@ -4,14 +4,14 @@ export const ImageSkeleton = ({ className }: { className?: string }) => (
   <div
     role="status"
     className={cn(
-      "h-full animate-pulse space-y-8 md:flex md:items-center md:space-x-8 md:space-y-0 rtl:space-x-reverse",
+      "h-full w-full animate-pulse space-y-8 md:flex md:items-center md:space-x-8 md:space-y-0 rtl:space-x-reverse",
       className,
     )}
   >
-    <div className="flex h-full w-full items-center justify-center rounded bg-gray-300 dark:bg-gray-700 z-50">
+    <div className="z-50 flex h-full w-full items-center justify-center rounded bg-gray-300 dark:bg-gray-700">
       <svg
         className="h-10 w-10 text-gray-200 dark:text-gray-600"
-        aria-hidden="true"
+        aria-hidden
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         viewBox="0 0 20 18"
