@@ -22,7 +22,7 @@ export function WeatherMap({
     <Card className="weather-card relative h-[500px] !p-0 lg:h-full">
       <div className="absolute top-[370px] flex w-full text-heading-md sm:justify-center md:!top-[70px] lg:!top-20">
         <a
-          className="relative flex w-max gap-x-2 px-1 text-gray-100 underline decoration-1 transition-all hover:scale-110"
+          className="relative flex w-max gap-x-2 px-1 text-gray-100 underline decoration-1 drop-shadow-border transition-all hover:scale-110"
           target="_blank"
           href={mapLink}
         >

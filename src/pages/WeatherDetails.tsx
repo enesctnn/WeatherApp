@@ -7,15 +7,14 @@ import {
 
 import { HomeButton } from "../components/ui/home-button";
 import { WeatherDetailsCompWrapper } from "../components/weather-details/WeatherDetailsCompWrapper";
-import { WeatherUnitsContextProvider } from "../context/units-context";
 import Routes from "../routes/index";
 import { fetchCurrentWeatherByCoords, queryClient } from "../util/http-weather";
 
 const WeatherDetailsPage = () => (
-  <WeatherUnitsContextProvider>
+  <>
     <HomeButton />
     <WeatherDetailsCompWrapper />
-  </WeatherUnitsContextProvider>
+  </>
 );
 
 export default WeatherDetailsPage;

@@ -1,8 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { FaStar } from "react-icons/fa";
 import { useFavoriteSearchsContext } from "../../hooks/context/useFavoriteSearchsContext";
 import { cn } from "../../lib/utils";
 import { PinnedButton } from "../ui/pinned-button";
-import { useTranslation } from "react-i18next";
 
 export function FavoritesTrigger({ onClick }: { onClick: () => void }) {
   const { favoritesLength } = useFavoriteSearchsContext();
@@ -12,7 +12,7 @@ export function FavoritesTrigger({ onClick }: { onClick: () => void }) {
     <PinnedButton
       className="!right-0 top-10"
       toolTip={
-        favoritesLength === 10 ? t("toolTip.full") : `10/${favoritesLength}`
+        favoritesLength === 10 ? t("toolTip.full") : `${favoritesLength} / 10`
       }
     >
       <div

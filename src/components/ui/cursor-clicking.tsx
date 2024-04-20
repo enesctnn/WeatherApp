@@ -10,7 +10,10 @@ export const CursorClicking = ({
   className?: string;
   icon?: Icon | IconType | undefined;
 }) => (
-  <div className={cn("absolute z-20 text-md", className)}>
+  <div
+    aria-hidden
+    className={cn("absolute z-20 text-md dark:drop-shadow-border", className)}
+  >
     {!SpecialIcon && <PiCursorClickFill />}
     {SpecialIcon && <SpecialIcon />}
     <div className="relative -z-10" aria-hidden>
