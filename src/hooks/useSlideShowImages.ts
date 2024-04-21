@@ -41,7 +41,7 @@ export function useSlideShowImages(
       }),
     );
     if (data.results.length <= 0) dataImages.push(...images);
-  }
+  } else dataImages.push(...images);
 
   return dataImages;
 }
